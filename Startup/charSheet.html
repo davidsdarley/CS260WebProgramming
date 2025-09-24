@@ -20,11 +20,20 @@
       </nav>
     </header>
   
-    <main>
+  <main>
+    <div id = "topSection">
+      <p>Player Name: David</p>
+      <p>Character Name: Dannic</p>
+      <p>Level: 2</p>
+      <p>Paths: Warrior</p>
+      <p>Ancestry: Human</p>
+
+    </div>
 
     <div class="stats">
       <section><!--Physical Stats and Skills-->
-        <p><b>Physical</b></p>
+        <h3>Physical</h3>
+
         <table>
           <tr>
             <th>Strength</th>
@@ -37,6 +46,13 @@
             <td>2</td>
           </tr>
         </table>
+
+        
+
+        <div class = "meterAtribute"> 
+          <span>Health: 0 </span> <meter id="health" min="0" max="20" value="50" low="1" high = "15" optimum = "20"></meter> <span> 20</span>
+        </div>
+        <div class = "atribute"><span>Deflect: </span><input type = "number"></div>
         <hr>
         <div> <!--Skills-->
           <div class="skill">
@@ -103,7 +119,7 @@
       </section>
       <hr>
       <section><!--Cognitive Stats and Skills-->
-        <p><b>Cognitive</b></p>
+        <h3>Cognitive</h3>
         <table>
           <tr>
             <th>Intellect</th>
@@ -116,6 +132,11 @@
             <td>2</td>
           </tr>
         </table>
+
+        <div class = "meterAtribute"> 
+          <span>Focus: 0 </span> <meter id="focus" min="0" max="2" value="50" low="1" high = "2" optimum = "2"></meter> <span> 2</span>
+        </div>
+
         <hr>
         
           <div> <!--Skills-->
@@ -179,7 +200,7 @@
       </section>
       <hr>
       <section><!--Spiritual Stats and Skills-->
-        <p><b>Spiritual</b></p>
+        <h3>Spiritual</h3>
         <table>
           <tr>
             <th>Awareness</th>
@@ -192,6 +213,11 @@
             <td>2</td>
           </tr>
         </table>
+
+        <div class = "meterAtribute"> 
+          <span>Investiture: 0 </span> <meter id="health" min="0" max="22" value="50" low="0" high = "1" optimum = "2"></meter> <span> 2</span>
+        </div>
+
         <hr>
         
           <div> <!--Skills-->
@@ -255,32 +281,31 @@
       </section>
     </div>
 
+    <hr>
 
+    <div id = "bottomSection"> <!--Various lists of stuff-->
 
-    <div class = "listSection"> <!--Various lists of stuff-->
-
-    <div class = "list">
+    <div class = "list" id = "conditions">
       <h3>Conditions and Injuries</h3>
       <ul>
         <li>None</li>
       </ul>
     </div>
 
-    <div class = "list"></div>
+    <div class = "list" id = "weapons">
       <h3>Weapons</h3>
       <ul>
         <li>None</li>
       </ul>
     </div>
 
-    <div class = "list"></div>
+    <div class = "list" id = "Expertises">
       <h3>Expertises</h3>
       <ul>
         <li>None</li>
       </ul>
     </div>
-
-    <div class = "list"></div>
+    <div class = "list" id = "ArmorAndEquipment">
       <h3>Armor and Equipment</h3>
       <ul>
         <li>None</li>
@@ -288,12 +313,10 @@
     </div>
 
     <span>Spheres: </span><input type="number">
+    
 
   </div>
-
-
-
-    </main>
+  </main>
     
   
     <footer>
