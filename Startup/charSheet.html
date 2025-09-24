@@ -4,7 +4,7 @@
 <head>  <!--Largely copied from Simon, then modified. I don't know what everything here does yet but I'll find out!-->
   <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cosmere RPG</title>
+    <title>Cosmere RPG: Character</title>
     <link rel="icon" href="cosmereSymbol.jpg" />  <!--I didn't know this was a thing! That's SUPER COOL so I got my own-->
 </head>
 
@@ -22,9 +22,9 @@
   
     <main>
 
-
     <div class="stats">
-      <section>
+
+      <section><!--Physical Stats and Skills-->
         <p><b>Physical</b></p>
         <table>
           <tr>
@@ -33,29 +33,70 @@
             <th>Speed</th>
           </tr>
           <tr>
-            <td>val</td>
-            <td>val</td>
-            <td>val</td>
+            <td>2</td>
+            <td>14</td>
+            <td>2</td>
           </tr>
         </table>
         <hr>
+        <div> <!--Skills-->
+          <div class="skill">
+            <span>Agility</span>
+            <label><input type="checkbox" name="Agility-1"></label>
+            <label><input type="checkbox" name="Agility-2"></label>
+            <label><input type="checkbox" name="Agility-3"></label>
+            <label><input type="checkbox" name="Agility-4"></label>
+            <label><input type="checkbox" name="Agility-5"></label>
+          </div>
 
-        <div class="skill">
-          <span>Agility</span>
-          <label><input type="checkbox" name="Agility-1"></label>
-          <label><input type="checkbox" name="Agility-2"></label>
-          <label><input type="checkbox" name="Agility-3"></label>
-          <label><input type="checkbox" name="Agility-4"></label>
-          <label><input type="checkbox" name="Agility-5"></label>
+          <div class="skill">
+            <span>Athletics</span>
+            <label><input type="checkbox" name="Athletics-1"></label>
+            <label><input type="checkbox" name="Athletics-2"></label>
+            <label><input type="checkbox" name="Athletics-3"></label>
+            <label><input type="checkbox" name="Athletics-4"></label>
+            <label><input type="checkbox" name="Athletics-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Heavy Weapons</span>
+            <label><input type="checkbox" name="HeavyWeapons-1"></label>
+            <label><input type="checkbox" name="HeavyWeapons-2"></label>
+            <label><input type="checkbox" name="HeavyWeapons-3"></label>
+            <label><input type="checkbox" name="HeavyWeapons-4"></label>
+            <label><input type="checkbox" name="HeavyWeapons-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Light Weapons</span>
+            <label><input type="checkbox" name="LightWeapons-1"></label>
+            <label><input type="checkbox" name="LightWeapons-2"></label>
+            <label><input type="checkbox" name="LightWeapons-3"></label>
+            <label><input type="checkbox" name="LightWeapons-4"></label>
+            <label><input type="checkbox" name="LightWeapons-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Stealth</span>
+            <label><input type="checkbox" name="Stealth-1"></label>
+            <label><input type="checkbox" name="Stealth-2"></label>
+            <label><input type="checkbox" name="Stealth-3"></label>
+            <label><input type="checkbox" name="Stealth-4"></label>
+            <label><input type="checkbox" name="Stealth-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Thievery</span>
+            <label><input type="checkbox" name="Thievery-1"></label>
+            <label><input type="checkbox" name="Thievery-2"></label>
+            <label><input type="checkbox" name="Thievery-3"></label>
+            <label><input type="checkbox" name="Thievery-4"></label>
+            <label><input type="checkbox" name="Thievery-5"></label>
+          </div>
         </div>
-
-        <p>Athletics</p>
-        <p>Heavy Weapons</p>
-        <p>Agility</p>
-
       </section>
 
-      <section>
+      <section><!--Cognitive Stats and Skills-->
         <p><b>Cognitive</b></p>
         <table>
           <tr>
@@ -64,15 +105,71 @@
             <th>Willpower</th>
           </tr>
           <tr>
-            <td>val</td>
-            <td>val</td>
-            <td>val</td>
+            <td>2</td>
+            <td>14</td>
+            <td>2</td>
           </tr>
         </table>
         <hr>
+        
+          <div> <!--Skills-->
+          <div class="skill">
+            <span>Crafting</span>
+            <label><input type="checkbox" name="Crafting-1"></label>
+            <label><input type="checkbox" name="Crafting-2"></label>
+            <label><input type="checkbox" name="Crafting-3"></label>
+            <label><input type="checkbox" name="Crafting-4"></label>
+            <label><input type="checkbox" name="Crafting-5"></label>
+          </div>
+
+          <div class="skill">
+            <span>Deduction</span>
+            <label><input type="checkbox" name="Deduction-1"></label>
+            <label><input type="checkbox" name="Deduction-2"></label>
+            <label><input type="checkbox" name="Deduction-3"></label>
+            <label><input type="checkbox" name="Deduction-4"></label>
+            <label><input type="checkbox" name="Deduction-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Discipline</span>
+            <label><input type="checkbox" name="Discipline-1"></label>
+            <label><input type="checkbox" name="Discipline-2"></label>
+            <label><input type="checkbox" name="Discipline-3"></label>
+            <label><input type="checkbox" name="Discipline-4"></label>
+            <label><input type="checkbox" name="Discipline-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Intimidation</span>
+            <label><input type="checkbox" name="Intimidation-1"></label>
+            <label><input type="checkbox" name="Intimidation-2"></label>
+            <label><input type="checkbox" name="Intimidation-3"></label>
+            <label><input type="checkbox" name="Intimidation-4"></label>
+            <label><input type="checkbox" name="Intimidation-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Lore</span>
+            <label><input type="checkbox" name="Lore-1"></label>
+            <label><input type="checkbox" name="Lore-2"></label>
+            <label><input type="checkbox" name="Lore-3"></label>
+            <label><input type="checkbox" name="Lore-4"></label>
+            <label><input type="checkbox" name="Lore-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Medicine</span>
+            <label><input type="checkbox" name="Medicine-1"></label>
+            <label><input type="checkbox" name="Medicine-2"></label>
+            <label><input type="checkbox" name="Medicine-3"></label>
+            <label><input type="checkbox" name="Medicine-4"></label>
+            <label><input type="checkbox" name="Medicine-5"></label>
+          </div>
+        </div>
       </section>
 
-      <section>
+      <section><!--Spiritual Stats and Skills-->
         <p><b>Spiritual</b></p>
         <table>
           <tr>
@@ -81,18 +178,81 @@
             <th>Presence</th>
           </tr>
           <tr>
-            <td>val</td>
-            <td>val</td>
-            <td>val</td>
+            <td>2</td>
+            <td>14</td>
+            <td>2</td>
           </tr>
         </table>
+        <hr>
+        
+          <div> <!--Skills-->
+          <div class="skill">
+            <span>Deception</span>
+            <label><input type="checkbox" name="Deception-1"></label>
+            <label><input type="checkbox" name="Deception-2"></label>
+            <label><input type="checkbox" name="Deception-3"></label>
+            <label><input type="checkbox" name="Deception-4"></label>
+            <label><input type="checkbox" name="Deception-5"></label>
+          </div>
+
+          <div class="skill">
+            <span>Insight</span>
+            <label><input type="checkbox" name="Insight-1"></label>
+            <label><input type="checkbox" name="Insight-2"></label>
+            <label><input type="checkbox" name="Insight-3"></label>
+            <label><input type="checkbox" name="Insight-4"></label>
+            <label><input type="checkbox" name="Insight-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Leadership</span>
+            <label><input type="checkbox" name="Leadership-1"></label>
+            <label><input type="checkbox" name="Leadership-2"></label>
+            <label><input type="checkbox" name="Leadership-3"></label>
+            <label><input type="checkbox" name="Leadership-4"></label>
+            <label><input type="checkbox" name="Leadership-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Perception</span>
+            <label><input type="checkbox" name="Perception-1"></label>
+            <label><input type="checkbox" name="Perception-2"></label>
+            <label><input type="checkbox" name="Perception-3"></label>
+            <label><input type="checkbox" name="Perception-4"></label>
+            <label><input type="checkbox" name="Perception-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Persuasion</span>
+            <label><input type="checkbox" name="Persuasion-1"></label>
+            <label><input type="checkbox" name="Persuasion-2"></label>
+            <label><input type="checkbox" name="Persuasion-3"></label>
+            <label><input type="checkbox" name="Persuasion-4"></label>
+            <label><input type="checkbox" name="Persuasion-5"></label>
+          </div>
+
+          <div class="skill"></div>
+            <span>Survival</span>
+            <label><input type="checkbox" name="Survival-1"></label>
+            <label><input type="checkbox" name="Survival-2"></label>
+            <label><input type="checkbox" name="Survival-3"></label>
+            <label><input type="checkbox" name="Survival-4"></label>
+            <label><input type="checkbox" name="Survival-5"></label>
+          </div>
+        </div>
       </section>
+
+
     </div>
 
 
 
     </main>
-  
+    
+    <!--Buffer between body and footer-->
+  <p></p>
+  <p></p>
+
     <footer>
       <div><a href="https://github.com/davidsdarley/CS260Startup">My Github</a></div>
     </footer>
