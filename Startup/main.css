@@ -4,12 +4,8 @@ body {
      
     margin: 0px;
     height: 100vh;
+    background-color: hsl(223, 57%, 20%); /* fallback / base color */
 
-    background-image: url("https://cdn.shopify.com/s/files/1/0886/8082/5106/files/stormlight-original_April-7-2020.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     
     display: flex;
     flex-direction: column;
@@ -17,7 +13,7 @@ body {
 
 header{
     padding: 10px;
-
+    border-bottom: 1px solid rgb(218, 185, 0);
     height: 130px;
     flex: 0 0 0px;
     color: white;
@@ -36,6 +32,8 @@ header{
 
 
 main {
+    background-color: hsl(222, 90%, 9.5%); /* fallback / base color */
+
     padding: 15px;
     gap: 15px;
     flex-direction: column;
@@ -43,8 +41,22 @@ main {
     flex: 1;
     display: flex;
     text-align: left;
+
+
+    background-image: url("https://cdn.shopify.com/s/files/1/0886/8082/5106/files/stormlight-original_April-7-2020.jpg");
+    
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: 50% 90%;
+    background-attachment: fixed;
     }
 
+.translucent-box {
+        background-color: rgba(255, 255, 255, 0.7); /* white with 70% opacity */
+        padding: 20px;          /* space inside the box */
+        border-radius: 10px;    /* rounded corners */
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* optional: subtle shadow */
+    }
 
 footer {
     flex: 0 30px;
