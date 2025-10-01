@@ -1,16 +1,33 @@
 .sheetSections {
     display: flex;       /* enables horizontal layout */
-    height: 100vh;       /* optional: full viewport height */
+    flex-direction: row;
+    color: white
 }
 
 .charInfo {
-    flex: 0 0 25%;       /* 25% width, no shrinking or growing */
-    color: white;
+    flex: 1;       /* 25% width, no shrinking or growing */
     padding: 20px;
+}
+.charInfo img {
+    max-width: 100%;   /* image won’t exceed container width */
+    height: auto;      /* maintain aspect ratio */
+    display: block;    /* removes small gaps below the image */
 }
 
 .gameplay {
-    flex: 1;             /* takes the remaining 75% */
-    color: white;
+    flex: 3;             /* takes the remaining 75% */
     padding: 20px;
+    flex-direction: column;
+}
+
+.stats {
+    display: flex;
+    flex-direction: row;
+}
+.evenSpacing{
+    flex:1;
+}
+
+.attribute{
+
 }

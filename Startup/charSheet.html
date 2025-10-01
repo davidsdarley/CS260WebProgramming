@@ -39,8 +39,10 @@
   <main class = "sheetSections">
     
     <section class = "charInfo">
-      <p>Dannic</p>
-      <p><span>Level 2</span><span> Human</span> Warrior</p>
+      <div class = "textbox">
+        <p>Dannic</p>
+        <p><span>Level 2</span><span> Human</span> Warrior</p>
+      </div>
       <img id = "profilePic" alt="Taln" src="https://uploads.coppermind.net/thumb/Stoneward_by_Petar_Penev.png/300px-Stoneward_by_Petar_Penev.png" />
       
       <div>
@@ -53,7 +55,7 @@
     <section class = "gameplay" >
 
     <div class="stats">
-      <section><!--Physical Stats and Skills-->
+      <section class = "textbox evenSpacing"><!--Physical Stats and Skills-->
         <h3>Physical</h3>
 
         <table>
@@ -131,16 +133,18 @@
             <label><input type="checkbox" name="Thievery-5"></label>
           </div>
         </div>
-        <div class= "atribute">
-          <span>Carrying Capacity: </span><input type = "number">
-        </div>
-        <div class= "atribute">
-          <span>Speed: </span><input type = "number">
-        </div>
+        
+        <hr>
+          <div class= "atribute">
+            <p>Carrying Capacity</p><input type = "number">
+          </div>
+          <div class= "atribute">
+            <p>Movement</p><input type = "number">
+          </div>
 
       </section>
       <hr>
-      <section><!--Cognitive Stats and Skills-->
+      <section class = "textbox evenSpacing"><!--Cognitive Stats and Skills-->
         <h3>Cognitive</h3>
         <table>
           <tr>
@@ -156,7 +160,7 @@
         </table>
 
         <div class = "meterAtribute"> 
-          <span>Focus: 0 </span> <meter id="focus" min="0" max="2" value="50" low="1" high = "2" optimum = "2"></meter> <span> 2</span>
+          <p>Focus: 0 </span> <meter id="focus" min="0" max="2" value="50" low="1" high = "2" optimum = "2"></meter> <span> 2</span>
         </div>
 
         <hr>
@@ -216,12 +220,13 @@
             <label><input type="checkbox" name="Medicine-5"></label>
           </div>
         </div>
+        <hr>
         <div class= "atribute">
-          <span>Recovery Die: </span><input type = "number">
+          <p>Recovery Die: </p><input type = "number">
         </div>
       </section>
       <hr>
-      <section><!--Spiritual Stats and Skills-->
+      <section class = "textbox evenSpacing"><!--Spiritual Stats and Skills-->
         <h3>Spiritual</h3>
         <table>
           <tr>
@@ -297,8 +302,9 @@
               <label><input type="checkbox" name="Survival-5"></label>
             </div>
           </div>
+        <hr>
         <div class= "atribute">
-          <span>Senses Range: </span><input type = "number">
+          <p>Senses Range: </p><input type = "number">
         </div>
       </section>
     </div>
