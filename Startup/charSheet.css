@@ -1,0 +1,16 @@
+.sheetSections {
+    display: flex;       /* enables horizontal layout */
+    height: 100vh;       /* optional: full viewport height */
+}
+
+.charInfo {
+    flex: 0 0 25%;       /* 25% width, no shrinking or growing */
+    color: white;
+    padding: 20px;
+}
+
+.gameplay {
+    flex: 1;             /* takes the remaining 75% */
+    color: white;
+    padding: 20px;
+}
