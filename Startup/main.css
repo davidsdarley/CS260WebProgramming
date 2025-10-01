@@ -51,11 +51,11 @@ main {
     background-attachment: fixed;
     }
 
-.translucent-box {
-        background-color: rgba(255, 255, 255, 0.7); /* white with 70% opacity */
-        padding: 20px;          /* space inside the box */
-        border-radius: 10px;    /* rounded corners */
-        box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* optional: subtle shadow */
+.textbox {
+        background-color: rgba(145, 145, 145, 0.7); /* white with 70% opacity */
+        padding: 20px;          
+        border-radius: 10px;    
+        display: inline-block;
     }
 
 footer {
