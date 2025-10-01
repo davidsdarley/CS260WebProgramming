@@ -1,0 +1,53 @@
+body {
+
+    /*background image stuff*/
+     
+    margin: 0px;
+    height: 100vh;
+
+    background-image: url("https://cdn.shopify.com/s/files/1/0886/8082/5106/files/stormlight-original_April-7-2020.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    display: flex;
+    flex-direction: column;
+  }
+
+header{
+    padding: 10px;
+
+    height: 130px;
+    flex: 0 0 0px;
+    color: white;
+    background-color: hsl(223, 57%, 20%);
+    margin: 0;
+    }
+
+.navbar{
+    display: flex;
+    max-width: fit-content;
+    color: white;
+    }
+.navbar a{
+    color: white;
+    }
+
+
+main {
+    padding: 15px;
+    gap: 15px;
+    flex-direction: column;
+    color:white;
+    flex: 1;
+    display: flex;
+    text-align: left;
+    }
+
+
+footer {
+    flex: 0 30px;
+    background: hsl(180, 10%, 10%);
+
+    }
