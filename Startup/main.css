@@ -52,6 +52,7 @@ header{
     display: flex;
     max-width: fit-content;
     color: white;
+    margin-left: -25px;
     }
 .navbar a{
     color: white;
