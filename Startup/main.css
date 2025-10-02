@@ -1,15 +1,14 @@
 body {
-
     /*background image stuff*/
-     
-    margin: 0px;
     height: 100vh;
-    background-color: hsl(223, 57%, 20%); /* fallback / base color */
+    background-color: hsl(222, 90%, 9.5%); /* fallback / base color */
 
     
     display: flex;
     flex-direction: column;
   }
+
+
 
 header{
     position: fixed;
