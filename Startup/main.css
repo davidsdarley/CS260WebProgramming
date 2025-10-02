@@ -1,4 +1,7 @@
-body {     
+body {
+
+    /*background image stuff*/
+     
     margin: 0px;
     height: 100vh;
     background-color: hsl(223, 57%, 20%); /* fallback / base color */
@@ -63,7 +66,7 @@ main {
 .textbox {
     border: 1px solid rgb(218, 185, 0);
     position: relative;
-    margin: 10px;
+    margin: 10px 10px;
 
 
     width: fit-content;
