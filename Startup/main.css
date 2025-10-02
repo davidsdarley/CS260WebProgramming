@@ -69,15 +69,14 @@ main {
 
 
     width: fit-content;
+    max-width: 97%;
     background-color: rgba(145, 145, 145, 0.7);
     padding: 15px;          
     display: inline-block;
     }
 
 footer {
-    flex: 0 30px;
     background: hsl(180, 10%, 10%);
-
     }
 
 table {
