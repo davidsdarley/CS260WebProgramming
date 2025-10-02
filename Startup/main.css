@@ -18,20 +18,35 @@ header{
     z-index: 1000;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
 
     padding-top: 2vh;
     padding-left: 20px;
     border-bottom: 1px solid rgb(218, 185, 0);
-    outline: .5px solid rgb(218, 185, 0);         /* outer line */
+    outline: .5px solid rgb(218, 185, 0);
     outline-offset: -5px; 
     color: white;
     background-color: hsl(223, 57%, 20%);
     margin: 0;
 
+    align-items: center;
+
     box-sizing: border-box;
     }
+.leftHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    }
+
+#logo {
+    height: 150px;
+    width: auto;
+    margin-top: -10px;
+    margin-right: +20px;
+}
 
 .navbar{
     display: flex;
