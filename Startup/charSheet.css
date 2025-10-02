@@ -12,6 +12,7 @@
     max-width: 100%;   /* image won’t exceed container width */
     height: auto;      /* maintain aspect ratio */
     display: block;    /* removes small gaps below the image */
+    margin: 20px auto;
 }
 
 .gameplay {
@@ -31,3 +32,15 @@
 .attribute{
 
 }
+
+.fillWidthTextbox {
+    border: 1px solid rgb(218, 185, 0);
+    position: relative;
+    align-items: center;
+    margin-left: 1%;
+
+    width: 98.5%;
+    background-color: rgba(145, 145, 145, 0.7);
+    padding: 15px;          
+    display: inline-block;
+    }

@@ -39,17 +39,29 @@
   <main class = "sheetSections">
     
     <section class = "charInfo">
-      <div class = "textbox">
+      <div class = "fillWidthTextbox">
         <p>Dannic</p>
         <p><span>Level 2</span><span> Human</span> Warrior</p>
       </div>
       <img id = "profilePic" alt="Taln" src="https://uploads.coppermind.net/thumb/Stoneward_by_Petar_Penev.png/300px-Stoneward_by_Petar_Penev.png" />
       
-      <div>
+      <div class = "fillWidthTextbox">
         <h3>Purpose</h3>
+          <ul>
+            <li>None</li>
+          </ul>
         <h3>Obstacle</h3>
+          <ul>
+            <li>None</li>
+          </ul>
         <h3>Goals</h3>
+          <ul>
+            <li>None</li>
+          </ul>
         <h3>Expertises</h3>
+          <ul>
+            <li>None</li>
+          </ul>
 
       </div>
     </section>
@@ -313,35 +325,44 @@
 
     <hr>
     <div id = "bottomSection"> <!--Various lists of stuff-->
-    <div class = "list" id = "talents">
+    
+      <div class = "list fillWidthTextbox" id = "talents">
       <h3>Talents</h3>
       <ul>
         <li>None</li>
       </ul>
     </div>
 
-    <div class = "list" id = "weapons">
-      <h3>Weapons</h3>
-      <ul>
-        <li>None</li>
-      </ul>
-    </div>
-    <span>Spheres: </span><input type="number">
-
-    <div class = "list" id = "ArmorAndEquipment">
-      <h3>Armor and Equipment</h3>
-      <ul>
-        <li>None</li>
-      </ul>
-    </div>
-
+    <section id = "inventory">
+      <div class="textbox" id="money">      
+        <span>Spheres: </span><input type="number">
+      </div>
     
-    <div class = "list" id = "conditions"></div>
+      <section class = "sheetSections">
+        <div class = "list evenSpacing textbox" id = "weapons">
+          <h3>Weapons</h3>
+          <ul>
+            <li>None</li>
+          </ul>
+        </div>
+
+        <div class = "list evenSpacing textbox" id = "ArmorAndEquipment">
+          <h3>Armor and Equipment</h3>
+          <ul>
+            <li>None</li>
+          </ul>
+        </div>
+      </section>
+
+    </section>
+    
+    <div class = "list textbox" id = "conditions">
       <h3>Conditions and Injuries</h3>
       <ul>
         <li>None</li>
       </ul>
     </div>
+    
   </div>
 
 </section>
