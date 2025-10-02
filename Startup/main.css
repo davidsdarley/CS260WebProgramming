@@ -1,7 +1,4 @@
-body {
-
-    /*background image stuff*/
-     
+body {     
     margin: 0px;
     height: 100vh;
     background-color: hsl(223, 57%, 20%); /* fallback / base color */
@@ -80,3 +77,19 @@ footer {
     background: hsl(180, 10%, 10%);
 
     }
+
+table {
+    width: 100%;           /* or a fixed px value */
+    table-layout: fixed;   /* forces equal column widths */
+    border-collapse: collapse;
+    border: 1px solid white;
+    text-align: center;
+    }
+
+th {
+    border-bottom: 1px solid white !important;
+    padding: 5px 10px 0px 10px;
+    }
+td {
+    padding: 10px 20px;
+}
