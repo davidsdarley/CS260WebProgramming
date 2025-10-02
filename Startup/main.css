@@ -8,9 +8,9 @@ body {
     flex-direction: column;
   }
 
-
-
 header{
+    font-family: "FONTSPRING DEMO - Anavio Small Capitals";
+
     position: fixed;
     top: 0;
     left: 0;
