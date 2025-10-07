@@ -1,4 +1,4 @@
-body {
+.body {
     /*background image stuff*/
     height: 100vh;
     background-color: hsl(222, 90%, 9.5%); /* fallback / base color */
