@@ -2,8 +2,462 @@ import React from 'react';
 
 export function CombatRules() {
   return (
-    <main className="container-fluid bg-secondary text-center">
-      <div>Combat Rules displayed here</div>
-    </main>
+    <main>
+        <section className="textbox" id = "Order">
+            <h1 dir="ltr">
+                Order of Combat
+            </h1>
+            <p dir="ltr">
+                Each round of combat follows this sequence:
+            </p>
+            <ol>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Fast PC Turns. Any PCs who want a fast turn go in any order, gaining
+                        two actions each (plus one reaction).
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Fast NPC Turns. The GM chooses which adversaries or other NPCs want
+                        a fast turn and decides what order they go in. These NPCs gain two
+                        actions each (plus one reaction).
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Slow PC Turns. The remaining PCs take their turns, gaining three
+                        actions each (plus one reaction).
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Slow NPC Turns. The remaining enemies and other NPCs take their
+                        turns, gaining three actions each (plus one reaction).
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Begin the Next Round. Once every character has taken one turn, the
+                        round ends and the next one begins. Repeat these steps until the
+                        combat is resolved.
+                    </p>
+                </li>
+            </ol>
+            <br/>
+            <p dir="ltr">
+                Each round, you can choose to take a turn that’s either fast or slow. Your
+                choice grants you a certain number of actions, which represent the many
+                things you can do on your turn. If you take a Fast Turn, you take your turn
+                first before any enemies go, but you only get two actions (&gt;&gt;) to use
+                on your turn. If you instead take a slow turn, you act after any fast
+                enemies, but you get three actions (&gt;&gt;&gt;) instead of two.
+            </p>
+            <br/>
+            <h1 dir="ltr">
+            </h1>
+        </section>
+
+        <hr/>
+        
+        <section className="textbox" id = "Actions">
+            <h1 dir="ltr">
+                Actions
+            </h1>
+            <p dir="ltr">
+                Actions (marked by &gt;) can only be used on your turn in combat, and each
+                named action can only be used once per turn unless stated otherwise. The
+                same applies to actions from talents and other effects, regardless of
+                whether those are given a specific name. Some actions take more time than
+                others. Each action in this book lists how many you must spend to activate
+                it: either &gt;, &gt;&gt;, or &gt;&gt;&gt;. (See “Order of Combat” for rules
+                on how many actions you can use on your turn.) On your turn, you can spend
+                your available to use any of the actions listed below, or to use any actions
+                granted by your talents or other effects (such as the Breathe Stormlight
+                action available to Radiants).
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Brace (&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You hide behind cover within 5 feet of you (see “Terrain”) to defend
+                yourself against incoming attacks. All attacks against you gain a
+                disadvantage for as long as you stay behind cover. If you attack or move,
+                the benefits of this action end. You’re only protected against attacks from
+                the other side of your cover, and it must be substantial enough to
+                realistically defend you against the attack. For example, you could press
+                yourself against a wall or duck behind an obstacle, but if an enemy rounds
+                the corner toward you, they can attack you without disadvantage. If you have
+                a weapon with the Defensive trait (such as a shield), you can wield it to
+                create mobile cover for yourself. When you do, you must keep that weapon
+                raised and between yourself and any potential attackers.
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Disengage (&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You carefully step away from an enemy, defending yourself so they can’t
+                seize the opportunity to attack. Move 5 feet without triggering Reactive
+                Strikes.
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Gain Advantage (&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You use one of your skills to seek the upper hand over your opponent, such
+                as through clever tactics, unexpected feints, or superior strength. Explain
+                how you are doing so, then make a test using a relevant skill against the
+                enemy’s corresponding defense. On a success, you gain an advantage on your
+                next test against that enemy that uses a different skill. For example, you
+                can test Deduction test to guess at your foe’s next move, then use that
+                advantage on your next Light Weaponry test; however, you can’t test Light
+                Weaponry then use that advantage on another Light Weaponry test. (See
+                “Skills” in chapter 3 for more examples of tests to Gain Advantage.)
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Interact (&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You quickly interact with an object you can reach. Unlike the Use a Skill
+                action, this action usually doesn’t require a skill test. For example, you
+                might Interact to:
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Open or close a door.
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Pick up an item.
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Draw or sheathe your weapon.
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Retrieve something from your pack.
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Pass something to an ally.
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Quickly scarf down pancakes.
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Put on or take off a simple piece of clothing. You can use the
+                        Interact action more than once per turn.
+                    </p>
+                </li>
+            </ul>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Move (&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You move a distance up to your movement rate. If you’re crawling, climbing,
+                swimming, or being stealthy, you become Slowed for this movement, reducing
+                how far you can move. Leaping or climbing as part of your movement might
+                require an Agility or Athletics test. You can use the Move action more than
+                once per turn.
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Strike (&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You attack using an unarmed attack or a weapon you’re wielding against the
+                Physical defense of a target. You can use the Strike action more than once
+                per turn, but each attack must use a different hand. If you attack using
+                your offhand, you must spend 2 focus.
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Use a Skill (&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You use one of your skills to perform challenging tasks around the
+                battlefield—for example, you could make a Perception test to search the
+                environment, make a Stealth test to hide, or make a Medicine test to treat
+                an ally. This action covers many creative tasks you might attempt. If you
+                have an idea that you don’t feel fits into this action, see the “Improvising
+                Actions” sidebar for more options.
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Grapple (&gt;&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                Through strength and skill, you grab your opponent or control their
+                movements to keep them restrained and focused on you. Make an Athletics test
+                against the Physical defense of a character within your reach. On a success,
+                they become Restrained until either you become Unconscious, you choose to
+                end the effect ( ), or they are no longer within your reach.
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Ready (&gt;*)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You prepare to respond to something happening on the battlefield. Choose the
+                trigger you’re waiting for (such as a character using a certain action or
+                gaining a certain condition) and choose the action (or free action) you want
+                to use in response. If that trigger occurs before the start of your next
+                turn, you can use the chosen action in response to the trigger, even if it’s
+                not your turn. If you choose not to respond to the trigger, you don’t regain
+                your spent actions. Your readied action must follow all other rules as if
+                you were using it on your turn. For example, if you already used a Disengage
+                action, you can't ready a second Disengage action. <br/>
+                *To use this action, you must use for the Ready action itself, plus the
+                number of required for the action you chose to prepare.
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Recover (&gt;&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                You take a deep breath and steel yourself. Roll your recovery die to recover
+                health and/or focus, as if you just finished a short rest. You can only use
+                the Recover action once per scene.
+            </p>
+            <ul>
+                <li dir="ltr">
+                    <h3 dir="ltr">
+                        Shove (&gt;&gt;)
+                    </h3>
+                </li>
+            </ul>
+            <p dir="ltr">
+                Through strength and skill, you forcibly maneuver your opponent. Make an
+                Athletics test against the Physical defense of a character within your
+                reach. On a success, you push or pull the target 5 feet horizontally. If you
+                successfully Shove a character who has grappled you, it ends the Grapple
+                effect. <br/>
+                <br/>
+            </p>
+        </section>
+
+
+        <section className="textbox" id = "Reactions">
+            <h2 dir="ltr">
+                Reactions
+            </h2>
+            <p dir="ltr">
+                Reactions (marked by &lt;) are used to respond to specific event, known as a
+                trigger, that happens on the battlefield. Each reaction describes its
+                specific trigger. Though reactions can be triggered on your turn, they’re
+                typically triggered on another character’s turn in response to something
+                they do. You usually only have one reaction per round. If an effect grants
+                you more than one reaction at a time, you can’t simultaneously use both of
+                your reactions on the same trigger, but you can use the same type of
+                reaction on two separate triggering events (for example, you can use Aid on
+                two separate tests an ally makes on their turn). You can spend your
+                available to use any of the reactions listed below, or to use any reactions
+                granted by your talents or other effects.
+            </p>
+            <br/>
+            <ul>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Aid (&lt;) You step in to help an ally. Before an ally makes a skill
+                        test, you can use this reaction and spend 1 focus to grant them an
+                        advantage on their test. To aid an ally, you must be prepared and in
+                        range to realistically assist them. For example, you might aid their
+                        attack by flanking and distracting an enemy you’re engaged with, or
+                        if you’re within speaking distance, you might coordinate with them
+                        to search for a hidden enemy.
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Avoid Danger (&lt;) When you’re imperiled by your surroundings—such
+                        as standing under a falling boulder or being shoved off a
+                        balcony—you can use this reaction to attempt to save yourself. This
+                        might allow you to catch yourself before you fall, to dodge out of
+                        the way of a boulder, or to similarly avoid the danger. Make an
+                        Agility test to avoid the danger. If doing so in reaction to a test
+                        (such as an attack or Shove action) the DC is equal to that test’s
+                        result. Otherwise, the DC is 15. If you fail, you don’t avoid the
+                        danger. If you succeed, you avoid the danger to a reasonable degree,
+                        as determined by the GM. For example, if you’re trying to avoid an
+                        area attack from the Division surge, the GM might say you move 5
+                        feet on a success—if this movement gets you out of the area, you
+                        aren’t hit, but if the area is larger, you’ll likely still be
+                        affected to some degree. The more narrative focused the danger, the
+                        more likely you can entirely avoid it, but any potential damage or
+                        repercussions are at the GM’s discretion.
+                    </p>
+                </li>
+                <li dir="ltr">
+                    <p dir="ltr">
+                        Dodge (&lt;) Before an enemy targets you with an attack, you can use
+                        this reaction and spend 1 focus to add a disadvantage to their
+                        attack test. You can’t use this reaction on area attacks or on those
+                        that target multiple characters, though you might be able to Avoid
+                        Danger and move out of the way.
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <hr/>
+
+        <section className="textbox" id="ConditionRules">
+            <h1 dir="ltr">
+                Conditions
+            </h1>
+            <p dir="ltr">
+                Many effects can apply a temporary condition to you (for example, “you
+                become Slowed”). These alter your abilities for the duration of that effect,
+                as described in the upcoming “Durations” section. If an effect doesn’t state
+                its duration (or how you can remove the condition early), all the rules you
+                need for determining that are in the condition itself. Conditions generally
+                only apply to characters, not objects. For example, if a rule tells you to
+                apply a condition to targets in a certain area, objects in that area ignore
+                that condition. However, when it fits the story, the GM might decide that
+                objects are affected by a condition (or by a similar narrative effect). This
+                game includes the following conditions, listed in alphabetical order.
+            </p>
+            <br/>
+            <h3 dir="ltr">
+                Afflicted
+            </h3>
+            <p dir="ltr">
+                While Afflicted, you slowly take damage over time. In combat, at the end of
+                each of your turns, you take the amount and type of damage specified by the
+                effect that gave you the condition; this information is typically stated in
+                brackets. For example, if you’re Afflicted [1d4 vital], you take 1d4 damage
+                at the end of each of your turns. Out of combat, you instead take that
+                damage every 10 seconds and after each time someone attempts to remove the
+                condition. Unlike most conditions, you can be Afflicted by multiple effects
+                simultaneously. When this happens, resolve each effect separately.
+            </p>
+            <br/>
+            <h3 dir="ltr">
+                Determined
+            </h3>
+            <p dir="ltr">
+                While Determined, when you fail a test, you can add an Opportunity to the
+                result. After you choose to do so, remove the Determined condition.
+            </p>
+            <br/>
+            <h3 dir="ltr">
+                Disoriented
+            </h3>
+            <p dir="ltr">
+                While Disoriented, your senses are disrupted, making most tasks difficult.
+                You can’t use reactions, your senses always count as obscured, and
+                Perception tests (and similar tests to use your senses) gain a disadvantage.
+            </p>
+            <br/>
+            <h3 dir="ltr">
+                Empowered
+            </h3>
+            <p dir="ltr">
+                When a Knight Radiant swears an Ideal, they become Empowered, granting a
+                burst of unrestrained power. While Empowered, you gain an advantage on all
+                tests and your Investiture refills to your maximum at the start of each of
+                your turns. Remove this condition at the end of the current scene.
+            </p>
+            <br/>
+            <h3 dir="ltr">
+                Enhanced
+            </h3>
+            <p dir="ltr">
+                While Enhanced, one of your attributes temporarily increases, as specified
+                in brackets when you gain that condition. The specified attribute gains a
+                bonus equal to the specified number; however, this bonus doesn’t change your
+                defenses, maximum health, maximum focus, or maximum Investiture. For
+                example, if you have a Speed of 3 and become Enhanced [+2 Speed], you
+                temporarily gain the following benefits:
+            </p>
+            <p dir="ltr">
+                ◆ Gain a +2 bonus to Agility, Light Weaponry, Stealth, and Thievery tests.
+            </p>
+            <p dir="ltr">
+                ◆ Gain a +2 bonus to any talents that directly use your Speed.
+            </p>
+            <p dir="ltr">
+                ◆ Increase your movement rate from 30 feet to 40 feet.
+            </p>
+            <p dir="ltr">
+                Unlike most conditions, Enhanced has a cumulative effect, and more than one
+                of your attributes can be Enhanced at a time.
+            </p>
+            <br/>
+            <h3 dir="ltr">
+                Exhausted
+            </h3>
+            <p dir="ltr">
+                While exhausted, you feel fatigued and your skill tests become more
+                difficult. When you gain this condition, it states a negative number in
+                brackets. After you calculate a test result but before you resolve its
+                effects, apply a penalty equal to this number. After each long rest, reduce
+                your Exhausted penalty by 1. The condition is removed when your penalty
+                equals 0. Unlike most conditions, Exhausted has a cumulative effect. When
+                you gain a second instance of this condition, add its listed penalty to your
+                current Exhausted penalty. For example, if an effect makes you Exhausted
+                [−2], you subtract 2 from the result of all tests; if a different effect
+                then makes you Exhausted [−1], that increases your Exhausted penalty, so you
+                now subtract 3 from the result of all tests. As usual, your final test
+                result can’t be less than 0, regardless of your penalty.
+            </p>
+            <br/>
+            <h3 dir="ltr">
+                Focused
+            </h3>
+            <p dir="ltr">
+                While Focused, you are engaged and intent on your task. When you use an
+                ability that costs focus, its cost is reduced by 1.
+            </p>
+            <div>
+                <br/>
+            </div>
+        </section>
+</main>
   );
 }

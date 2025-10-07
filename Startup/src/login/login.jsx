@@ -3,7 +3,7 @@ import React from 'react';
 export function Login() {
   return (
     <main>
-      <section class = "textbox">
+      <section className = "textbox">
         <h2>Login</h2>
           <form method = "get" action = "charSheet.html">
             <div>
