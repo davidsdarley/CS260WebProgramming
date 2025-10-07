@@ -2,33 +2,59 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { CharSheet } from './charSheet/charSheet';
+import { CombatRules } from './combatRules/combatRules';
+import { CombatTracker } from './combatTracker/combatTracker';
+
+
 export default function App() {
-  return <div className="body bg-dark text-light">App will display here
+  return (
+  <BrowserRouter>
+  
+  <div className="body">App will display here
     
     <header>
         <div className="leftHeader">
         <h1>Cosmere RPG</h1>
+        
         <nav>
             <menu className = "navbar">
-            <ul><a href = "index.html">Login Screen</a></ul>
-            <ul><a href="charSheet.html">Character Sheet</a></ul>
-            <ul><a href="combatTracker.html">Combat Tracker</a></ul>
-            <ul><a href = "combatRules.html">Combat Rules</a></ul>
+            <ul><NavLink to = "login">Login Screen</NavLink></ul>
+            <ul><NavLink to = "charSheet">Character Sheet</NavLink></ul>
+            <ul><NavLink to = "combatTracker">Combat Tracker</NavLink></ul>
+            <ul><NavLink to = "combatRules">Combat Rules</NavLink></ul>
+
+            
             </menu>
         </nav>
+
+        
         </div>
 
         <img id = "logo" alt="Cosmere Logo" src="cosmereLogoNoBackground.png"/>
     </header>
   
-    <main>Components will go here</main>
+
+    <Routes>
+      <Route path='/' element={<Login />} exact />
+      <Route path='/login' element={<Login />} exact />
+      <Route path='/charSheet' element={<CharSheet />} />
+      <Route path='/combatTracker' element={<CombatTracker />} />
+      <Route path='/combatRules' element={<CombatRules />} />
+      <Route path='*' element={<NotFound />} />
+    </Routes>
+    
 
     <footer>
       <div><a href="https://github.com/davidsdarley/CS260Startup">My Github</a></div>
     </footer>
   
-  </div>;
-
-
-
+  </div>
+  </BrowserRouter>);
 }
+
+function NotFound() {
+    return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
+  }

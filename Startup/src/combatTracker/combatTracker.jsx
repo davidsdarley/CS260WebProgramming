@@ -3,7 +3,7 @@ import React from 'react';
 export function CombatTracker() {
   return (
     <main className="container-fluid bg-secondary text-center">
-      <div>login displayed here</div>
+      <div>Tracker displayed here</div>
     </main>
   );
 }

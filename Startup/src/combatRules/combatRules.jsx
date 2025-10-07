@@ -3,7 +3,7 @@ import React from 'react';
 export function CombatRules() {
   return (
     <main className="container-fluid bg-secondary text-center">
-      <div>login displayed here</div>
+      <div>Combat Rules displayed here</div>
     </main>
   );
 }
