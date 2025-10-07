@@ -1,4 +1,5 @@
 import React from 'react';
+import './combatRules.css'
 
 export function CombatRules() {
   return (
