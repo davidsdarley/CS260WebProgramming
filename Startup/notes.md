@@ -3,7 +3,7 @@ I keep my notes mostly on google drive. To actually see all of them, visit https
 
 TEMPORARY NOTES
 
-#NOTES
+# NOTES
 9/3
 
 We’re going to do a lot of assignments in class, so that’s pretty dang convenient.
@@ -179,7 +179,7 @@ Bundles a production version of the React application and starts Vite's hot relo
 
 
 
-#USEFUL COMMANDS#
+# USEFUL COMMANDS
 
 ssh -i Downloads/startupKeyPair.pem ubuntu@52.6.161.219
 
