@@ -52,8 +52,7 @@ export default function App() {
         <Login
           username={username}
           authState={authState}
-          authToken={authToken}
-          authChange={(username, authState, user) =>{
+          authChange={(username, authState, user) => {
             setUsername(username);
             setAuthState(authState);
             setUserData(user);

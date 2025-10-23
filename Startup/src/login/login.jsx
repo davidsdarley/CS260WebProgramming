@@ -1,33 +1,22 @@
 import React from 'react';
+import { UnAuthorized } from './unAuthorized';
 
-export function Login(username, authState, authToken, authChange) {
 
-
+export function Login({ username, authState, authChange }) {
 
   return (
     <main>
       {authState !== true && (
-        <section className = "textbox">
-        <h2>Login</h2>
-          <form method = "get" action = "charSheet.html">
-            <div>
-              <span>Username </span>
-              <input type = "text" placeholder="your username here"/>
-            </div>
-            <div>
-              <span>Password </span>
-              <input type = "password" placeholder="your password here"/>
-            </div>
-            
-            <button type="submit">Login</button>  
-            <button type="submit">Create</button>
-          </form>
-      </section>
+        <UnAuthorized
+          onLogin={(loginUsername, foundUser) => {
+            authChange(loginUsername, true, foundUser);
+          }}
+        />
       )
       }
 
       {authState === true &&(
-        <p>USER INFO STUFF</p>
+        <p className = "textbox">USER INFO STUFF</p>
       )}
 
 
