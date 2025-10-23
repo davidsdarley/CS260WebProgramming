@@ -10,6 +10,13 @@ import { CombatTracker } from './combatTracker/combatTracker';
 
 
 export default function App() {
+  const [username, setUsername] = React.useState("");
+  const [authToken, setAuthToken] = React.useState("");
+  const [authState, setAuthState] = React.useState(false);
+  const [userData, setUserData] = React.useState({});
+
+
+
   return (
   <BrowserRouter>
   
@@ -22,11 +29,14 @@ export default function App() {
         <nav>
             <menu className = "navbar">
             <ul><NavLink to = "login">Login Screen</NavLink></ul>
-            <ul><NavLink to = "charSheet">Character Sheet</NavLink></ul>
+            {authState === true && (
+              <ul><NavLink to = "charSheet">Character Sheet</NavLink></ul>
+            )}
+            {authState === true && (
             <ul><NavLink to = "combatTracker">Combat Tracker</NavLink></ul>
+            )}
             <ul><NavLink to = "combatRules">Combat Rules</NavLink></ul>
 
-            
             </menu>
         </nav>
 
@@ -38,7 +48,21 @@ export default function App() {
   
 
     <Routes>
-      <Route path='/' element={<Login />} exact />
+      <Route path='/' element={
+        <Login
+          username={username}
+          authState={authState}
+          authToken={authToken}
+          authChange={(username, authState, user) =>{
+            setUsername(username);
+            setAuthState(authState);
+            setUserData(user);
+          }
+          }
+          />
+        } exact />
+
+
       <Route path='/login' element={<Login />} exact />
       <Route path='/charSheet' element={<CharSheet />} />
       <Route path='/combatTracker' element={<CombatTracker />} />

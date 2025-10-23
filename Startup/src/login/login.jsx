@@ -1,9 +1,13 @@
 import React from 'react';
 
-export function Login() {
+export function Login(username, authState, authToken, authChange) {
+
+
+
   return (
     <main>
-      <section className = "textbox">
+      {authState !== true && (
+        <section className = "textbox">
         <h2>Login</h2>
           <form method = "get" action = "charSheet.html">
             <div>
@@ -19,6 +23,15 @@ export function Login() {
             <button type="submit">Create</button>
           </form>
       </section>
+      )
+      }
+
+      {authState === true &&(
+        <p>USER INFO STUFF</p>
+      )}
+
+
+      
 
     </main>
   );
