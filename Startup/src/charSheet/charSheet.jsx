@@ -5,14 +5,14 @@ export function CharSheet() {
   return (
     <main className = "sheetSections">
     
-        <section class = "charInfo">
-        <div class = "fillWidthTextbox">
+        <section className = "charInfo">
+        <div className = "fillWidthTextbox">
             <p>Dannic</p>
             <p><span>Level 2</span><span> Human</span> Warrior</p>
         </div>
         <img id = "profilePic" alt="Taln" src="https://uploads.coppermind.net/thumb/Stoneward_by_Petar_Penev.png/300px-Stoneward_by_Petar_Penev.png" />
         
-        <div class = "fillWidthTextbox">
+        <div className = "fillWidthTextbox">
             <h3>Purpose</h3>
             <ul>
                 <li>None</li>
@@ -33,10 +33,10 @@ export function CharSheet() {
         </div>
         </section>
 
-        <section class = "gameplay" >
+        <section className = "gameplay" >
 
         <div class="stats">
-            <section class = "textbox evenSpacing">
+            <section className = "textbox evenSpacing">
                 <h3>Physical</h3>
 
                 <table>
@@ -54,10 +54,10 @@ export function CharSheet() {
 
             
 
-                <div class = "meterAtribute"> 
+                <div className = "meterAtribute"> 
                     <span>Health: 0 </span> <meter id="health" min="0" max="20" value="50" low="1" high = "15" optimum = "20"></meter> <span> 20</span>
                 </div>
-                <div class = "atribute">
+                <div className = "atribute">
                     <span>Deflect: </span><input type = "number"/>
                 </div>
 
@@ -131,7 +131,7 @@ export function CharSheet() {
 
             <hr></hr>
 
-            <section class = "textbox evenSpacing">
+            <section className = "textbox evenSpacing">
             <h3>Cognitive</h3>
             <table>
                 <tr>
@@ -146,7 +146,7 @@ export function CharSheet() {
                 </tr>
             </table>
 
-            <div class = "meterAtribute"> 
+            <div className = "meterAtribute"> 
                 <p>Focus: <span>0 </span> <meter id="focus" min="0" max="2" value="50" low="1" high = "2" optimum = "2"></meter> <span> 2</span></p>
             </div>
 
@@ -218,7 +218,7 @@ export function CharSheet() {
 
             <hr></hr>
 
-            <section class = "textbox evenSpacing">
+            <section className = "textbox evenSpacing">
                 <h3>Spiritual</h3>
                 <table>
                     <tr>
@@ -233,7 +233,7 @@ export function CharSheet() {
                     </tr>
                 </table>
 
-                <div class = "meterAtribute"> 
+                <div className = "meterAtribute"> 
                     <span>Investiture: 0 </span> <meter id="health" min="0" max="22" value="50" low="0" high = "1" optimum = "2"></meter> <span> 2</span>
                 </div>
 
@@ -305,7 +305,7 @@ export function CharSheet() {
 
         <div id = "bottomSection"> 
         
-            <div class = "list fillWidthTextbox" id = "talents">
+            <div className = "list fillWidthTextbox" id = "talents">
                 <h3>Talents</h3>
                 <ul>
                 <li>None</li>
@@ -318,15 +318,15 @@ export function CharSheet() {
                     <span>Spheres: </span><input type="number"/>
                 </div>
                 
-                <section class = "sheetSections">
-                    <div class = "list evenSpacing textbox" id = "weapons">
+                <section className = "sheetSections">
+                    <div className = "list evenSpacing textbox" id = "weapons">
                         <h3>Weapons</h3>
                         <ul>
                             <li>None</li>
                         </ul>
                     </div>
 
-                    <div class = "list evenSpacing textbox" id = "ArmorAndEquipment">
+                    <div className = "list evenSpacing textbox" id = "ArmorAndEquipment">
                         <h3>Armor and Equipment</h3>
                         <ul>
                             <li>None</li>
@@ -336,7 +336,7 @@ export function CharSheet() {
 
             </section>
         
-            <div class = "list textbox" id = "conditions">
+            <div className = "list textbox" id = "conditions">
                 <h3>Conditions and Injuries</h3>
                 <ul>
                     <li>None</li>

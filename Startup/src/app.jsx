@@ -7,15 +7,18 @@ import { Login } from './login/login';
 import { CharSheet } from './charSheet/charSheet';
 import { CombatRules } from './combatRules/combatRules';
 import { CombatTracker } from './combatTracker/combatTracker';
+import { AuthState } from './login/authState';
+
 
 
 export default function App() {
-  const [username, setUsername] = React.useState("");
+  const [username, setUsername] = React.useState("none so far");
   const [authToken, setAuthToken] = React.useState("");
-  const [authState, setAuthState] = React.useState(false);
+  const [authState, setAuthState] = React.useState(AuthState.Unauthenticated);
+  console.log(authState);
   const [userData, setUserData] = React.useState({});
 
-
+  const [activeChar, setChar] = React.useState({});
 
   return (
   <BrowserRouter>
@@ -29,10 +32,10 @@ export default function App() {
         <nav>
             <menu className = "navbar">
             <ul><NavLink to = "login">Login Screen</NavLink></ul>
-            {authState === true && (
+            {authState === AuthState.Authenticated && (
               <ul><NavLink to = "charSheet">Character Sheet</NavLink></ul>
             )}
-            {authState === true && (
+            {authState === AuthState.Authenticated && (
             <ul><NavLink to = "combatTracker">Combat Tracker</NavLink></ul>
             )}
             <ul><NavLink to = "combatRules">Combat Rules</NavLink></ul>
@@ -50,12 +53,17 @@ export default function App() {
     <Routes>
       <Route path='/' element={
         <Login
+        
           username={username}
           authState={authState}
+          userData={userData}
           authChange={(username, authState, user) => {
+            console.log("authChange called");
             setUsername(username);
             setAuthState(authState);
             setUserData(user);
+            console.log("Logged in", {authState})
+
           }
           }
           />

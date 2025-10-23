@@ -5,18 +5,18 @@ export function UnAuthorized( {onLogin} ) {
     const [enteredUsername, setUsername] = React.useState("");
     const [enteredPassword, setPassword] = React.useState("");
     const [exampleUser, setUserData] = React.useState({
-        
+        "userID":1, "characters":[{"Dannic": 1}], "campaigns": [{"life before death":1}]
     })
 
     async function loginUser(){
-        console.log("Login called")
+        console.log("Login called");
         localStorage.setItem('userName', enteredUsername);
-        onLogin(enteredUsername, exampleUser)
+        onLogin(enteredUsername, exampleUser);
     }
     async function createUser(){
-        console.log("Create called")
+        console.log("Create called");
         localStorage.setItem('userName', enteredUsername);
-        onLogin(enteredUsername, exampleUser)
+        onLogin(enteredUsername, exampleUser);
 
     }
 
