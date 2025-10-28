@@ -2,7 +2,7 @@ import React from 'react';
 import './charSheet.css'
 import { StatSection } from "./statSection.jsx"
 
-export function Stats({character}){
+export function Stats({character, update = () => {}}){
     const [hp, setHP] = React.useState(character.currentHP);
     const [focusStat, setFocus] = React.useState(character.currentFocus);
     const [investiture, setInvestiture] = React.useState(character.currentInvestiture);
@@ -21,6 +21,7 @@ export function Stats({character}){
                     setHP(val)
                     console.log("Hp updated")
                 }}
+
             />
 
             <StatSection

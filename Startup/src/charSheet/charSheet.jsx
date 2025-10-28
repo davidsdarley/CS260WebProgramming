@@ -115,6 +115,9 @@ export function CharSheet({userData}) {
         
         <Stats
             character={character}
+            update={(field, mode, value) => {
+                update(field, mode, value);
+              }}
         />
         
         <hr></hr>

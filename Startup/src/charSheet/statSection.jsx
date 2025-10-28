@@ -18,6 +18,17 @@ export function StatSection({title, value1, value2, meterMax, meterValue, setMet
     
     const [deflect, setDeflect] = React.useState(2);
 
+    const [inputHealth, setInputHealth] = React.useState(0);
+    function damage(){
+        update("currentHP", "add", -inputHealth);
+        setInputHealth(0);
+    }
+    function heal(){
+        update("currentHP", "add", inputHealth);
+        setInputHealth(0);
+    }
+
+
     return(
         <section className = "textbox evenSpacing">
                 <h3>{title}</h3>
@@ -45,6 +56,9 @@ export function StatSection({title, value1, value2, meterMax, meterValue, setMet
                     <div className = "meterAtribute"> 
                         <span>Health: 0 </span> <meter id="health" min="0" max={meterMax} value={meterValue} low={meterMax/4} high = {meterMax*3/4} optimum = {meterMax}></meter> <span> {meterMax}</span>
                     </div>
+                    
+
+
                     <div className = "atribute">
                         <span>Deflect: </span><input type = "number"/>
                     </div>
