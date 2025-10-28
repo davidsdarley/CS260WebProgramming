@@ -1,6 +1,8 @@
 import React from 'react';
 import './charSheet.css';
 import { Stats } from "./stats";
+import { BottomSection } from './bottomSection';
+
 
 export function CharSheet({userData}) {
 
@@ -16,10 +18,66 @@ export function CharSheet({userData}) {
 
         "awareness": 0,
         "presence": 2,
-        "currentInvestiture": 0
+        "currentInvestiture": 0,
+
+        "talents": ["Stances", "Vigilant Stance"],
+
+        "inventory": {
+            "Weapons":{
+                "equipped": ["Poleaxe"],
+                "allWeapons": ["Poleaxe", "Shield", "Shardblade"]
+            },
+            "Armor":{
+                "equipped": ["Chain"],
+                "allArmor": ["Chain"]
+            },
+            "Equipment": ["None"],
+            "Spheres": 20
+        },
+
+        "conditions": ["None"],
+
+        "user": "davidsdarley"
     };
 
     const [character, setCharacter] = React.useState(Dannic);
+
+    function UpdateCharacter(field, mode = "replace", value){
+        setCharacter(prev => {
+            console.log("Character update called with prameters: ", field, mode, value);
+
+            const updated = {...prev};
+
+            // prep so I can handle nested things
+            const keys = field.split(".");
+            console.log("Split complete");
+            let target = updated;
+
+            // get to the end 
+            for (let i = 0; i < keys.length - 1; i++) {
+                target[keys[i]] = { ...target[keys[i]] }; 
+                target = target[keys[i]];
+            }
+
+            const lastKey = keys[keys.length - 1];
+
+
+
+            if (mode === "append"){
+                target[lastKey] = [...target[lastKey], value];
+            } else if (mode === "replace"){
+                target[lastKey] = value;
+            } else if (mode === "remove"){
+                target[lastKey] = target[lastKey].filter(i => i !== value);
+            } else if (mode === "add"){
+                target[lastKey] = target[lastKey]+ value;
+            } else {
+                console.log("Invalid mode attempted: ", mode)
+            }
+            return updated;
+        });
+    }
+
 
   return (
     <main className = "sheetSections">
@@ -61,47 +119,15 @@ export function CharSheet({userData}) {
         
         <hr></hr>
 
-        <div id = "bottomSection"> 
-        
-            <div className = "list fillWidthTextbox" id = "talents">
-                <h3>Talents</h3>
-                <ul>
-                <li>None</li>
-                </ul>
+        <BottomSection
+        talents={character["talents"]}
+        inventory={character["inventory"]}
+        conditions={character["conditions"]}
+        update={(field, mode, value) => {
+            UpdateCharacter(field, mode, value);
+          }}
+        />
 
-            </div>
-
-            <section id = "inventory">
-                <div className="textbox" id="money">      
-                    <span>Spheres: </span><input type="number"/>
-                </div>
-                
-                <section className = "sheetSections">
-                    <div className = "list evenSpacing textbox" id = "weapons">
-                        <h3>Weapons</h3>
-                        <ul>
-                            <li>None</li>
-                        </ul>
-                    </div>
-
-                    <div className = "list evenSpacing textbox" id = "ArmorAndEquipment">
-                        <h3>Armor and Equipment</h3>
-                        <ul>
-                            <li>None</li>
-                        </ul>
-                    </div>
-                </section>
-
-            </section>
-        
-            <div className = "list textbox" id = "conditions">
-                <h3>Conditions and Injuries</h3>
-                <ul>
-                    <li>None</li>
-                </ul>
-            </div>
-        
-        </div>
 
         </section>
   </main>
