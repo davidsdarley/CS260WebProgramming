@@ -35,21 +35,25 @@ export function CharSheet() {
 
         <section className = "gameplay" >
 
-        <div class="stats">
+        <div className="stats">
             <section className = "textbox evenSpacing">
                 <h3>Physical</h3>
 
                 <table>
+                    <thead>
                     <tr>
                     <th>Strength</th>
                     <th>Defense</th>
                     <th>Speed</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                     <td>2</td>
                     <td>14</td>
                     <td>2</td>
                     </tr>
+                    </tbody>
                 </table>
 
             
@@ -63,7 +67,7 @@ export function CharSheet() {
 
                 <hr></hr>
                 <div> 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Agility</span>
                     <label><input type="checkbox" name="Agility-1"/></label>
                     <label><input type="checkbox" name="Agility-2"/></label>
@@ -72,7 +76,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="Agility-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Athletics</span>
                     <label><input type="checkbox" name="Athletics-1"/></label>
                     <label><input type="checkbox" name="Athletics-2"/></label>
@@ -81,7 +85,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="Athletics-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Heavy Weapons</span>
                     <label><input type="checkbox" name="HeavyWeapons-1"/></label>
                     <label><input type="checkbox" name="HeavyWeapons-2"/></label>
@@ -90,7 +94,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="HeavyWeapons-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Light Weapons</span>
                     <label><input type="checkbox" name="LightWeapons-1"/></label>
                     <label><input type="checkbox" name="LightWeapons-2"/></label>
@@ -99,7 +103,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="LightWeapons-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Stealth</span>
                     <label><input type="checkbox" name="Stealth-1"/></label>
                     <label><input type="checkbox" name="Stealth-2"/></label>
@@ -108,7 +112,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="Stealth-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Thievery</span>
                     <label><input type="checkbox" name="Thievery-1"/></label>
                     <label><input type="checkbox" name="Thievery-2"/></label>
@@ -120,10 +124,10 @@ export function CharSheet() {
             
             
 
-                <div class= "atribute">
+                <div className= "atribute">
                 <p>Carrying Capacity</p><input type = "number"/>
                 </div>
-                <div class= "atribute">
+                <div className= "atribute">
                 <p>Movement</p><input type = "number"/>
                 </div>
 
@@ -134,16 +138,20 @@ export function CharSheet() {
             <section className = "textbox evenSpacing">
             <h3>Cognitive</h3>
             <table>
-                <tr>
-                <th>Intellect</th>
-                <th>Defense</th>
-                <th>Willpower</th>
-                </tr>
-                <tr>
-                <td>2</td>
-                <td>14</td>
-                <td>2</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Intellect</th>
+                        <th>Defense</th>
+                        <th>Willpower</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2</td>
+                        <td>14</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
             </table>
 
             <div className = "meterAtribute"> 
@@ -153,7 +161,7 @@ export function CharSheet() {
             <hr></hr>
             
                 <div>
-                    <div class="skill">
+                    <div className="skill">
                     <span>Crafting</span>
                     <label><input type="checkbox" name="Crafting-1"/></label>
                     <label><input type="checkbox" name="Crafting-2"/></label>
@@ -162,7 +170,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="Crafting-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Deduction</span>
                     <label><input type="checkbox" name="Deduction-1"/></label>
                     <label><input type="checkbox" name="Deduction-2"/></label>
@@ -171,7 +179,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="Deduction-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Discipline</span>
                     <label><input type="checkbox" name="Discipline-1"/></label>
                     <label><input type="checkbox" name="Discipline-2"/></label>
@@ -180,7 +188,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="Discipline-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Intimidation</span>
                     <label><input type="checkbox" name="Intimidation-1"/></label>
                     <label><input type="checkbox" name="Intimidation-2"/></label>
@@ -189,7 +197,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="Intimidation-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Lore</span>
                     <label><input type="checkbox" name="Lore-1"/></label>
                     <label><input type="checkbox" name="Lore-2"/></label>
@@ -198,7 +206,7 @@ export function CharSheet() {
                     <label><input type="checkbox" name="Lore-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                     <span>Medicine</span>
                     <label><input type="checkbox" name="Medicine-1"/></label>
                     <label><input type="checkbox" name="Medicine-2"/></label>
@@ -210,7 +218,7 @@ export function CharSheet() {
 
                 <hr></hr>
 
-                <div class= "atribute">
+                <div className= "atribute">
                     <p>Recovery Die: </p><input type = "number"/>
                 </div>
 
@@ -221,16 +229,21 @@ export function CharSheet() {
             <section className = "textbox evenSpacing">
                 <h3>Spiritual</h3>
                 <table>
+                    <thead>
                     <tr>
                     <th>Awareness</th>
                     <th>Defense</th>
                     <th>Presence</th>
                     </tr>
+                    </thead>
+
+                    <tbody>
                     <tr>
                     <td>2</td>
                     <td>14</td>
                     <td>2</td>
                     </tr>
+                    </tbody>
                 </table>
 
                 <div className = "meterAtribute"> 
@@ -240,7 +253,7 @@ export function CharSheet() {
                 <hr></hr>
             
                 <div>
-                    <div class="skill">
+                    <div className="skill">
                         <span>Deception</span>
                         <label><input type="checkbox" name="Deception-1"/></label>
                         <label><input type="checkbox" name="Deception-2"/></label>
@@ -249,7 +262,7 @@ export function CharSheet() {
                         <label><input type="checkbox" name="Deception-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                         <span>Insight</span>
                         <label><input type="checkbox" name="Insight-1"/></label>
                         <label><input type="checkbox" name="Insight-2"/></label>
@@ -258,7 +271,7 @@ export function CharSheet() {
                         <label><input type="checkbox" name="Insight-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                         <span>Leadership</span>
                         <label><input type="checkbox" name="Leadership-1"/></label>
                         <label><input type="checkbox" name="Leadership-2"/></label>
@@ -267,7 +280,7 @@ export function CharSheet() {
                         <label><input type="checkbox" name="Leadership-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                         <span>Perception</span>
                         <label><input type="checkbox" name="Perception-1"/></label>
                         <label><input type="checkbox" name="Perception-2"/></label>
@@ -276,7 +289,7 @@ export function CharSheet() {
                         <label><input type="checkbox" name="Perception-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                         <span>Persuasion</span>
                         <label><input type="checkbox" name="Persuasion-1"/></label>
                         <label><input type="checkbox" name="Persuasion-2"/></label>
@@ -285,7 +298,7 @@ export function CharSheet() {
                         <label><input type="checkbox" name="Persuasion-5"/></label>
                     </div>
 
-                    <div class="skill">
+                    <div className="skill">
                         <span>Survival</span>
                         <label><input type="checkbox" name="Survival-1"/></label>
                         <label><input type="checkbox" name="Survival-2"/></label>
@@ -295,7 +308,7 @@ export function CharSheet() {
                     </div>
                 </div>
                 <hr></hr>
-                <div class= "atribute">
+                <div className= "atribute">
                     <p>Senses Range: </p><input type = "number"/>
                 </div>
             </section>
@@ -314,7 +327,7 @@ export function CharSheet() {
             </div>
 
             <section id = "inventory">
-                <div class="textbox" id="money">      
+                <div className="textbox" id="money">      
                     <span>Spheres: </span><input type="number"/>
                 </div>
                 

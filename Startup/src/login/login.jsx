@@ -4,31 +4,35 @@ import { LoggedIn } from './loggedIn';
 import { AuthState } from './authState';
 
 
-
-export function Login({ username, authState, userData, authChange  = () => {}}) {
+export function Login({ username, authState, userData, authChange = () => {}}) {
   console.log("Login.jsx called", username, authState, userData);
 
   return (
     <main>
-      {authState !== AuthState.Authenticated && (
+      <div>
+
+      {authState === AuthState.Authenticated &&(
+        <LoggedIn
+          username={username}
+          onLogout={() => {
+            console.log("onLogout called");
+            authChange("", AuthState.Unauthenticated, {});
+            console.log("Logged out", authState);
+          }}
+          />
+      )}
+      {authState === AuthState.Unauthenticated && (
         <UnAuthorized
           onLogin={(loginUsername, foundUser) => {
             console.log("onLogin called");
             authChange(loginUsername, AuthState.Authenticated, foundUser);
-            console.log("Login finished",authState)
+            console.log("Login finished",authState);
           }}
         />
       )
       }
-
-      {authState === AuthState.Authenticated &&(
-        <LoggedIn
-          username={username}/>
-      )}
-
-
       
-
+      </div>
     </main>
   );
 }

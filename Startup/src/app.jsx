@@ -12,13 +12,19 @@ import { AuthState } from './login/authState';
 
 
 export default function App() {
-  const [username, setUsername] = React.useState("none so far");
+  
+  const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
   const [authToken, setAuthToken] = React.useState("");
-  const [authState, setAuthState] = React.useState(AuthState.Unauthenticated);
+
+  const currentAuthState = username ? AuthState.Authenticated : AuthState.Unauthenticated;
+
+
+  const [authState, setAuthState] = React.useState(currentAuthState);
   console.log(authState);
+
   const [userData, setUserData] = React.useState({});
 
-  const [activeChar, setChar] = React.useState({});
+  const [activeChar, setChar] = React.useState(localStorage.getItem('activeChar') || {});
 
   return (
   <BrowserRouter>
@@ -31,14 +37,14 @@ export default function App() {
         
         <nav>
             <menu className = "navbar">
-            <ul><NavLink to = "login">Login Screen</NavLink></ul>
+            <ul><NavLink to = "/">Login Screen</NavLink></ul>
             {authState === AuthState.Authenticated && (
               <ul><NavLink to = "charSheet">Character Sheet</NavLink></ul>
             )}
             {authState === AuthState.Authenticated && (
-            <ul><NavLink to = "combatTracker">Combat Tracker</NavLink></ul>
+            <ul><NavLink to = "/combatTracker">Combat Tracker</NavLink></ul>
             )}
-            <ul><NavLink to = "combatRules">Combat Rules</NavLink></ul>
+            <ul><NavLink to = "/combatRules">Combat Rules</NavLink></ul>
 
             </menu>
         </nav>
@@ -57,20 +63,18 @@ export default function App() {
           username={username}
           authState={authState}
           userData={userData}
-          authChange={(username, authState, user) => {
+          authChange={(loginUsername, newAuthstate, user) => {
             console.log("authChange called");
-            setUsername(username);
-            setAuthState(authState);
+            setUsername(loginUsername);
+            setAuthState(newAuthstate);
             setUserData(user);
-            console.log("Logged in", {authState})
+            console.log("Logged in", {newAuthstate})
 
           }
           }
           />
-        } exact />
+        }  />
 
-
-      <Route path='/login' element={<Login />} exact />
       <Route path='/charSheet' element={<CharSheet />} />
       <Route path='/combatTracker' element={<CombatTracker />} />
       <Route path='/combatRules' element={<CombatRules />} />

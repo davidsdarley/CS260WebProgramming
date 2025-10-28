@@ -4,9 +4,10 @@ import './combatTracker.css'
 export function CombatTracker() {
   return (
     <main>
-      <section class = "textbox" id = "players">
+      <section className = "textbox" id = "players">
         <h3>PCs</h3>
         <table>
+          <thead>
             <tr>
               <th>Name</th>
               <th>HP</th>
@@ -14,7 +15,8 @@ export function CombatTracker() {
               <th>Cognitive Def.</th>
               <th>Spiritual Def.</th>
             </tr>
-
+            </thead>
+            <tbody>
             <tr>
               <td>Dannic</td>
               <td>20</td>
@@ -22,6 +24,7 @@ export function CombatTracker() {
               <td>14</td>
               <td>14</td>
             </tr>
+            </tbody>
 
         </table>
       
@@ -29,7 +32,7 @@ export function CombatTracker() {
       
       <hr/>
 
-      <section class = "textbox" id = "NPCs">
+      <section className = "textbox" id = "NPCs">
         <h3>NPCs</h3>
         <table>
             <tr>
@@ -59,7 +62,7 @@ export function CombatTracker() {
           src="https://www.youtube.com/watch?v=k9o9G8ZJ1do&list=RDk9o9G8ZJ1do&start_radio=1&t=887s" 
           title="stormlight music" 
           frameborder="0" 
-          allowfullscreen>
+          allowFullScreen>
         </iframe>
       
       </section>
