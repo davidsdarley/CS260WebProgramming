@@ -35,6 +35,7 @@ export function CombatTracker() {
       <section className = "textbox" id = "NPCs">
         <h3>NPCs</h3>
         <table>
+          <thead>
             <tr>
               <th>Name</th>
               <th>HP</th>
@@ -43,7 +44,9 @@ export function CombatTracker() {
               <th>Cognitive Def.</th>
               <th>Spiritual Def.</th>
             </tr>
+          </thead>
 
+          <tbody>
             <tr>
               <td>Thug</td>
               <td>11</td>
@@ -51,21 +54,11 @@ export function CombatTracker() {
               <td>10</td>
               <td>12</td>
             </tr>
-
+          </tbody>
         </table>
       
       </section>
-      <section id = "Music">
-        <iframe 
-          width="280" 
-          height="157" 
-          src="https://www.youtube.com/watch?v=k9o9G8ZJ1do&list=RDk9o9G8ZJ1do&start_radio=1&t=887s" 
-          title="stormlight music" 
-          frameborder="0" 
-          allowFullScreen>
-        </iframe>
       
-      </section>
       <img id = "AvT" alt="Adolin jumping on a Thunderclast" src="https://pbs.twimg.com/media/Gvqdj96W0AACiGY.jpg:large" />
       
     </main>

@@ -16,6 +16,7 @@ export function LoggedIn({ username, onLogout = () => {} }){
 
         <h3 className="textbox">Characters:</h3>
 
+        <br/>
         <button onClick={() => onLogout()}>Logout</button>  
 
 
