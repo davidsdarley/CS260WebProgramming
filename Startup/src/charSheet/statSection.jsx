@@ -1,10 +1,11 @@
 import React from 'react';
 import './charSheet.css'
 import { Skill } from "./skill.jsx"
+import { ArmorDict } from './dictionaries.js';
 
 
 
-export function StatSection({title, value1, value2, meterMax, meterValue, setMeter = () => {}}){
+export function StatSection({title, value1, value2, meterMax, meterValue, updateMeter = () => {}, character}){
     console.log("Stats section requested")
 
     const stat1 = title === "Physical" ? "Strength": title === "Cognitive" ? "Intellect": title === "Spiritual" ? "Awareness": "error";
@@ -18,13 +19,14 @@ export function StatSection({title, value1, value2, meterMax, meterValue, setMet
     
     const [deflect, setDeflect] = React.useState(2);
 
+
     const [inputHealth, setInputHealth] = React.useState(0);
     function damage(){
-        update("currentHP", "add", -inputHealth);
+        updateMeter(-inputHealth);
         setInputHealth(0);
     }
     function heal(){
-        update("currentHP", "add", inputHealth);
+        updateMeter(inputHealth);
         setInputHealth(0);
     }
 
@@ -50,18 +52,27 @@ export function StatSection({title, value1, value2, meterMax, meterValue, setMet
                     </tbody>
                 </table>
 
-                
+                <br></br>
                 {title === "Physical" && (
                 <div id="physical addons">
+                    
+                    <div className = "atribute">
+                        <span>Deflect: </span><span>{ArmorDict[character.inventory.Armor.equipped[0]].split(",")[0]}</span>
+                    </div>
+                    
                     <div className = "meterAtribute"> 
                         <span>Health: 0 </span> <meter id="health" min="0" max={meterMax} value={meterValue} low={meterMax/4} high = {meterMax*3/4} optimum = {meterMax}></meter> <span> {meterMax}</span>
+
+                        <input type="number"
+                            value={inputHealth} 
+                            onChange={(e) => setInputHealth(Number(e.target.value))} 
+                        />
+                        <br/>
+                        <button onClick={() => damage('add')}> Damage</button>
+                        <button onClick={() => heal('sub')}> Healing</button>
                     </div>
                     
 
-
-                    <div className = "atribute">
-                        <span>Deflect: </span><input type = "number"/>
-                    </div>
                 </div>
                 )}
                 {title === "Cognitive" &&(

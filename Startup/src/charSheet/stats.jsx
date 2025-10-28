@@ -7,6 +7,7 @@ export function Stats({character, update = () => {}}){
     const [focusStat, setFocus] = React.useState(character.currentFocus);
     const [investiture, setInvestiture] = React.useState(character.currentInvestiture);
 
+   
 
     return(
         <div className="stats">
@@ -15,13 +16,13 @@ export function Stats({character, update = () => {}}){
                 value1={character.strength}
                 value2={character.speed}
                 meterMax={character.maxHP}
-                meterValue={hp}
-                updateHP={(val) =>{
+                meterValue={character.currentHP}
+                updateMeter={(val) =>{
                     console.log("Hp changing")
-                    setHP(val)
+                    update("currentHP", "add", val)
                     console.log("Hp updated")
                 }}
-
+                character={character}
             />
 
             <StatSection
@@ -35,6 +36,7 @@ export function Stats({character, update = () => {}}){
                     setFocus(val)
                     console.log("focus updated")
                 }}
+                character={character}
             />
             <StatSection
                 title="Spiritual"
@@ -47,6 +49,7 @@ export function Stats({character, update = () => {}}){
                     setInvestiture(val)
                     console.log("investiture updated")
                 }}
+                character={character}
             />
 
         </div>

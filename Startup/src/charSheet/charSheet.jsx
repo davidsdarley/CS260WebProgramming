@@ -2,11 +2,27 @@ import React from 'react';
 import './charSheet.css';
 import { Stats } from "./stats";
 import { BottomSection } from './bottomSection';
+import { CharacterInfo } from './characterInfo';
 
 
 export function CharSheet({userData}) {
 
     const Dannic = {
+
+        "characterInfo": {
+            "name": "Dannic",
+            "level": 2,
+            "classes": ["Warrior"],
+            "ancestry": "Human",
+
+            "Purpose": "Honor. Dannic believes wholeheartedly in the values of Honor, Loyalty, and Honesty. This has guided him in everything he does. He wants to live them, and hopes others can live them as well.",
+            "Obstacle": "While Dannic is extremely willing to charge into battle, he is much more averse to ideological conflict. His response to seeing things in reality that he doesn’t like is to ignore them. If someone who he can’t fight is doing something dishonorable, he’ll do his best to ignore it. If there is injustice he isn’t authorized to respond to, he will very uncomfortably turn away. He avoids thinking about problems he doesn’t know how to fix.",
+            "Goals": ["Find the smugglers", "stop the smugglers", "Protect Falkir"],
+            "Expertises": ["Poleaxe", "Alethi"]
+        },
+
+        
+
         "strength": 3,
         "speed": 3,
         "maxHP": 20,
@@ -42,7 +58,7 @@ export function CharSheet({userData}) {
 
     const [character, setCharacter] = React.useState(Dannic);
 
-    function UpdateCharacter(field, mode = "replace", value){
+    function UpdateCharacter(field, mode = "replace", value){                       
         setCharacter(prev => {
             console.log("Character update called with prameters: ", field, mode, value);
 
@@ -74,41 +90,25 @@ export function CharSheet({userData}) {
             } else {
                 console.log("Invalid mode attempted: ", mode)
             }
+
+            console.log("DEBUG", updated);
             return updated;
         });
+        setCharacter( prev => {
+            const updated = {...prev};
+            //Make sure nothing is higher than any possible maximums
+            return updated;
+        })
     }
 
 
   return (
     <main className = "sheetSections">
     
-        <section className = "charInfo">
-        <div className = "fillWidthTextbox">
-            <p>Dannic</p>
-            <p><span>Level 2</span><span> Human</span> Warrior</p>
-        </div>
-        <img id = "profilePic" alt="Taln" src="https://uploads.coppermind.net/thumb/Stoneward_by_Petar_Penev.png/300px-Stoneward_by_Petar_Penev.png" />
-        
-        <div className = "fillWidthTextbox">
-            <h3>Purpose</h3>
-            <ul>
-                <li>None</li>
-            </ul>
-            <h3>Obstacle</h3>
-            <ul>
-                <li>None</li>
-            </ul>
-            <h3>Goals</h3>
-            <ul>
-                <li>None</li>
-            </ul>
-            <h3>Expertises</h3>
-            <ul>
-                <li>None</li>
-            </ul>
-
-        </div>
-        </section>
+        <CharacterInfo
+        character={character}
+        update={UpdateCharacter}
+        />
 
         <section className = "gameplay" >
 
@@ -116,7 +116,7 @@ export function CharSheet({userData}) {
         <Stats
             character={character}
             update={(field, mode, value) => {
-                update(field, mode, value);
+                UpdateCharacter(field, mode, value);
               }}
         />
         
