@@ -247,7 +247,7 @@ export function CharSheet() {
                 </table>
 
                 <div className = "meterAtribute"> 
-                    <span>Investiture: 0 </span> <meter id="health" min="0" max="22" value="50" low="0" high = "1" optimum = "2"></meter> <span> 2</span>
+                    <span>Investiture: 0 </span> <meter id="investiture" min="0" max="22" value="50" low="0" high = "1" optimum = "2"></meter> <span> 2</span>
                 </div>
 
                 <hr></hr>

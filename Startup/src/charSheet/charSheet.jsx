@@ -1,7 +1,26 @@
 import React from 'react';
-import './charSheet.css'
+import './charSheet.css';
+import { Stats } from "./stats";
 
-export function CharSheet() {
+export function CharSheet({userData}) {
+
+    const Dannic = {
+        "strength": 3,
+        "speed": 3,
+        "maxHP": 20,
+        "currentHP": 9,
+
+        "intellect": 0,
+        "willpower": 3,
+        "currentFocus": 2,
+
+        "awareness": 0,
+        "presence": 2,
+        "currentInvestiture": 0
+    };
+
+    const [character, setCharacter] = React.useState(Dannic);
+
   return (
     <main className = "sheetSections">
     
@@ -35,285 +54,11 @@ export function CharSheet() {
 
         <section className = "gameplay" >
 
-        <div className="stats">
-            <section className = "textbox evenSpacing">
-                <h3>Physical</h3>
-
-                <table>
-                    <thead>
-                    <tr>
-                    <th>Strength</th>
-                    <th>Defense</th>
-                    <th>Speed</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                    <td>2</td>
-                    <td>14</td>
-                    <td>2</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-            
-
-                <div className = "meterAtribute"> 
-                    <span>Health: 0 </span> <meter id="health" min="0" max="20" value="50" low="1" high = "15" optimum = "20"></meter> <span> 20</span>
-                </div>
-                <div className = "atribute">
-                    <span>Deflect: </span><input type = "number"/>
-                </div>
-
-                <hr></hr>
-                <div> 
-                    <div className="skill">
-                    <span>Agility</span>
-                    <label><input type="checkbox" name="Agility-1"/></label>
-                    <label><input type="checkbox" name="Agility-2"/></label>
-                    <label><input type="checkbox" name="Agility-3"/></label>
-                    <label><input type="checkbox" name="Agility-4"/></label>
-                    <label><input type="checkbox" name="Agility-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Athletics</span>
-                    <label><input type="checkbox" name="Athletics-1"/></label>
-                    <label><input type="checkbox" name="Athletics-2"/></label>
-                    <label><input type="checkbox" name="Athletics-3"/></label>
-                    <label><input type="checkbox" name="Athletics-4"/></label>
-                    <label><input type="checkbox" name="Athletics-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Heavy Weapons</span>
-                    <label><input type="checkbox" name="HeavyWeapons-1"/></label>
-                    <label><input type="checkbox" name="HeavyWeapons-2"/></label>
-                    <label><input type="checkbox" name="HeavyWeapons-3"/></label>
-                    <label><input type="checkbox" name="HeavyWeapons-4"/></label>
-                    <label><input type="checkbox" name="HeavyWeapons-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Light Weapons</span>
-                    <label><input type="checkbox" name="LightWeapons-1"/></label>
-                    <label><input type="checkbox" name="LightWeapons-2"/></label>
-                    <label><input type="checkbox" name="LightWeapons-3"/></label>
-                    <label><input type="checkbox" name="LightWeapons-4"/></label>
-                    <label><input type="checkbox" name="LightWeapons-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Stealth</span>
-                    <label><input type="checkbox" name="Stealth-1"/></label>
-                    <label><input type="checkbox" name="Stealth-2"/></label>
-                    <label><input type="checkbox" name="Stealth-3"/></label>
-                    <label><input type="checkbox" name="Stealth-4"/></label>
-                    <label><input type="checkbox" name="Stealth-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Thievery</span>
-                    <label><input type="checkbox" name="Thievery-1"/></label>
-                    <label><input type="checkbox" name="Thievery-2"/></label>
-                    <label><input type="checkbox" name="Thievery-3"/></label>
-                    <label><input type="checkbox" name="Thievery-4"/></label>
-                    <label><input type="checkbox" name="Thievery-5"/></label>
-                    </div>
-                </div>
-            
-            
-
-                <div className= "atribute">
-                <p>Carrying Capacity</p><input type = "number"/>
-                </div>
-                <div className= "atribute">
-                <p>Movement</p><input type = "number"/>
-                </div>
-
-            </section>
-
-            <hr></hr>
-
-            <section className = "textbox evenSpacing">
-            <h3>Cognitive</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Intellect</th>
-                        <th>Defense</th>
-                        <th>Willpower</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>14</td>
-                        <td>2</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div className = "meterAtribute"> 
-                <p>Focus: <span>0 </span> <meter id="focus" min="0" max="2" value="50" low="1" high = "2" optimum = "2"></meter> <span> 2</span></p>
-            </div>
-
-            <hr></hr>
-            
-                <div>
-                    <div className="skill">
-                    <span>Crafting</span>
-                    <label><input type="checkbox" name="Crafting-1"/></label>
-                    <label><input type="checkbox" name="Crafting-2"/></label>
-                    <label><input type="checkbox" name="Crafting-3"/></label>
-                    <label><input type="checkbox" name="Crafting-4"/></label>
-                    <label><input type="checkbox" name="Crafting-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Deduction</span>
-                    <label><input type="checkbox" name="Deduction-1"/></label>
-                    <label><input type="checkbox" name="Deduction-2"/></label>
-                    <label><input type="checkbox" name="Deduction-3"/></label>
-                    <label><input type="checkbox" name="Deduction-4"/></label>
-                    <label><input type="checkbox" name="Deduction-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Discipline</span>
-                    <label><input type="checkbox" name="Discipline-1"/></label>
-                    <label><input type="checkbox" name="Discipline-2"/></label>
-                    <label><input type="checkbox" name="Discipline-3"/></label>
-                    <label><input type="checkbox" name="Discipline-4"/></label>
-                    <label><input type="checkbox" name="Discipline-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Intimidation</span>
-                    <label><input type="checkbox" name="Intimidation-1"/></label>
-                    <label><input type="checkbox" name="Intimidation-2"/></label>
-                    <label><input type="checkbox" name="Intimidation-3"/></label>
-                    <label><input type="checkbox" name="Intimidation-4"/></label>
-                    <label><input type="checkbox" name="Intimidation-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Lore</span>
-                    <label><input type="checkbox" name="Lore-1"/></label>
-                    <label><input type="checkbox" name="Lore-2"/></label>
-                    <label><input type="checkbox" name="Lore-3"/></label>
-                    <label><input type="checkbox" name="Lore-4"/></label>
-                    <label><input type="checkbox" name="Lore-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                    <span>Medicine</span>
-                    <label><input type="checkbox" name="Medicine-1"/></label>
-                    <label><input type="checkbox" name="Medicine-2"/></label>
-                    <label><input type="checkbox" name="Medicine-3"/></label>
-                    <label><input type="checkbox" name="Medicine-4"/></label>
-                    <label><input type="checkbox" name="Medicine-5"/></label>
-                    </div>
-                </div>
-
-                <hr></hr>
-
-                <div className= "atribute">
-                    <p>Recovery Die: </p><input type = "number"/>
-                </div>
-
-            </section>
-
-            <hr></hr>
-
-            <section className = "textbox evenSpacing">
-                <h3>Spiritual</h3>
-                <table>
-                    <thead>
-                    <tr>
-                    <th>Awareness</th>
-                    <th>Defense</th>
-                    <th>Presence</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr>
-                    <td>2</td>
-                    <td>14</td>
-                    <td>2</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <div className = "meterAtribute"> 
-                    <span>Investiture: 0 </span> <meter id="health" min="0" max="22" value="50" low="0" high = "1" optimum = "2"></meter> <span> 2</span>
-                </div>
-
-                <hr></hr>
-            
-                <div>
-                    <div className="skill">
-                        <span>Deception</span>
-                        <label><input type="checkbox" name="Deception-1"/></label>
-                        <label><input type="checkbox" name="Deception-2"/></label>
-                        <label><input type="checkbox" name="Deception-3"/></label>
-                        <label><input type="checkbox" name="Deception-4"/></label>
-                        <label><input type="checkbox" name="Deception-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                        <span>Insight</span>
-                        <label><input type="checkbox" name="Insight-1"/></label>
-                        <label><input type="checkbox" name="Insight-2"/></label>
-                        <label><input type="checkbox" name="Insight-3"/></label>
-                        <label><input type="checkbox" name="Insight-4"/></label>
-                        <label><input type="checkbox" name="Insight-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                        <span>Leadership</span>
-                        <label><input type="checkbox" name="Leadership-1"/></label>
-                        <label><input type="checkbox" name="Leadership-2"/></label>
-                        <label><input type="checkbox" name="Leadership-3"/></label>
-                        <label><input type="checkbox" name="Leadership-4"/></label>
-                        <label><input type="checkbox" name="Leadership-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                        <span>Perception</span>
-                        <label><input type="checkbox" name="Perception-1"/></label>
-                        <label><input type="checkbox" name="Perception-2"/></label>
-                        <label><input type="checkbox" name="Perception-3"/></label>
-                        <label><input type="checkbox" name="Perception-4"/></label>
-                        <label><input type="checkbox" name="Perception-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                        <span>Persuasion</span>
-                        <label><input type="checkbox" name="Persuasion-1"/></label>
-                        <label><input type="checkbox" name="Persuasion-2"/></label>
-                        <label><input type="checkbox" name="Persuasion-3"/></label>
-                        <label><input type="checkbox" name="Persuasion-4"/></label>
-                        <label><input type="checkbox" name="Persuasion-5"/></label>
-                    </div>
-
-                    <div className="skill">
-                        <span>Survival</span>
-                        <label><input type="checkbox" name="Survival-1"/></label>
-                        <label><input type="checkbox" name="Survival-2"/></label>
-                        <label><input type="checkbox" name="Survival-3"/></label>
-                        <label><input type="checkbox" name="Survival-4"/></label>
-                        <label><input type="checkbox" name="Survival-5"/></label>
-                    </div>
-                </div>
-                <hr></hr>
-                <div className= "atribute">
-                    <p>Senses Range: </p><input type = "number"/>
-                </div>
-            </section>
-        </div>
-
+        
+        <Stats
+            character={character}
+        />
+        
         <hr></hr>
 
         <div id = "bottomSection"> 

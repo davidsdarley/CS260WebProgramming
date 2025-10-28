@@ -75,7 +75,11 @@ export default function App() {
           />
         }  />
 
-      <Route path='/charSheet' element={<CharSheet />} />
+      <Route path='/charSheet' element={
+        <CharSheet
+          userData={userData}
+         />}
+       />
       <Route path='/combatTracker' element={<CombatTracker />} />
       <Route path='/combatRules' element={<CombatRules />} />
       <Route path='*' element={<NotFound />} />
