@@ -1,6 +1,6 @@
 import React from 'react';
 import './charSheet.css'
-import { Skill } from "./skill.jsx"
+import { SkillBlock } from "./skillBlock.jsx"
 import { ArmorDict } from './dictionaries.js';
 import { CarryingCapacity } from './dictionaries.js';
 import { MovementSpeed } from './dictionaries.js';
@@ -98,12 +98,18 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
                 )}
 
                 <hr></hr>
+
                 <div>
                 {skillList.map((skillName) => (
-                    <Skill key={skillName} skillName={skillName} />
+                    <SkillBlock 
+                        key={skillName} skillName={skillName} 
+                        character={character}
+                    />
                 ))}
                 </div>
+
                 <hr/>
+
                 {title === "Physical" && (
                     <section>
                         <div className= "atribute">

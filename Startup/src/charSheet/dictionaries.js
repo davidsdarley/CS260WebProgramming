@@ -75,6 +75,29 @@ export const ConditionsDict = {
 
 }
 
+export const SkillStats= {
+    "Agility": "speed", 
+    "Athletics": "strength", 
+    "Heavy Weapons": "strength", 
+    "Light Weapons": "speed", 
+    "Stealth": "speed", 
+    "Thievery": "speed",
+
+    "Crafting": "intellect", 
+    "Deduction": "intellect", 
+    "Discipline": "willpower", 
+    "Intimidation": "willpower", 
+    "Lore": "intellect", 
+    "Medicine": "intellect",
+
+    "Deception": "presence", 
+    "Insight": "awareness", 
+    "Leadership": "presence", 
+    "Perception": "awareness", 
+    "Persuasion": "presence", 
+    "Survival": "awareness"
+}
+
 export const Dannic = {
 
     "characterInfo": {
@@ -85,11 +108,9 @@ export const Dannic = {
 
         "Purpose": "Honor. Dannic believes wholeheartedly in the values of Honor, Loyalty, and Honesty. This has guided him in everything he does. He wants to live them, and hopes others can live them as well.",
         "Obstacle": "While Dannic is extremely willing to charge into battle, he is much more averse to ideological conflict. His response to seeing things in reality that he doesn’t like is to ignore them. If someone who he can’t fight is doing something dishonorable, he’ll do his best to ignore it. If there is injustice he isn’t authorized to respond to, he will very uncomfortably turn away. He avoids thinking about problems he doesn’t know how to fix.",
-        "Goals": ["Find the smugglers", "stop the smugglers", "Protect Falkir"],
+        "Goals": ["Find and stop the storming smugglers operating in my tower", "Protect Falkir"],
         "Expertises": ["Poleaxe", "Alethi"]
     },
-
-    
 
     "strength": 3,
     "speed": 3,
@@ -100,9 +121,32 @@ export const Dannic = {
     "willpower": 3,
     "currentFocus": 2,
 
-    "awareness": 0,
+    "awareness": 1,
     "presence": 2,
     "currentInvestiture": 0,
+
+    "skills": {
+        "Agility": 0, 
+        "Athletics": 3, 
+        "Heavy Weapons": 3, 
+        "Light Weapons": 1, 
+        "Stealth": 0, 
+        "Thievery": 0,
+    
+        "Crafting": 0, 
+        "Deduction": 0, 
+        "Discipline": 2, 
+        "Intimidation": 1, 
+        "Lore": 0, 
+        "Medicine": 0,
+    
+        "Deception": 0, 
+        "Insight": 0, 
+        "Leadership": 1, 
+        "Perception": 0, 
+        "Persuasion": 0, 
+        "Survival": 0
+    },
 
     "talents": ["Stances", "Vigilant Stance"],
 
@@ -122,4 +166,4 @@ export const Dannic = {
     "conditions": ["None"],
 
     "user": "davidsdarley"
-};
+}

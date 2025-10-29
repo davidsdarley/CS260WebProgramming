@@ -28,7 +28,7 @@ export function CharacterInfo({character, update = () => {}}){
             <h3>Goals</h3>
                 <ul>
                     {character.characterInfo.Goals.map((item) => (
-                                <li key={item}>{item}</li>
+                                <li key={item}>{item} </li>
                             ))}
                 </ul>
 
