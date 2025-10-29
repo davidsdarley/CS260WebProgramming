@@ -74,3 +74,52 @@ export const SensesRange = {
 export const ConditionsDict = {
 
 }
+
+export const Dannic = {
+
+    "characterInfo": {
+        "name": "Dannic",
+        "level": 2,
+        "classes": ["Warrior"],
+        "ancestry": "Human",
+
+        "Purpose": "Honor. Dannic believes wholeheartedly in the values of Honor, Loyalty, and Honesty. This has guided him in everything he does. He wants to live them, and hopes others can live them as well.",
+        "Obstacle": "While Dannic is extremely willing to charge into battle, he is much more averse to ideological conflict. His response to seeing things in reality that he doesn’t like is to ignore them. If someone who he can’t fight is doing something dishonorable, he’ll do his best to ignore it. If there is injustice he isn’t authorized to respond to, he will very uncomfortably turn away. He avoids thinking about problems he doesn’t know how to fix.",
+        "Goals": ["Find the smugglers", "stop the smugglers", "Protect Falkir"],
+        "Expertises": ["Poleaxe", "Alethi"]
+    },
+
+    
+
+    "strength": 3,
+    "speed": 3,
+    "maxHP": 20,
+    "currentHP": 9,
+
+    "intellect": 0,
+    "willpower": 3,
+    "currentFocus": 2,
+
+    "awareness": 0,
+    "presence": 2,
+    "currentInvestiture": 0,
+
+    "talents": ["Stances", "Vigilant Stance"],
+
+    "inventory": {
+        "Weapons":{
+            "equipped": ["Poleaxe"],
+            "allWeapons": ["Poleaxe", "Shield", "Shardblade"]
+        },
+        "Armor":{
+            "equipped": ["Chain"],
+            "allArmor": ["Chain"]
+        },
+        "Equipment": ["None"],
+        "Spheres": 20
+    },
+
+    "conditions": ["None"],
+
+    "user": "davidsdarley"
+};

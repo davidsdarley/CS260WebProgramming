@@ -3,6 +3,9 @@ import './charSheet.css'
 import { StatSection } from "./statSection.jsx"
 
 export function Stats({character, update = () => {}}){
+    //character = JSON.parse(character);
+
+
     const [hp, setHP] = React.useState(character.currentHP);
     const [focusStat, setFocus] = React.useState(character.currentFocus);
     const [investiture, setInvestiture] = React.useState(character.currentInvestiture);
@@ -31,10 +34,10 @@ export function Stats({character, update = () => {}}){
                 value2={character.willpower}
                 meterMax={character.willpower}
                 meterValue={focusStat}
-                updateFocus={(val) =>{
-                    console.log("focus changing")
-                    setFocus(val)
-                    console.log("focus updated")
+                updateMeter={(val) =>{
+                    console.log("Focus changing")
+                    update("currentFocus", "add", val)
+                    console.log("Focus updated")
                 }}
                 character={character}
             />
@@ -42,11 +45,11 @@ export function Stats({character, update = () => {}}){
                 title="Spiritual"
                 value1={character.awareness}
                 value2={character.presence}
-                meterMax={character.willpower < character.presence ? character.presence: character.willpower}
-                meterValue={investiture}
-                spendFocus={(val) =>{
+                meterMax={character.awareness < character.presence ? character.presence: character.awareness}
+                meterValue={character.currentInvestiture}
+                updateMeter={(val) =>{
                     console.log("investiture changing")
-                    setInvestiture(val)
+                    update("currentInvestiture", "add", val)
                     console.log("investiture updated")
                 }}
                 character={character}

@@ -3,62 +3,30 @@ import './charSheet.css';
 import { Stats } from "./stats";
 import { BottomSection } from './bottomSection';
 import { CharacterInfo } from './characterInfo';
+import { Dannic } from './dictionaries';
 
 
 export function CharSheet({userData}) {
+    //localStorage.removeItem("character");
 
-    const Dannic = {
-
-        "characterInfo": {
-            "name": "Dannic",
-            "level": 2,
-            "classes": ["Warrior"],
-            "ancestry": "Human",
-
-            "Purpose": "Honor. Dannic believes wholeheartedly in the values of Honor, Loyalty, and Honesty. This has guided him in everything he does. He wants to live them, and hopes others can live them as well.",
-            "Obstacle": "While Dannic is extremely willing to charge into battle, he is much more averse to ideological conflict. His response to seeing things in reality that he doesn’t like is to ignore them. If someone who he can’t fight is doing something dishonorable, he’ll do his best to ignore it. If there is injustice he isn’t authorized to respond to, he will very uncomfortably turn away. He avoids thinking about problems he doesn’t know how to fix.",
-            "Goals": ["Find the smugglers", "stop the smugglers", "Protect Falkir"],
-            "Expertises": ["Poleaxe", "Alethi"]
-        },
-
-        
-
-        "strength": 3,
-        "speed": 3,
-        "maxHP": 20,
-        "currentHP": 9,
-
-        "intellect": 0,
-        "willpower": 3,
-        "currentFocus": 2,
-
-        "awareness": 0,
-        "presence": 2,
-        "currentInvestiture": 0,
-
-        "talents": ["Stances", "Vigilant Stance"],
-
-        "inventory": {
-            "Weapons":{
-                "equipped": ["Poleaxe"],
-                "allWeapons": ["Poleaxe", "Shield", "Shardblade"]
-            },
-            "Armor":{
-                "equipped": ["Chain"],
-                "allArmor": ["Chain"]
-            },
-            "Equipment": ["None"],
-            "Spheres": 20
-        },
-
-        "conditions": ["None"],
-
-        "user": "davidsdarley"
-    };
-
-    const [character, setCharacter] = React.useState(Dannic);
+    function getCharacter(){
+        console.log("get char called");
+                //eventually we're going to want to be recording the characters in Database and collecting them. 
+        const localChar = localStorage.getItem("character");
+        if (localChar){
+            console.log("Local character found: ", JSON.parse(localChar));
+            return JSON.parse(localChar);
+            ;
+        } else{
+            localStorage.setItem("character", JSON.stringify(Dannic));
+            return Dannic;
+        }
+    }
+    
+    const [character, setCharacter] = React.useState(() => getCharacter());
 
     function UpdateCharacter(field, mode = "replace", value){                       
+        //find and update the thing
         setCharacter(prev => {
             console.log("Character update called with prameters: ", field, mode, value);
 
@@ -94,11 +62,30 @@ export function CharSheet({userData}) {
             console.log("DEBUG", updated);
             return updated;
         });
+        
+        //Make sure nothing is higher than any possible maximums
         setCharacter( prev => {
             const updated = {...prev};
-            //Make sure nothing is higher than any possible maximums
+            //health
+            if (prev.currentHP > prev.maxHP){
+                updated.currentHP = updated.maxHP;
+            }
+            //focus
+            if (prev.currentFocus > prev.willpower){
+                updated.currentFocus = updated.willpower;
+            }
+            //investiture
+            const maxInvestiture = prev.awareness > prev.presence ? prev.awareness: prev.presence;
+            if (prev.currentInvestiture > maxInvestiture){
+                updated.currentInvestiture = maxInvestiture;
+            }
+
+            localStorage.setItem("character", JSON.stringify(updated))
+
             return updated;
         })
+
+        // save the new data and replace the old data
     }
 
 

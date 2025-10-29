@@ -2,6 +2,10 @@ import React from 'react';
 import './charSheet.css'
 import { Skill } from "./skill.jsx"
 import { ArmorDict } from './dictionaries.js';
+import { CarryingCapacity } from './dictionaries.js';
+import { MovementSpeed } from './dictionaries.js';
+import { SensesRange } from './dictionaries.js';
+import { RecoveryDie } from './dictionaries.js';
 
 
 
@@ -17,7 +21,6 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
 
     const skillList = title === "Physical" ? physicalSkills: title === "Cognitive" ? cognitiveSkills: title === "Spiritual" ? spiritualSkills: ["error"];
     
-    const [deflect, setDeflect] = React.useState(2);
 
 
     const [inputHealth, setInputHealth] = React.useState(0);
@@ -29,6 +32,10 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
         updateMeter(inputHealth);
         setInputHealth(0);
     }
+    function updateFocus(val){
+        updateMeter(val);
+    }
+
 
 
     return(
@@ -57,11 +64,11 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
                 <div id="physical addons">
                     
                     <div className = "atribute">
-                        <span>Deflect: </span><span>{ArmorDict[character.inventory.Armor.equipped[0]].split(",")[0]}</span>
+                        <p><span><b>Deflect:</b> </span><span>{ArmorDict[character.inventory.Armor.equipped[0]].split(",")[0]}</span></p>
                     </div>
                     
                     <div className = "meterAtribute"> 
-                        <span>Health: 0 </span> <meter id="health" min="0" max={meterMax} value={meterValue} low={meterMax/4} high = {meterMax*3/4} optimum = {meterMax}></meter> <span> {meterMax}</span>
+                        <p><span><b>Health:</b> 0 </span> <meter id="health" min="0" max={meterMax} value={meterValue} low={meterMax/4} high = {meterMax*3/4} optimum = {meterMax}></meter> <span> {meterMax}</span></p>
 
                         <input type="number"
                             value={inputHealth} 
@@ -77,12 +84,16 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
                 )}
                 {title === "Cognitive" &&(
                     <div className = "meterAtribute"> 
-                        <p>Focus: <span>0 </span> <meter id="focus" min="0" max={meterMax} value={meterValue} low="1" high = {meterMax/2} optimum = {meterMax}></meter> <span> {meterMax}</span></p>
+                        <p><b>Focus:</b> <span>0 </span> <meter id="focus" min="0" max={meterMax} value={character.currentFocus} low="1" high = {meterMax/2} optimum = {meterMax}></meter> <span> {meterMax}</span></p>
+                        <button onClick={() => updateFocus(-1)}> Spend</button>
+                        <button onClick={() => updateFocus(1)}> Regain</button>
                     </div>
                 )}
                 {title === "Spiritual" &&(
                     <div className = "meterAtribute"> 
-                        <p>Investiture: <span>0 </span> <meter id="investiture" min="0" max={meterMax} value={meterValue} low="1" high = {meterMax/2} optimum = {meterMax}></meter> <span> {meterMax}</span></p>
+                        <p><b>Investiture:</b> <span>0 </span> <meter id="investiture" min="0" max={meterMax} value={meterValue} low="1" high = {meterMax/2} optimum = {meterMax}></meter> <span> {meterMax}</span></p>
+                        <button onClick={() => updateFocus(-1)}> Spend</button>
+                        <button onClick={() => updateFocus(1)}> Regain</button>
                     </div>
                 )}
 
@@ -96,21 +107,21 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
                 {title === "Physical" && (
                     <section>
                         <div className= "atribute">
-                            <p>Carrying Capacity</p><input type = "number"/>
+                            <span><b>Carrying Capacity:</b> </span><span>{CarryingCapacity[character.strength]} lbs</span>
                         </div>
                         <div className= "atribute">
-                            <p>Movement</p><input type = "number"/>
+                            <span><b>Movement:</b> </span><span>{MovementSpeed[character.speed]} ft./action</span>
                         </div>
                     </section>
                 )}
                 {title === "Cognitive" && (
                     <div className= "atribute">
-                        <p>Recovery Die: </p><input type = "number"/>
+                        <span><b>Recovery Die:</b> </span><span>{RecoveryDie[character.willpower]}</span>
                     </div>
                 )}
                 {title === "Spiritual" && (
                     <div className= "atribute">
-                        <p>Senses Range: </p><input type = "number"/>
+                        <span><b>Senses Range:</b> </span><span>{SensesRange[character.awareness]} ft.</span>
                     </div>
                 )}
 

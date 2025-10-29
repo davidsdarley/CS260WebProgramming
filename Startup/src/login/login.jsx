@@ -17,6 +17,7 @@ export function Login({ username, authState, userData, authChange = () => {}}) {
           onLogout={() => {
             console.log("onLogout called");
             authChange("", AuthState.Unauthenticated, {});
+            localStorage.removeItem("character");
             console.log("Logged out", authState);
           }}
           />

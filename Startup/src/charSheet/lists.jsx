@@ -36,7 +36,7 @@ export function Lists({title, list = ["None"], inventory = {}}){
             <h4>Equipped:</h4>
                 <ul>
                     {inventory[title]["equipped"].map((item) => (
-                                <li key={item}>{item}: {activeDict[item]}</li>
+                                <li key={item}><b>{item}</b>: {activeDict[item]}</li>
                             ))}
                 </ul>
             
@@ -48,7 +48,7 @@ export function Lists({title, list = ["None"], inventory = {}}){
         
         <ul>
             {activeList.map((item) => (
-                        <li key={item}> {item}: {activeDict[item]}</li>
+                        <li key={item}> <b>{item}:</b> {activeDict[item]}</li>
                     ))}
         </ul>
     </div>);

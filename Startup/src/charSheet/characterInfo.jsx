@@ -2,11 +2,12 @@ import React from 'react';
 import './charSheet.css';
 
 export function CharacterInfo({character, update = () => {}}){
-
+    //character = JSON.parse(character);
     
     return(
     <section className = "charInfo">
         <div className = "fillWidthTextbox">
+            {console.log("DEBUG: ", character)}
             <h4>{character.characterInfo.name}</h4>
             <p><span>Level {character.characterInfo.level}</span><span> {character.characterInfo.ancestry}</span> {character.characterInfo.classes}</p>
         </div>
