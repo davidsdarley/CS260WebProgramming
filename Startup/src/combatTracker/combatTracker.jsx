@@ -6,9 +6,8 @@ import { OutOfCombat } from './outOfCombat';
 
 const Dannic = {
   "objType": "PC",
-
+  "name": "Dannic",
   "characterInfo": {
-      "name": "Dannic",
       "level": 2,
       "classes": ["Warrior"],
       "ancestry": "Human",
@@ -74,9 +73,8 @@ const Dannic = {
 
   "user": "davidsdarley"
 }
-
-export function CombatTracker() {
-
+//This function will later get the combat from the database when given the right code. For now, it just returns a default combat for testing purposes.
+function getCombat(code){
   //PLACEHOLDER ONLY. Not relevant to actual code///////////////////
   const PlaceholderCombat = new Combat();
   PlaceholderCombat.setCode("11111");
@@ -85,11 +83,19 @@ export function CombatTracker() {
   PlaceholderCombat.addNPC("Spear Infantry");
   PlaceholderCombat.addNPC("Spear Infantry");
   /////////////////////////////////////////////////////////////////
-  localStorage.setItem("combat", PlaceholderCombat);
-
+  localStorage.setItem("combat", JSON.stringify(PlaceholderCombat));
 
   const localCombat = localStorage.getItem("combat");
-  const activeCombat = localCombat !== null ? localCombat:React.useState(null);
+  if (localCombat !== null){
+    return JSON.parse(localCombat);
+  } else{
+    return null;
+  }
+}
+
+
+export function CombatTracker() {
+  const [activeCombat, setCombat] = React.useState(getCombat);
 
   return (
     <main>

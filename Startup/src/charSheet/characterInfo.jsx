@@ -8,7 +8,7 @@ export function CharacterInfo({character, update = () => {}}){
     <section className = "charInfo">
         <div className = "fillWidthTextbox">
             {console.log("DEBUG: ", character)}
-            <h4>{character.characterInfo.name}</h4>
+            <h4>{character.name}</h4>
             <p><span>Level {character.characterInfo.level}</span><span> {character.characterInfo.ancestry}</span> {character.characterInfo.classes}</p>
         </div>
         <img id = "profilePic" alt="Taln" src="https://uploads.coppermind.net/thumb/Stoneward_by_Petar_Penev.png/300px-Stoneward_by_Petar_Penev.png" />

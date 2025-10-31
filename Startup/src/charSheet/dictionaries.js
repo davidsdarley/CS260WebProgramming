@@ -100,9 +100,8 @@ export const SkillStats= {
 
 export const Dannic = {
     "objType": "PC",
-
+    "name": "Dannic",
     "characterInfo": {
-        "name": "Dannic",
         "level": 2,
         "classes": ["Warrior"],
         "ancestry": "Human",

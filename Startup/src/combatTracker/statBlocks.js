@@ -1,14 +1,15 @@
 export const StatBlocks = {
     //I'll want this to be more complete eventually, probably. This is just for now. Bare minimum. 
     "Spear Infantry":{
+        "name": "Spear Infantry",
+        "currentHP": 14,
+        "maxHP": 14,
 
-        "HP": 14,
-
-        "Str": 2,
-        "Spd": 2,
-        "Int": 1,
-        "Wil": 1,
-        "Awa": 2,
-        "Pre": 1
+        "strength": 2,
+        "speed": 2,
+        "intellect": 1,
+        "willpower": 1,
+        "awareness": 2,
+        "presence": 1
     }
 }
