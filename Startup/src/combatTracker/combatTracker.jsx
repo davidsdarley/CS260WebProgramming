@@ -1,6 +1,8 @@
 import React from 'react';
 import './combatTracker.css'
 import { Combat } from './Combat';
+import { InCombat } from './inCombat';
+import { OutOfCombat } from './outOfCombat';
 
 const Dannic = {
   "objType": "PC",
@@ -74,17 +76,34 @@ const Dannic = {
 }
 
 export function CombatTracker() {
+
+  //PLACEHOLDER ONLY. Not relevant to actual code///////////////////
   const PlaceholderCombat = new Combat();
   PlaceholderCombat.setCode("11111");
   PlaceholderCombat.addPC(Dannic);
   PlaceholderCombat.addNPC("Spear Infantry");
   PlaceholderCombat.addNPC("Spear Infantry");
   PlaceholderCombat.addNPC("Spear Infantry");
+  /////////////////////////////////////////////////////////////////
+  localStorage.setItem("combat", PlaceholderCombat);
+
+
+  const localCombat = localStorage.getItem("combat");
+  const activeCombat = localCombat !== null ? localCombat:React.useState(null);
 
   return (
     <main>
-      
-      <hr/>
+      <br/>
+
+      {activeCombat !== null && (
+        <InCombat
+        combat={activeCombat}
+        />
+      )}
+      {activeCombat === null && (
+        <OutOfCombat
+        />
+      )}
     {
       //PLANNING
         //if you are part of a combat, display the combat tracker

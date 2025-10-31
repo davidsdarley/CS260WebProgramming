@@ -16,7 +16,8 @@ export function InCombat({combat}){
     participants={combat["PCs"]}
     />
     <CombatTable
-    //NPCS
+    title="NPCS"
+    participants={combat["NPCs"]}
     />
     
     <section className = "textbox" id = "NPCs">

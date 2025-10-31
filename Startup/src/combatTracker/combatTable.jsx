@@ -5,7 +5,7 @@ import './combatTracker.css'
 export function CombatTable({title, participants}){
 
     <section className = "textbox" id = "players">
-    <h3>PCs</h3>
+    <h3>{title}</h3>
     <table>
 
       <thead>

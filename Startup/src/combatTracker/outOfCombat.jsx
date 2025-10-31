@@ -1,6 +1,10 @@
 import React from 'react';
 import './combatTracker.css'
 
+export function OutOfCombat(){
+    
+}
+
 
 //let you select a combat
     //accept input of a combat code
