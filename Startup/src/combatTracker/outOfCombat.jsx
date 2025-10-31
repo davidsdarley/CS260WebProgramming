@@ -2,7 +2,6 @@ import React from 'react';
 import './combatTracker.css'
 import { Combat } from './Combat';
 
-
 const Dannic = {
     "objType": "PC",
     "name": "Dannic",
@@ -72,8 +71,6 @@ const Dannic = {
   
     "user": "davidsdarley"
   }
-
-
 export function OutOfCombat( {enterCombat = () => {}}){
     const [inputCode, setCode] = React.useState("");
     const [statusMessage, setMessage] = React.useState("");
