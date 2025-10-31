@@ -8,8 +8,8 @@ import './combatTracker.css'
 //PC table
 //NPC table
 //Listen for updates
-export function InCombat({combat}){
-    return (<div>
+export function InCombat({combat, endCombat = () => {}}){
+    return (<div id="InCombat">
     <CombatTable
     title="PCs"
     participants={combat["PCs"]}
@@ -18,6 +18,8 @@ export function InCombat({combat}){
     title="NPCS"
     participants={combat["NPCs"]}
     />
+
+    <button onClick={() => endCombat()} className = "rightAligned"> End Combat </button>
       </div>
       )
 }

@@ -1,2 +1,6 @@
 main{
 }
+.rightAligned{
+    display: flex;
+    justify-content: flex-end;
+}

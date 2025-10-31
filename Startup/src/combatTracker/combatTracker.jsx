@@ -104,6 +104,10 @@ export function CombatTracker() {
       {activeCombat !== null && (
         <InCombat
         combat={activeCombat}
+        endCombat={() => {
+          //delete the combat from the database and kick everyone in it out
+          setCombat(null)
+        }}
         />
       )}
       {activeCombat === null && (
