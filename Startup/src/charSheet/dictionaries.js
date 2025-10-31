@@ -99,6 +99,7 @@ export const SkillStats= {
 }
 
 export const Dannic = {
+    "objType": "PC",
 
     "characterInfo": {
         "name": "Dannic",
@@ -167,3 +168,4 @@ export const Dannic = {
 
     "user": "davidsdarley"
 }
+
