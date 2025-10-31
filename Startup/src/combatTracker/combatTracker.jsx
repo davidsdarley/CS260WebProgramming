@@ -83,8 +83,8 @@ function getCombat(code){
   PlaceholderCombat.addNPC("Spear Infantry");
   PlaceholderCombat.addNPC("Spear Infantry");
   /////////////////////////////////////////////////////////////////
-  localStorage.setItem("combat", JSON.stringify(PlaceholderCombat));
-
+  //localStorage.setItem("combat", JSON.stringify(PlaceholderCombat));
+  localStorage.setItem("combat", null);
   const localCombat = localStorage.getItem("combat");
   if (localCombat !== null){
     return JSON.parse(localCombat);
@@ -100,7 +100,6 @@ export function CombatTracker() {
   return (
     <main>
       <br/>
-
       {activeCombat !== null && (
         <InCombat
         combat={activeCombat}
@@ -112,23 +111,12 @@ export function CombatTracker() {
       )}
       {activeCombat === null && (
         <OutOfCombat
+        enterCombat={(combat) => {
+          setCombat(combat)
+        }}
         />
       )}
-    {
-      //PLANNING
-        //if you are part of a combat, display the combat tracker
-          //Display the combat code in the upper right part of the screen
-          //PC table
-          //NPC table
-          //Listen for updates
-        //if your combat has ended, or not part of a combat, go to the Find Combat screen
-          //make an input thingamajig and let them enter 
-
-      //WHAT NEEDS TO BE DONE HERE:
-        //Combat variable
-        //If combat is an empty object, display an OutOfCombat component.
-        //If combat is not an empty object, pass it on to an InCombat component
-    }
+    
       
       
       <img id = "AvT" alt="Adolin jumping on a Thunderclast" src="https://pbs.twimg.com/media/Gvqdj96W0AACiGY.jpg:large" />
