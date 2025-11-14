@@ -94,7 +94,6 @@ export function OutOfCombat( {enterCombat = () => {}}){
         setMessage("Invalid Code. Please enter a valid code. (At the moment, the placeholder valid code is 11111)");
         setCode("");
       }
-
     }
 
     return (
