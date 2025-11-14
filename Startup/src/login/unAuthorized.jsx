@@ -11,14 +11,33 @@ export function UnAuthorized( {onLogin} ) {
 
     async function loginUser(){
         console.log("Login called");
-        localStorage.setItem('username', enteredUsername);
-        onLogin(enteredUsername, exampleUser);
+        loginOrCreate(`/api/auth/login`)
     }
     async function createUser(){
         console.log("Create called");
-        localStorage.setItem('username', enteredUsername);
-        onLogin(enteredUsername, exampleUser);
+        //loginOrCreate(`/api/auth/create`)
+        loginOrCreate(`/auth/create`)
+    }
 
+    async function loginOrCreate(endpoint){
+        console.log("Username:", enteredUsername);
+        console.log("Password:", enteredPassword);
+        console.log("endpoint:", endpoint);
+        const response = await fetch(endpoint, {
+            method: 'post',
+            body: JSON.stringify({ username: enteredUsername, password: enteredPassword }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+          });
+        if (response?.status === 200){ //this is really cool syntax I didn't know was possible until looking at simon. Nice!
+            console.log("success!", response)
+            localStorage.setItem('username', enteredUsername);
+            onLogin(enteredUsername, exampleUser);
+        }
+        else{
+            console.log("failure!", response)
+        }
     }
 
     return(
