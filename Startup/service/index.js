@@ -20,6 +20,12 @@ app.use(express.static('public'));
 // Router for service endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
+//Debugging messages
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+  });
 ////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -28,14 +34,14 @@ let users = [];
 
 
 // CreateAuth a new user
-apiRouter.post('/auth/create', async (req, res) => {
-    if (await findUser('username', req.body.email)) {
+apiRouter.post(`/auth/create`, async (req, res) => {
+    if (await findUser('username', req.body.username)) {
       res.status(409).send({ msg: 'Existing user' });
     } else {
-      const user = await createUser(req.body.email, req.body.password);
+      const user = await createUser(req.body.username, req.body.password);
   
       setAuthCookie(res, user.token);
-      res.send({ email: user.email });
+      res.send({ username: user.username });
     }
 });
   
@@ -43,12 +49,12 @@ apiRouter.post('/auth/create', async (req, res) => {
 ////////LOGIN LOGOUT STUFF stolen mostly from simon, then adapted to my site////////////////////////////////////////
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = await findUser('username', req.body.email);
+    const user = await findUser('username', req.body.username);
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
         user.token = uuid.v4();
         setAuthCookie(res, user.token);
-        res.send({ email: user.email });
+        res.send({ username: user.username });
         return;
         }
 }
@@ -81,17 +87,16 @@ app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });
   });
 // Also seemed like a good default to take so `\ *_* /`
-//                                                H
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 
 ///////////// FUNCTIONS FOR USE IN OTHER PLACES /////////////////
-async function createUser(email, password) {    //for login and create
+async function createUser(username, password) {    //for login and create
     const passwordHash = await bcrypt.hash(password, 10);
 
     const user = {
-        email: email,
+        username: username,
         password: passwordHash,
         token: uuid.v4(),
     };

@@ -1,9 +1,11 @@
 import React from 'react';
+import { MessageBox } from './messageBox';
 
 export function UnAuthorized( {onLogin} ) {
     
     const [enteredUsername, setUsername] = React.useState("");
     const [enteredPassword, setPassword] = React.useState("");
+    const [displayError, setDisplayError] = React.useState(null);
     const [exampleUser, setUserData] = React.useState({
         "userID":1, "characters":[{"Dannic": 1}], "campaigns": [{"life before death":1}]
     })
@@ -15,8 +17,7 @@ export function UnAuthorized( {onLogin} ) {
     }
     async function createUser(){
         console.log("Create called");
-        //loginOrCreate(`/api/auth/create`)
-        loginOrCreate(`/auth/create`)
+        loginOrCreate(`/api/auth/create`)
     }
 
     async function loginOrCreate(endpoint){
@@ -36,7 +37,10 @@ export function UnAuthorized( {onLogin} ) {
             onLogin(enteredUsername, exampleUser);
         }
         else{
-            console.log("failure!", response)
+            console.log("failure!", response, response.status, response.body)
+            const body = await response.json();
+            setDisplayError(`⚠ Error: ${body.msg}`);
+            
         }
     }
 
@@ -65,7 +69,7 @@ export function UnAuthorized( {onLogin} ) {
             
             <button onClick={() => loginUser()}>Login</button>  
             <button onClick={() => createUser()}>Create</button>  
-
+        <MessageBox message={displayError} onHide={() => setDisplayError(null)}></MessageBox>
       </section>
     )
 }
