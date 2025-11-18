@@ -9,7 +9,6 @@ export function UnAuthorized( {onLogin} ) {
     const [exampleUser, setUserData] = React.useState({
         "userID":1, "characters":[{"Dannic": 1}], "campaigns": [{"life before death":1}]
     })
-    
 
     async function loginUser(){
         console.log("Login called");
