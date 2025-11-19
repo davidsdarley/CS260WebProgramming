@@ -20,9 +20,9 @@ export function UnAuthorized( {onLogin} ) {
     }
 
     async function loginOrCreate(endpoint){
-        console.log("Username:", enteredUsername);
-        console.log("Password:", enteredPassword);
-        console.log("endpoint:", endpoint);
+        // console.log("Username:", enteredUsername);
+        // console.log("Password:", enteredPassword);
+        // console.log("endpoint:", endpoint);
         const response = await fetch(endpoint, {
             method: 'post',
             body: JSON.stringify({ username: enteredUsername, password: enteredPassword }),
@@ -31,12 +31,14 @@ export function UnAuthorized( {onLogin} ) {
             },
           });
         if (response?.status === 200){ //this is really cool syntax I didn't know was possible until looking at simon. Nice!
-            console.log("success!", response)
+            // console.log("success!", response)
             localStorage.setItem('username', enteredUsername);
+            localStorage.setItem('charIDs', response.body.charIDs); 
+            // console.log("CharIDs", response.charIDs);
             onLogin(enteredUsername, exampleUser);
         }
         else{
-            console.log("failure!", response, response.status, response.body)
+            // console.log("failure!", response, response.status, response.body)
             const body = await response.json();
             setDisplayError(`⚠ Error: ${body.msg}`);
             

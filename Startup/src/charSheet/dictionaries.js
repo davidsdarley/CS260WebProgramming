@@ -4,6 +4,7 @@ export const TalentsDict ={
 }
 //inventory stuff
 export const WeaponsDict = {
+    "": " , , , , ",
     "Poleaxe": "1d10 keen, Melee, Two-Handed, Melee [+5], 5 lb. 40 mk",
     "Shield": "1d4 impact, Melee, Defensive, Offhand, 2 lb. 10 mk",
     "Javelin": "1d6 keen, Melee, Thrown [30/120], Indirect, 2 lb. 20 mk",
@@ -11,11 +12,12 @@ export const WeaponsDict = {
 }
 
 export const ArmorDict = {
- "Chain": "2, Cumbersome [3], loses Cumbersome, 25 lb. 80 mk"
+    "Chain": "2, Cumbersome [3], loses Cumbersome, 25 lb. 80 mk",
+    "": "0, , , , "
 }
 
 export const EquipmentDict = {
-
+    "": " "
 }
 
 
@@ -109,7 +111,8 @@ export const Dannic = {
         "Purpose": "Honor. Dannic believes wholeheartedly in the values of Honor, Loyalty, and Honesty. This has guided him in everything he does. He wants to live them, and hopes others can live them as well.",
         "Obstacle": "While Dannic is extremely willing to charge into battle, he is much more averse to ideological conflict. His response to seeing things in reality that he doesn’t like is to ignore them. If someone who he can’t fight is doing something dishonorable, he’ll do his best to ignore it. If there is injustice he isn’t authorized to respond to, he will very uncomfortably turn away. He avoids thinking about problems he doesn’t know how to fix.",
         "Goals": ["Find and stop the storming smugglers operating in my tower", "Protect Falkir"],
-        "Expertises": ["Poleaxe", "Alethi"]
+        "Expertises": ["Poleaxe", "Alethi"],
+        "Picture": 1
     },
 
     "strength": 3,

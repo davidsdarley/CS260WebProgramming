@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './charSheet.css';
 import { Stats } from "./stats";
 import { BottomSection } from './bottomSection';
@@ -8,8 +8,10 @@ import { Dannic } from './dictionaries';
 
 export function CharSheet({userData}) {
     //localStorage.removeItem("character");
+    localStorage.setItem("charID", "2")
 
-    function getCharacter(){
+
+    function oldgetCharacter(){
         console.log("get char called");
                 //eventually we're going to want to be recording the characters in Database and collecting them. 
         const localChar = localStorage.getItem("character");
@@ -22,9 +24,44 @@ export function CharSheet({userData}) {
             return Dannic;
         }
     }
-    
-    const [character, setCharacter] = React.useState(() => getCharacter());
+    async function getCharacter(charID){
+        console.log("get char called");
+        
+        try{
+            const localChar = localStorage.getItem("character");
+            if (localChar){
+                console.log("Local character found: ", JSON.parse(localChar));
+                return JSON.parse(localChar);
+            } 
+        }
+        catch(err){
+            console.error("Failed to parse localStorage character:", err);
+        }
 
+        //If it isn't in local storage, get it from the DB
+        const id =  charID; //eventually take this as a parameter
+        const response = await fetch(`/api/characters/getChar`, {
+            method: 'POST',
+            body: JSON.stringify({ charID: id }),
+            headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        if (response?.status === 200){
+            const body = await response.json();
+            const character = body.characterSheet;
+            localStorage.setItem("character", JSON.stringify(character));
+            return character;
+        }
+        
+    }
+    const [charID, setCharID] = React.useState(localStorage.getItem("charID"));
+    const [character, setCharacter] = React.useState(null);
+    useEffect(()=> {
+        getCharacter(charID).then(setCharacter);
+    }, [])
+
+    
     function UpdateCharacter(field, mode = "replace", value){                       
         //find and update the thing
         setCharacter(prev => {
@@ -88,6 +125,9 @@ export function CharSheet({userData}) {
         // save the new data and replace the old data
     }
 
+    if(!character){
+        return <div>Loading Character</div>
+    }
 
   return (
     <main className = "sheetSections">
