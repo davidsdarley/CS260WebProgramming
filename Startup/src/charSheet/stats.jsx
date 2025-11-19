@@ -21,9 +21,7 @@ export function Stats({character, update = () => {}}){
                 meterMax={character.maxHP}
                 meterValue={character.currentHP}
                 updateMeter={(val) =>{
-                    console.log("Hp changing")
                     update("currentHP", "add", val)
-                    console.log("Hp updated")
                 }}
                 character={character}
             />

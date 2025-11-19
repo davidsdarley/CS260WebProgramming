@@ -10,8 +10,6 @@ import { RecoveryDie } from './dictionaries.js';
 
 
 export function StatSection({title, value1, value2, meterMax, meterValue, updateMeter = () => {}, character}){
-    console.log("Stats section requested")
-
     const stat1 = title === "Physical" ? "Strength": title === "Cognitive" ? "Intellect": title === "Spiritual" ? "Awareness": "error";
     const stat2 = title === "Physical" ? "Speed": title === "Cognitive" ? "Willpower": title === "Spiritual" ? "Presence": "error";
     

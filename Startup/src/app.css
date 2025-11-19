@@ -93,6 +93,27 @@ main {
     padding: 15px;          
     display: inline-block;
     }
+.hoverbox {
+    border: 1px solid rgb(218, 185, 0);
+    position: relative;
+    margin: 10px 10px;
+
+
+    width: fit-content;
+    
+
+    background-color: rgba(145, 145, 145, 0.7);
+    padding: 15px;          
+    display: inline-block;
+}
+.hoverbox:hover {
+    background-color: rgba(107, 107, 107, 0.7);
+    padding: 13px;
+    margin: 12px;
+}
+.hoverbox:active {
+    background-color: rgba(193, 193, 193, 0.7);
+}
 
 footer {
     background: hsl(180, 10%, 10%);

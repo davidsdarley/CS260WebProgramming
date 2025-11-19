@@ -1,16 +1,11 @@
 import React from 'react';
 import './charSheet.css';
 
-export function CharacterInfo({character, update = () => {}}){
+export function CharacterInfo({character, update = () => {}, startEdit = () => {}}){
     // character = JSON.parse(character);
-
     if (!character){
-        console.log("FLAG 2.0")
         return <div>Loading Character...</div>
-    }
-
-    console.log("FLAG2.1-Character.name: ", character.name)
-    return(
+    }    return(
     <section className = "charInfo">
         <div className = "fillWidthTextbox">
             <h4>{character.name}</h4>
@@ -46,6 +41,7 @@ export function CharacterInfo({character, update = () => {}}){
                 </ul>
 
         </div>
+        <button onClick={startEdit}>Edit</button>
         </section>
         );
 }

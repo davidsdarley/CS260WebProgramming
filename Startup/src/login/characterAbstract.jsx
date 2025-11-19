@@ -24,7 +24,6 @@ export function CharacterAbstract( { characterID } ){
         if (response?.status === 200){
             const body = await response.json();
             const character = body.characterSheet;
-            localStorage.setItem("character", JSON.stringify(character));
             return character;
         }
     }
@@ -43,10 +42,11 @@ export function CharacterAbstract( { characterID } ){
         //level
         //classes
         //picture?
-    return <div className='textbox' onClick={handleClick}>
+    return <div className='hoverbox' onClick={handleClick}>
         <h3>{character.name}</h3>
         <p>level {character.characterInfo.level} {character.characterInfo.ancestry} {character.characterInfo.classes}</p>
-        {//access the picture file and add it in.
+        {
+        //access the picture file and add it in.
         }
         </div>
 }

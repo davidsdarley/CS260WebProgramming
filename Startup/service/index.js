@@ -281,6 +281,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 ////////////////////////////////////////////////////////////////////
 
 ////// MY APP STUFF ////////////////////////////////////////////
+  //Get a character sheet from a character ID
 apiRouter.post('/characters/getChar', async (req, res) =>{ 
   const user = await findUser('token', req.cookies[authCookieName]);
   if (!user){
@@ -298,7 +299,7 @@ apiRouter.post('/characters/getChar', async (req, res) =>{
   }
   res.status(200).send({ characterSheet: char });
 });
-
+  //get the IDs of the characters the User has access to.
 apiRouter.post('/characters/getIDs', async (req, res) =>{ 
   const user = await findUser('token', req.cookies[authCookieName]);
   if (!user){
@@ -308,6 +309,27 @@ apiRouter.post('/characters/getIDs', async (req, res) =>{
   const idList = user.characters;
   res.status(200).send({charIDs: idList})
 });
+  //update an existing character in storage. Requires a charID and updated character.
+apiRouter.post('/characters/update', async (req, res) =>{
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user){
+    res.status(401).send({ msg: 'Unauthorized' });
+    return }
+
+  const id = Number(req.body.charID);
+  const updated = req.body.character;
+  if (!id || !updated) {
+    res.status(400).send({ msg: "Missing charID or character data" });
+    return
+  }
+  if (!user.characters.includes(id)){
+    res.status(401).send( {msg: 'Unauthorized. This is not your character.'});
+    return
+  }
+  chars[id] = updated;    //eventually replace with updating the DB
+  res.status(200).send({msg: "character updated"});
+});
+
 
 /////////////////////////////////////////////////////////////////
 

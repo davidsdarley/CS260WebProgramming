@@ -3,29 +3,14 @@ import './charSheet.css';
 import { Stats } from "./stats";
 import { BottomSection } from './bottomSection';
 import { CharacterInfo } from './characterInfo';
+import { CharacterInfoEditing } from './characterInfoEditing';
 import { Dannic } from './dictionaries';
 
 
 export function CharSheet({userData}) {
     //localStorage.removeItem("character");
-    localStorage.setItem("charID", "2")
 
-
-    function oldgetCharacter(){
-        console.log("get char called");
-                //eventually we're going to want to be recording the characters in Database and collecting them. 
-        const localChar = localStorage.getItem("character");
-        if (localChar){
-            console.log("Local character found: ", JSON.parse(localChar));
-            return JSON.parse(localChar);
-            ;
-        } else{
-            localStorage.setItem("character", JSON.stringify(Dannic));
-            return Dannic;
-        }
-    }
     async function getCharacter(charID){
-        console.log("get char called");
         
         try{
             const localChar = localStorage.getItem("character");
@@ -60,8 +45,29 @@ export function CharSheet({userData}) {
     useEffect(()=> {
         getCharacter(charID).then(setCharacter);
     }, [])
-
+    const [editMode, switchMode] = React.useState(true);
     
+    
+    
+
+    async function sendUpdate(updated){
+        // save the new data and replace the old data
+        const response = await fetch(`/api/characters/update`, {
+            method: 'POST',
+            body: JSON.stringify({ charID: charID, character: updated }),
+            headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        if (response?.status === 200){
+            //All is well
+            console.log("Update successful!")
+        }
+        else{
+            console.log("AAAAGGGHHH Character update failed!!!!")
+        }
+    }
+
     function UpdateCharacter(field, mode = "replace", value){                       
         //find and update the thing
         setCharacter(prev => {
@@ -71,7 +77,6 @@ export function CharSheet({userData}) {
 
             // prep so I can handle nested things
             const keys = field.split(".");
-            console.log("Split complete");
             let target = updated;
 
             // get to the end 
@@ -96,7 +101,6 @@ export function CharSheet({userData}) {
                 console.log("Invalid mode attempted: ", mode)
             }
 
-            console.log("DEBUG", updated);
             return updated;
         });
         
@@ -119,47 +123,93 @@ export function CharSheet({userData}) {
 
             localStorage.setItem("character", JSON.stringify(updated))
 
+            sendUpdate(updated);
             return updated;
         })
 
-        // save the new data and replace the old data
     }
 
     if(!character){
         return <div>Loading Character</div>
     }
 
-  return (
-    <main className = "sheetSections">
+    if (!editMode){
+        return (
+            <main className = "sheetSections">
+            
+                <CharacterInfo
+                character={character}
+                update={UpdateCharacter}
+                startEdit={()=>
+                    {switchMode(true);
+                    console.log("Edit mode activated");
+                    }}
+                />
+
+                <section className = "gameplay" >
+
+                
+                <Stats
+                    character={character}
+                    update={(field, mode, value) => {
+                        UpdateCharacter(field, mode, value);
+                    }}
+                />
+                
+                <hr></hr>
+
+                <BottomSection
+                talents={character["talents"]}
+                inventory={character["inventory"]}
+                conditions={character["conditions"]}
+                update={(field, mode, value) => {
+                    UpdateCharacter(field, mode, value);
+                }}
+                />
+
+
+                </section>
+        </main>
+        );
+    }
+    else{
+        return (
+            <main className = "sheetSections">
+            
+                <CharacterInfoEditing
+                character={character}
+                update={UpdateCharacter}
+                stopEdit={()=>
+                    {switchMode(false);
+                    console.log("Edit mode ended");
+                    }}
+                />
+
+                <section className = "gameplay" >
+
+                
+                <Stats
+                    character={character}
+                    update={(field, mode, value) => {
+                        UpdateCharacter(field, mode, value);
+                    }}
+                />
+                
+                <hr></hr>
+
+                <BottomSection
+                talents={character["talents"]}
+                inventory={character["inventory"]}
+                conditions={character["conditions"]}
+                update={(field, mode, value) => {
+                    UpdateCharacter(field, mode, value);
+                }}
+                />
+
+
+                </section>
+        </main>
+        );
+    }
     
-        <CharacterInfo
-        character={character}
-        update={UpdateCharacter}
-        />
-
-        <section className = "gameplay" >
-
-        
-        <Stats
-            character={character}
-            update={(field, mode, value) => {
-                UpdateCharacter(field, mode, value);
-              }}
-        />
-        
-        <hr></hr>
-
-        <BottomSection
-        talents={character["talents"]}
-        inventory={character["inventory"]}
-        conditions={character["conditions"]}
-        update={(field, mode, value) => {
-            UpdateCharacter(field, mode, value);
-          }}
-        />
-
-
-        </section>
-  </main>
-  );
 }

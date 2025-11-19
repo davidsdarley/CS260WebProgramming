@@ -5,8 +5,6 @@ import { AuthState } from './authState';
 
 
 export function Login({ username, authState, userData, authChange = () => {}}) {
-  console.log("Login.jsx called", username, authState, userData);
-
   return (
     <main>
       <div>

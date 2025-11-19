@@ -20,7 +20,6 @@ export function Characters(){
     
     const [IDs, setIDs] = React.useState(null);
     useEffect(() => {getIDs().then(setIDs)},[])
-    console.log("FLAG 3.0 ID list: ", IDs);
     if (!IDs){
         return (<div className='textbox'>Loading Characters...</div>)
     }
