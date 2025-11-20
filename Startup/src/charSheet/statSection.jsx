@@ -6,21 +6,40 @@ import { CarryingCapacity } from './dictionaries.js';
 import { MovementSpeed } from './dictionaries.js';
 import { SensesRange } from './dictionaries.js';
 import { RecoveryDie } from './dictionaries.js';
+import { Physical } from './physical.jsx';
 
 
 
-export function StatSection({title, value1, value2, meterMax, meterValue, updateMeter = () => {}, character}){
+export function StatSection({title, value1, value2, meterMax, meterValue, updateMeter = () => {}, character, edit, update = () => {}}){
     const stat1 = title === "Physical" ? "Strength": title === "Cognitive" ? "Intellect": title === "Spiritual" ? "Awareness": "error";
+    const lower1 = title === "Physical" ? "strength": title === "Cognitive" ? "intellect": title === "Spiritual" ? "awareness": "error";
     const stat2 = title === "Physical" ? "Speed": title === "Cognitive" ? "Willpower": title === "Spiritual" ? "Presence": "error";
-    
+    const lower2 = title === "Physical" ? "speed": title === "Cognitive" ? "willpower": title === "Spiritual" ? "presence": "error";
+
     const physicalSkills = ["Agility", "Athletics", "Heavy Weapons", "Light Weapons", "Stealth", "Thievery"];
     const cognitiveSkills = ["Crafting", "Deduction", "Discipline", "Intimidation", "Lore", "Medicine"];
     const spiritualSkills = ["Deception", "Insight", "Leadership", "Perception", "Persuasion", "Survival"];
 
     const skillList = title === "Physical" ? physicalSkills: title === "Cognitive" ? cognitiveSkills: title === "Spiritual" ? spiritualSkills: ["error"];
     
+///////Editting vars and functions/////////////////////////////////////
+    const [Stat1, setStat1] = React.useState(character[lower1]);
+    const [Stat2, setStat2] = React.useState(character[lower2]);
+    const [MaxHealth, setMaxHealth] = React.useState(character.maxHP);
 
-
+    function updateHealth(val){
+        setMaxHealth(val);
+        update("maxHP", val);
+    }
+    function updateStat1(val){
+        setStat1(val);
+        update(lower1, val);
+    }
+    function updateStat2(val){
+        setStat2(val);
+        update(lower2, val);
+    }
+/////////////////////////////////////////////////////////////////////////
     const [inputHealth, setInputHealth] = React.useState(0);
     function damage(){
         updateMeter(-inputHealth);
@@ -34,7 +53,63 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
         updateMeter(val);
     }
 
-
+    if(edit){
+        return(
+            <section className = "textbox evenSpacing">
+                    <h3>{title}</h3>
+                    {
+                        //Not table, instead the two stats listed out. No defense
+                    }
+                    <span>{stat1}: </span><input type="number" value={Stat1} onChange={(e)=>{updateStat1(e.target.value)}}/>
+                    <span>{stat2}: </span><input type="number" value={Stat2} onChange={(e)=>{updateStat2(e.target.value)}}/>
+    
+                    <br></br>
+                    {title === "Physical" && (
+                    <div id="physical addons">
+                    <span><b>Max Health: </b></span><input type="number" value={MaxHealth} onChange={(e)=>{updateHealth(e.target.value)}}/>
+                    </div>
+                    )}
+                    
+    
+                    <hr></hr>
+    
+                    <div>
+                    {skillList.map((skillName) => (
+                        <SkillBlock 
+                            key={skillName} skillName={skillName} 
+                            character={character}
+                        />
+                    ))}
+                    </div>
+    
+                    <hr/>
+    
+                    {title === "Physical" && (
+                        <section>
+                            <div className= "atribute">
+                                <span><b>Carrying Capacity:</b> </span><span>{CarryingCapacity[Stat1]} lbs</span>
+                            </div>
+                            <div className= "atribute">
+                                <span><b>Movement:</b> </span><span>{MovementSpeed[Stat2]} ft./action</span>
+                            </div>
+                        </section>
+                    )}
+                    {title === "Cognitive" && (
+                        <div className= "atribute">
+                            <span><b>Recovery Die:</b> </span><span>{RecoveryDie[Stat2]}</span>
+                        </div>
+                    )}
+                    {title === "Spiritual" && (
+                        <div className= "atribute">
+                            <span><b>Senses Range:</b> </span><span>{SensesRange[Stat1]} ft.</span>
+                        </div>
+                    )}
+    
+                    
+    
+                </section>
+        )
+    }
 
     return(
         <section className = "textbox evenSpacing">

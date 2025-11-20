@@ -67,7 +67,7 @@ export function CharSheet({userData}) {
         }
     }
 
-    function UpdateCharacter(field, mode = "replace", value){         
+    function UpdateCharacter(field, mode = "replace", value){     //Modes: append, replace, removeByIndex, add    
         //find and update the thing
         setCharacter(prev => {
             console.log("Character update called with parameters: ", field, mode, value);
@@ -156,6 +156,7 @@ export function CharSheet({userData}) {
                     update={(field, mode, value) => {
                         UpdateCharacter(field, mode, value);
                     }}
+                    edit={editMode}
                 />
                 
                 <hr></hr>
@@ -174,6 +175,7 @@ export function CharSheet({userData}) {
         </main>
         );
     }
+
     else{
         return (
             <main className = "sheetSections">
@@ -195,6 +197,7 @@ export function CharSheet({userData}) {
                     update={(field, mode, value) => {
                         UpdateCharacter(field, mode, value);
                     }}
+                    edit={editMode}
                 />
                 
                 <hr></hr>

@@ -2,7 +2,7 @@ import React from 'react';
 import './charSheet.css'
 import { StatSection } from "./statSection.jsx"
 
-export function Stats({character, update = () => {}}){
+export function Stats({character, update = () => {}, edit}){
     //character = JSON.parse(character);
 
 
@@ -10,8 +10,7 @@ export function Stats({character, update = () => {}}){
     const [focusStat, setFocus] = React.useState(character.currentFocus);
     const [investiture, setInvestiture] = React.useState(character.currentInvestiture);
 
-   
-
+    
     return(
         <div className="stats">
             <StatSection
@@ -24,6 +23,8 @@ export function Stats({character, update = () => {}}){
                     update("currentHP", "add", val)
                 }}
                 character={character}
+                edit={edit}
+                update={(field, val)=>{update(field, "replace", val)}}
             />
 
             <StatSection
@@ -38,6 +39,7 @@ export function Stats({character, update = () => {}}){
                     console.log("Focus updated")
                 }}
                 character={character}
+                edit={edit}
             />
             <StatSection
                 title="Spiritual"
@@ -51,6 +53,7 @@ export function Stats({character, update = () => {}}){
                     console.log("investiture updated")
                 }}
                 character={character}
+                edit={edit}
             />
 
         </div>
