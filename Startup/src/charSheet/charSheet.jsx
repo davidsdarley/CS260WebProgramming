@@ -4,7 +4,6 @@ import { Stats } from "./stats";
 import { BottomSection } from './bottomSection';
 import { CharacterInfo } from './characterInfo';
 import { CharacterInfoEditing } from './characterInfoEditing';
-import { Dannic } from './dictionaries';
 
 
 export function CharSheet({userData}) {
@@ -68,10 +67,10 @@ export function CharSheet({userData}) {
         }
     }
 
-    function UpdateCharacter(field, mode = "replace", value){                       
+    function UpdateCharacter(field, mode = "replace", value){         
         //find and update the thing
         setCharacter(prev => {
-            console.log("Character update called with prameters: ", field, mode, value);
+            console.log("Character update called with parameters: ", field, mode, value);
 
             const updated = {...prev};
 
@@ -95,6 +94,9 @@ export function CharSheet({userData}) {
                 target[lastKey] = value;
             } else if (mode === "remove"){
                 target[lastKey] = target[lastKey].filter(i => i !== value);
+            }
+            else if (mode === "removeByIndex"){
+                target[lastKey] = target[lastKey].filter( (_, i) => i != value)
             } else if (mode === "add"){
                 target[lastKey] = target[lastKey]+ value;
             } else {
