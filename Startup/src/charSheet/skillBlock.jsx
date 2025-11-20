@@ -21,7 +21,7 @@ export function SkillBlock({skillName, character}){
         </label>
       ))}
 
-        <span> {stat+rank}</span>
+        <span> {Number(stat)+Number(rank)}</span>
     </div>
     );
 }

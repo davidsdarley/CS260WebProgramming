@@ -44,11 +44,9 @@ export function CharSheet({userData}) {
     useEffect(()=> {
         getCharacter(charID).then(setCharacter);
     }, [])
-    const [editMode, switchMode] = React.useState(true);
+    const [editMode, switchMode] = React.useState(false);
     
     
-    
-
     async function sendUpdate(updated){
         // save the new data and replace the old data
         const response = await fetch(`/api/characters/update`, {
@@ -85,9 +83,7 @@ export function CharSheet({userData}) {
             }
 
             const lastKey = keys[keys.length - 1];
-
-
-
+            
             if (mode === "append"){
                 target[lastKey] = [...target[lastKey], value];
             } else if (mode === "replace"){
@@ -102,7 +98,6 @@ export function CharSheet({userData}) {
             } else {
                 console.log("Invalid mode attempted: ", mode)
             }
-
             return updated;
         });
         
@@ -131,10 +126,16 @@ export function CharSheet({userData}) {
 
     }
 
+    useEffect(()=>{if (character){
+        console.log("FLAG 1:", character)
+        if (character.name === "New Character"){
+            switchMode(true);}
+    }
+    })
     if(!character){
         return <div>Loading Character</div>
     }
-
+    
     if (!editMode){
         return (
             <main className = "sheetSections">
@@ -209,6 +210,7 @@ export function CharSheet({userData}) {
                 update={(field, mode, value) => {
                     UpdateCharacter(field, mode, value);
                 }}
+                edit={editMode}
                 />
 
 

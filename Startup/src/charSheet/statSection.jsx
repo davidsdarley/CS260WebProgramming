@@ -28,6 +28,7 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
     const [MaxHealth, setMaxHealth] = React.useState(character.maxHP);
 
     function updateHealth(val){
+        val = Number(val)
         setMaxHealth(val);
         update("maxHP", val);
     }
@@ -126,7 +127,7 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
                     <tbody>
                     <tr>
                     <td>{value1}</td>
-                    <td>{10+value1+value2}</td>
+                    <td>{10+Number(value1)+Number(value2)}</td>
                     <td>{value2}</td>
                     </tr>
                     </tbody>

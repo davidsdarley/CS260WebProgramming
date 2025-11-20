@@ -8,7 +8,7 @@ export function EditList( { lst, add = () => {}, remove = () => {}, big, str} ){
         add(inputVal);
         setVal("");
     }
-
+    
     return (
     <div>
         <ul>{
@@ -22,6 +22,9 @@ export function EditList( { lst, add = () => {}, remove = () => {}, big, str} ){
         }
         </ul>
         <span>New {str}: </span>
+        {
+            // Place to input new things
+        }
         <p>
             {big ? <textarea placeholder={str+"..."} value={inputVal} onChange={(e) => setVal(e.target.value)}/> : <input type="text" placeholder={str+'...'} value={inputVal} onChange={(e) => setVal(e.target.value)}/>}
             <span><button onClick={sendNew}>Add</button></span>
