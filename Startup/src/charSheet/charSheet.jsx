@@ -21,7 +21,6 @@ export function CharSheet({userData}) {
         catch(err){
             console.error("Failed to parse localStorage character:", err);
         }
-
         //If it isn't in local storage, get it from the DB
         const id =  charID; //eventually take this as a parameter
         const response = await fetch(`/api/characters/getChar`, {
@@ -46,12 +45,52 @@ export function CharSheet({userData}) {
     }, [])
     const [editMode, switchMode] = React.useState(false);
     
-    
+    async function getID(){
+        console.log("FLAG 7.0", charID);
+        if(Number(charID) === 1){
+            console.log("Saving new character")
+            //get a new one
+            const IDresponse = await fetch(`/api/characters/newID`,{
+                method: 'POST'
+            });
+            if (IDresponse?.status === 200){
+                const body = await IDresponse.json();
+                const newID = body.info;
+                setCharID(newID);
+                console.log("FLAG 7.1", body);
+
+                return newID
+            }
+        }
+        else{
+            return charID;
+        }
+        
+    }
+    useEffect(() => {
+        if (!editMode && character){
+        //if ((!editMode) && (character) && (!character.name) == "New Character" && (character.name)) {
+            console.log("editing ended, sending character", character)
+            // run logic that should happen immediately after editMode switches to false
+            UpdateCharacter("user", "replace", localStorage.getItem("username"));
+        }
+        else{
+            console.log("FLAG 6")
+            console.log(editMode);
+            if(character){
+                console.log(character.name);
+            }
+
+        }
+    }, [editMode]);
+
     async function sendUpdate(updated){
+        // Make sure we have the right ID (Basically make sure we aren't breaking the template.)
+        const goodID = await getID();  //If it is 1, DO NOT PROCEED until this finishes
         // save the new data and replace the old data
         const response = await fetch(`/api/characters/update`, {
             method: 'POST',
-            body: JSON.stringify({ charID: charID, character: updated }),
+            body: JSON.stringify({ charID: goodID, character: updated }),
             headers: {
             'Content-type': 'application/json; charset=UTF-8',
             },
@@ -120,18 +159,23 @@ export function CharSheet({userData}) {
 
             localStorage.setItem("character", JSON.stringify(updated))
 
-            sendUpdate(updated);
+            if (!editMode){
+                const updated = {...prev};
+                console.log("Sending update")
+                sendUpdate(updated);
+            }
+
             return updated;
         })
-
     }
 
     useEffect(()=>{if (character){
-        console.log("FLAG 1:", character)
         if (character.name === "New Character"){
-            switchMode(true);}
+            switchMode(true);
+        }
     }
     })
+
     if(!character){
         return <div>Loading Character</div>
     }
@@ -145,7 +189,6 @@ export function CharSheet({userData}) {
                 update={UpdateCharacter}
                 startEdit={()=>
                     {switchMode(true);
-                    console.log("Edit mode activated");
                     }}
                 />
 
@@ -185,8 +228,8 @@ export function CharSheet({userData}) {
                 character={character}
                 update={UpdateCharacter}
                 stopEdit={()=>
-                    {switchMode(false);
-                    console.log("Edit mode ended");
+                    {
+                    switchMode(false);
                     }}
                 />
 

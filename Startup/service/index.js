@@ -9,7 +9,7 @@ const authCookieName = 'token';
 
 /////////////GENERAL APP SETUP STUFF. GOOD FOR OTHER PROJECTS///////////////////
   // The service port. In production the front-end code is statically hosted by the service on the same port.
-const port = process.argv.length > 2 ? process.argv[2] : 3000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
   // JSON body parsing using built-in middleware
 app.use(express.json());
   // Use the cookie parser middleware for tracking authentication tokens
@@ -293,11 +293,11 @@ apiRouter.post('/characters/getChar', async (req, res) =>{
     res.status(400).send({ msg: 'Missing character ID' });
   }
   //Add in here a check to make sure that the character ID is actually one of theirs
-  const char = chars[id];
-  if (!char){
-    return res.status(404).send({ msg: 'Character not found' });
+  const character = chars[Number(id)];
+  if (!character){
+    return res.status(404).send({ msg: 'Character not found', thing: chars[Number(id)], nonexistent: character, existingCharacterIDs: Object.keys(chars) });
   }
-  res.status(200).send({ characterSheet: char });
+  res.status(200).send({ characterSheet: character });
 });
   //get the IDs of the characters the User has access to.
 apiRouter.post('/characters/getIDs', async (req, res) =>{ 
@@ -311,24 +311,42 @@ apiRouter.post('/characters/getIDs', async (req, res) =>{
 });
   //update an existing character in storage. Requires a charID and updated character.
 apiRouter.post('/characters/update', async (req, res) =>{
+  const oldKeys = Object.keys(chars); //DEBUG
   const user = await findUser('token', req.cookies[authCookieName]);
   if (!user){
     res.status(401).send({ msg: 'Unauthorized' });
     return }
-
-  const id = Number(req.body.charID);
+  
+  const id = req.body.charID;
   const updated = req.body.character;
   if (!id || !updated) {
     res.status(400).send({ msg: "Missing charID or character data" });
     return
   }
   if (!user.characters.includes(id)){
+
     res.status(401).send( {msg: 'Unauthorized. This is not your character.'});
     return
   }
-  chars[id] = updated;    //eventually replace with updating the DB
-  res.status(200).send({msg: "character updated"});
+  chars[Number(id)] = updated; //eventually replace with DB update
+  const theChar = chars.id;
+  const newKeys = Object.keys(chars); //DEBUG
+  res.status(200).send({msg: "character updated", char: theChar, oldkeys: oldKeys, newkeys: newKeys});
 });
+  //get the next character ID
+apiRouter.post('/characters/newID', async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user){
+    res.status(401).send({ msg: 'Unauthorized' });
+    return }
+
+  const charIDs = Object.keys(chars).map(id => Number(id));
+  const biggest = Math.max(...charIDs);
+  const newID = biggest+1;
+  user.characters.push(newID);
+  res.status(200).send({info: newID});
+  return
+})
 
 
 /////////////////////////////////////////////////////////////////

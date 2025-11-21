@@ -8,7 +8,8 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
         return <div>Loading Character...</div>
     }    
 
-    const [Name, setName] = React.useState(character.name)
+    const [Name, setName] = React.useState("")
+    
     //Name
     //level
     const [Level, setLevel] = React.useState(character.characterInfo.level)
@@ -21,16 +22,16 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
     //goals
     //Expertises
     function save(){
+        stopEdit()
         update("characterInfo.ancestry", "replace", Ancestry);
         update("name", "replace", Name);
         update("characterInfo.level", "replace", Level);
-        stopEdit()
     }
 
     return(
     <section className = "charInfo">
         <div className = "fillWidthTextbox">
-            <span><b>Name:</b> </span><p><input type="text" id="name" value={Name} onChange={(e) => setName(e.target.value)}/></p>
+            <span><b>Name:</b> </span><p><input type="text" id="name" value={Name}  onChange={(e) => setName(e.target.value)}/></p>
             <span><b>Level:</b> </span><p><input type="number" id="level" value={Level} onChange={(e) => setLevel(e.target.value)}/></p>
             <span><b>Ancestry:</b> </span><p><select id="ancestry" value={Ancestry} onChange={(e) => setAncestry(e.target.value)}>
                 <option>Human</option>
