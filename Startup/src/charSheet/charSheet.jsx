@@ -46,7 +46,6 @@ export function CharSheet({userData}) {
     const [editMode, switchMode] = React.useState(false);
     
     async function getID(){
-        console.log("FLAG 7.0", charID);
         if(Number(charID) === 1){
             console.log("Saving new character")
             //get a new one
@@ -108,7 +107,6 @@ export function CharSheet({userData}) {
         //find and update the thing
         setCharacter(prev => {
             console.log("Character update called with parameters: ", field, mode, value);
-            console.log("FLAG 3", mode);
 
             const updated = {...prev};
 
@@ -134,10 +132,12 @@ export function CharSheet({userData}) {
             else if (mode === "removeByIndex"){
                 target[lastKey] = target[lastKey].filter( (_, i) => i != value)
             } else if (mode === "add"){
-                target[lastKey] = target[lastKey]+ Number(value);
+                target[lastKey] = Number(target[lastKey])+ Number(value);
+                
             } else {
-                console.log("Invalid mode attempted: ", mode)
+                console.log("Invalid mode attempted: ", mode);
             }
+            console.log("Update pt 1 complete.", target, target[lastKey]);
             return updated;
         });
         
