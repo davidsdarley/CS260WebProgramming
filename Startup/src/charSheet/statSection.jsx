@@ -141,7 +141,9 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
                 <div id="physical addons">
                     
                     <div className = "atribute">
-                        <p><span><b>Deflect:</b> </span><span>{ArmorDict[character.inventory.Armor.equipped[0]].split(",")[0]}</span></p>
+                        <p><span><b>Deflect:</b> </span>
+                            {character.inventory.Armor.equipped[0] ? <span>{ArmorDict[character.inventory.Armor.equipped[0]].split(",")[0]}</span>: 0}
+                        </p>
                     </div>
                     
                     <div className = "meterAtribute"> 

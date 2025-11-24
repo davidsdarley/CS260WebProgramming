@@ -12,6 +12,9 @@ export function EditOptions( { lst, add = () => {}, remove = () => {}, options, 
     useEffect(()=>{if (str==="Armor" || str ==="Equipment"){
         setWord(str);
     }
+    else if(!str){
+        setWord("");
+    }
     else{
         setWord(str+"s");
     }})
@@ -20,7 +23,7 @@ export function EditOptions( { lst, add = () => {}, remove = () => {}, options, 
     return (
     <div>
         <h3>{word}</h3>
-        <ul>{
+        {lst && <ul>{
             lst.map((item, index) => (
                 <EditListItem
                     input={item}
@@ -29,7 +32,8 @@ export function EditOptions( { lst, add = () => {}, remove = () => {}, options, 
                 />
             ))
         }
-        </ul>
+        </ul>}
+        
         <span>New {str}: </span>
         {
             // Place to input new things

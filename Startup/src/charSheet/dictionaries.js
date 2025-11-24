@@ -74,7 +74,13 @@ export const SensesRange = {
 
 //Other
 export const ConditionsDict = {
-
+    "":"",
+    "Afflicted": "While Afflicted, you slowly take damage over time. In combat, at the end of each of your turns, you take the amount and type of damage specified by the effect that gave you the condition; this information is typically stated in brackets. For example, if you’re Afflicted [1d4 vital], you take 1d4 damage at the end of each of your turns. Out of combat, you instead take that damage every 10 seconds and after each time someone attempts to remove the condition. Unlike most conditions, you can be Afflicted by multiple effects simultaneously. When this happens, resolve each effect separately.",
+    "Determined": "While Determined, when you fail a test, you can add an Opportunity to the result. After you choose to do so, remove the Determined condition.",
+    "Disoriented": "While Disoriented, your senses are disrupted, making most tasks difficult. You can’t use reactions, your senses always count as obscured, and Perception tests (and similar tests to use your senses) gain a disadvantage.",
+    "Empowered": "When a Knight Radiant swears an Ideal, they become Empowered, granting a burst of unrestrained power. While Empowered, you gain an advantage on all tests and your Investiture refills to your maximum at the start of each of your turns. Remove this condition at the end of the current scene.",
+    "Enhanced": "While Enhanced, one of your attributes temporarily increases, as specified in brackets when you gain that condition. The specified attribute gains a bonus equal to the specified number; however, this bonus doesn’t change your defenses, maximum health, maximum focus, or maximum Investiture. For example, if you have a Speed of 3 and become Enhanced [+2 Speed], you temporarily gain the following benefits:\n◆ Gain a +2 bonus to Agility, Light Weaponry, Stealth, and Thievery tests.\n◆ Gain a +2 bonus to any talents that directly use your Speed.\n◆ Increase your movement rate from 30 feet to 40 feet.\nEnhanced has a cumulative effect, and more than one of your attributes can be Enhanced at a time.",
+    "Focused": "While Focused, you are engaged and intent on your task. When you use an ability that costs focus, its cost is reduced by 1."
 }
 
 export const SkillStats= {

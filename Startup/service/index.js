@@ -37,13 +37,13 @@ let chars = {
     "name": "New Character",
     "characterInfo": {
         "level": 1,
-        "classes": [""],
+        "classes": [],
         "ancestry": "Human",
   
         "Purpose": "",
         "Obstacle": "",
-        "Goals": [""],
-        "Expertises": [""],
+        "Goals": [],
+        "Expertises": [],
         "Picture": 1
     },
   
@@ -83,22 +83,22 @@ let chars = {
         "Survival": 0
     },
   
-    "talents": [""],
+    "talents": [],
   
     "inventory": {
         "Weapons":{
-            "equipped": [""],
-            "allWeapons": [""]
+            "equipped": [],
+            "allWeapons": []
         },
         "Armor":{
-            "equipped": [""],
-            "allArmor": [""]
+            "equipped": [],
+            "allArmor": []
         },
-        "Equipment": [""],
+        "Equipment": [],
         "Spheres": 20
     },
   
-    "conditions": [""],
+    "conditions": [],
   
     "user": ""},
   2: {
@@ -163,11 +163,11 @@ let chars = {
           "equipped": ["Chain"],
           "allArmor": ["Chain"]
       },
-      "Equipment": ["None"],
+      "Equipment": [],
       "Spheres": 20
   },
 
-  "conditions": ["None"],
+  "conditions": [],
 
   "user": "davidsdarley"},
   3: {
@@ -225,18 +225,18 @@ let chars = {
   
     "inventory": {
         "Weapons":{
-            "equipped": [""],
-            "allWeapons": [""]
+            "equipped": [],
+            "allWeapons": []
         },
         "Armor":{
-            "equipped": [""],
-            "allArmor": [""]
+            "equipped": [],
+            "allArmor": []
         },
-        "Equipment": [""],
+        "Equipment": [],
         "Spheres": 20
     },
   
-    "conditions": [""],
+    "conditions": [],
   
     "user": ""}
 };

@@ -211,6 +211,7 @@ export function CharSheet({userData}) {
                 inventory={character["inventory"]}
                 conditions={character["conditions"]}
                 update={(field, mode, value) => {
+                    console.log("BOTTOM SECTION", field, mode, value);
                     UpdateCharacter(field, mode, value);
                 }}
                 />

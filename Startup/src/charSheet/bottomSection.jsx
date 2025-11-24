@@ -23,6 +23,12 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
         setInputSpheres(0);
         console.log("Final count: ", inventory.Spheres);
     }
+
+    function doUpdate(field, mode, val, flag){
+        console.log("FLAG DO UPDATE", flag);
+        console.log(field, mode, val);
+        update(field, mode, val);
+    }
     if (edit){
         return(
             <div id = "bottomSection"> 
@@ -40,7 +46,7 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
     
                 <section id = "inventory">
                     <section className = "sheetSections">
-                        <div className='textbox'>
+                        <div className='textbox' id="Weapons">
                         <EditOptions
                         lst={inventory.Weapons.allWeapons}
                         str="Weapon"
@@ -50,7 +56,7 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
                         />
                         </div>
 
-                        <div className='textbox'>
+                        <div className='textbox' id="Armor">
                         <EditOptions
                         lst={inventory.Armor.allArmor}
                         str="Armor"
@@ -64,24 +70,25 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
                 </section>
                 <section className = "sheetSections">
                         
-                        <div className='textbox'>
+                        <div className='textbox' id="Equipment">
                         <EditOptions
-                        lst={inventory.Equipment}
-                        str="Equipment"
-                        remove={(index)=>update("inventory.Equipment", "removeByIndex", index)}
-                        add={(val)=>update("inventory.Equipment", "append", val)}
-                        options={Object.keys(EquipmentDict)}
+                            lst={inventory.Equipment}
+                            str="Equipment"
+                            remove={(index)=>update("inventory.Equipment", "removeByIndex", index)}
+                            add={(val)=>update("inventory.Equipment", "append", val)}
+                            options={Object.keys(EquipmentDict)}
                         />
                         </div>
 
-                        <div className='textbox'>
+                        <div className='textbox' id="Conditions">
                         <EditOptions
-                        lst={inventory.Equipment}
-                        str="Condition"
-                        remove={(index)=>update("conditions", "removeByIndex", index)}
-                        add={(val)=>update("conditions", "append", val)}
-                        options={Object.keys(ConditionsDict)}
+                            lst={inventory.conditions}
+                            str="Condition"
+                            remove={(index)=>update("conditions", "removeByIndex", index)}
+                            add={(val)=>update("conditions", "append", val)}
+                            options={Object.keys(ConditionsDict)}
                         />
+                        
                         </div>
                 </section>
             </div>
@@ -95,6 +102,7 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
             <Lists
             title = "Talents"
             list={talents}
+            update={(field, mode, val)=> doUpdate(field, mode, val, "talents")}
             />
             <br/>
 
@@ -120,14 +128,18 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
                 <section className = "sheetSections">
                     <Lists
                         title ="Weapons"
+                        field="inventory.Weapons"
                         list={inventory["allWeapons"]}
                         inventory={inventory}
+                        update={(field, mode, val)=>doUpdate(field, mode, val, "weapons")}
                     />
 
                     <Lists
                         title ="Armor"
+                        field="inventory.Armor"
                         list={inventory["allArmor"]}
                         inventory={inventory}
+                        update={(field, mode, val)=>doUpdate(field, mode, val, "armor")}
                     />
 
                 </section>
@@ -136,16 +148,21 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
             <section className = "sheetSections">
                     <Lists
                         title ="Equipment"
+                        field="Equipment"
                         list={[inventory["Equipment"]]}
                         inventory={inventory}
+                        update={(field, mode, val)=>doUpdate(field, mode, val, "equipment")}
                     />
                     
                     
                     <Lists
                         title = "Conditions and Injuries"
+                        field="conditions"
                         list={conditions}
                         inventory={inventory}
+                        update={(field, mode, val)=>doUpdate(field, mode, val, "conds")}
                     />
+                    
             </section>
         </div>
 
