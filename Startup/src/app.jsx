@@ -14,7 +14,6 @@ import { AuthState } from './login/authState';
 export default function App() {
   
   const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
-  const [authToken, setAuthToken] = React.useState("");
 
   const currentAuthState = username ? AuthState.Authenticated : AuthState.Unauthenticated;
 
@@ -23,8 +22,6 @@ export default function App() {
   console.log(authState);
 
   const [userData, setUserData] = React.useState({});
-
-  const [activeChar, setChar] = React.useState(localStorage.getItem('activeChar') || {});
 
   return (
   <BrowserRouter>

@@ -1,10 +1,15 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 export function CharacterAbstract( { characterID } ){
+    const navigate = useNavigate();
+
     function handleClick(){
         localStorage.setItem("charID", characterID);
         console.log("Clicked. CharID set to", characterID);
         localStorage.removeItem("character");
+        navigate(`/charSheet`);
     }
 
 
