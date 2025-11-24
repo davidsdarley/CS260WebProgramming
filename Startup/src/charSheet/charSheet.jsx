@@ -104,10 +104,11 @@ export function CharSheet({userData}) {
         }
     }
 
-    function UpdateCharacter(field, mode = "replace", value){     //Modes: append, replace, removeByIndex, add    
+    function UpdateCharacter(field, mode, value){     //Modes: append, replace, removeByIndex, add    
         //find and update the thing
         setCharacter(prev => {
             console.log("Character update called with parameters: ", field, mode, value);
+            console.log("FLAG 3", mode);
 
             const updated = {...prev};
 
@@ -133,7 +134,7 @@ export function CharSheet({userData}) {
             else if (mode === "removeByIndex"){
                 target[lastKey] = target[lastKey].filter( (_, i) => i != value)
             } else if (mode === "add"){
-                target[lastKey] = target[lastKey]+ value;
+                target[lastKey] = target[lastKey]+ Number(value);
             } else {
                 console.log("Invalid mode attempted: ", mode)
             }

@@ -30,15 +30,15 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
     function updateHealth(val){
         val = Number(val)
         setMaxHealth(val);
-        update("maxHP", val);
+        update("maxHP", "replace", val);
     }
     function updateStat1(val){
         setStat1(val);
-        update(lower1, val);
+        update(lower1, "replace", val);
     }
     function updateStat2(val){
         setStat2(val);
-        update(lower2, val);
+        update(lower2, "replace", val);
     }
 /////////////////////////////////////////////////////////////////////////
     const [inputHealth, setInputHealth] = React.useState(0);
@@ -79,6 +79,9 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
                         <SkillBlock 
                             key={skillName} skillName={skillName} 
                             character={character}
+                            edit={edit}
+                            update={(field, mode, val)=>
+                                update(field, mode, val)}
                         />
                     ))}
                     </div>
@@ -178,6 +181,8 @@ export function StatSection({title, value1, value2, meterMax, meterValue, update
                     <SkillBlock 
                         key={skillName} skillName={skillName} 
                         character={character}
+                        edit={edit}
+                        update={(field, val)=>update(field, "add", val)}
                     />
                 ))}
                 </div>

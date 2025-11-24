@@ -9,7 +9,12 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
     }    
 
     const [Name, setName] = React.useState("")
-    
+    if (!character.name === "New Character"){
+        setName(character.name);
+    }
+    else{
+        console.log(character.name);
+    }
     //Name
     //level
     const [Level, setLevel] = React.useState(character.characterInfo.level)
@@ -24,7 +29,9 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
     function save(){
         stopEdit()
         update("characterInfo.ancestry", "replace", Ancestry);
-        update("name", "replace", Name);
+        if (Name){
+            update("name", "replace", Name);
+        }
         update("characterInfo.level", "replace", Level);
     }
 

@@ -24,7 +24,7 @@ export function Stats({character, update = () => {}, edit}){
                 }}
                 character={character}
                 edit={edit}
-                update={(field, val)=>{update(field, "replace", val)}}
+                update={(field, mode, val)=>{update(field, mode, val)}}
             />
 
             <StatSection
@@ -40,6 +40,7 @@ export function Stats({character, update = () => {}, edit}){
                 }}
                 character={character}
                 edit={edit}
+                update={(field, mode, val)=>{update(field, mode, val)}}
             />
             <StatSection
                 title="Spiritual"
@@ -54,6 +55,7 @@ export function Stats({character, update = () => {}, edit}){
                 }}
                 character={character}
                 edit={edit}
+                update={(field, mode, val)=>{update(field, mode, val)}}
             />
 
         </div>

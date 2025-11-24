@@ -317,7 +317,7 @@ apiRouter.post('/characters/update', async (req, res) =>{
     res.status(401).send({ msg: 'Unauthorized' });
     return }
   
-  const id = req.body.charID;
+  const id = Number(req.body.charID);
   const updated = req.body.character;
   if (!id || !updated) {
     res.status(400).send({ msg: "Missing charID or character data" });
@@ -325,7 +325,7 @@ apiRouter.post('/characters/update', async (req, res) =>{
   }
   if (!user.characters.includes(id)){
 
-    res.status(401).send( {msg: 'Unauthorized. This is not your character.'});
+    res.status(401).send( {msg: 'Unauthorized. This is not your character.', yourCharacters: user.characters});
     return
   }
   chars[Number(id)] = updated; //eventually replace with DB update
