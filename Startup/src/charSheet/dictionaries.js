@@ -134,19 +134,6 @@ export const SkillStats= {
     "Survival": "awareness"
 }
 
-export const oldPictures = {
-    1: "https://uploads.coppermind.net/First_Ideal_poster.jpg",
-    2: "https://static.wikia.nocookie.net/stormlightarchive/images/8/8c/Wr_SA.jpg/revision/latest?cb=20200731024223",
-    3: "https://static.wikia.nocookie.net/stormlightarchive/images/2/20/SO_SA.jpg/revision/latest?cb=20200715020101",
-    4: "https://static.wikia.nocookie.net/stormlightarchive/images/5/5c/Db_SA.jpg/revision/latest?cb=20200808220651",
-    5: "https://static.wikia.nocookie.net/stormlightarchive/images/3/37/ED_SA.jpg/revision/latest?cb=20200815060427",
-    6: "https://static.wikia.nocookie.net/stormlightarchive/images/1/19/Tw_SA.jpg/revision/latest?cb=20200804200353",
-    7: "https://uploads.coppermind.net/thumb/WOKLB_-_KS_-_Lightweavers_by_Steve_Argyle.jpg/250px-WOKLB_-_KS_-_Lightweavers_by_Steve_Argyle.jpg",
-    8: "https://beyondhogwarts.com/wp-content/uploads/2024/10/800px-WOKLB_-_KS_-_Elsecallers_by_Steve_Argyle-cosmere-stormlight.jpg",
-    9: "https://static.wikia.nocookie.net/stormlightarchive/images/9/98/Ws_SA.jpg/revision/latest?cb=20200808215025",
-    10: "https://uploads.coppermind.net/thumb/Stoneward_by_Petar_Penev.png/300px-Stoneward_by_Petar_Penev.png",
-    11: "https://static.wikia.nocookie.net/stormlightarchive/images/d/d4/Bondsmiths_SA.jpg/revision/latest?cb=20200722042841"
-}
 export const Pictures = {
     1: "/profilePics/First_Ideal_poster.jpg",
     2: "/profilePics/windrunner.jpg",
