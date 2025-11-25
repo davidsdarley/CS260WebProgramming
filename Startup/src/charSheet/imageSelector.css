@@ -1,0 +1,32 @@
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 per row */
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .image-box {
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+    transition: transform 0.15s ease, border 0.15s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-box img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 6px;
+  }
+  
+  .image-box:hover {
+    transform: scale(1.05);
+  }
+  
+  .selected {
+    border: 3px solid rgb(222, 178, 0); /* highlight selected */
+  }
+  

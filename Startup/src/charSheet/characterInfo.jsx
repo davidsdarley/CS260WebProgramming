@@ -1,17 +1,20 @@
 import React from 'react';
 import './charSheet.css';
+import { Pictures } from './dictionaries.js';
+
 
 export function CharacterInfo({character, update = () => {}, startEdit = () => {}}){
     // character = JSON.parse(character);
     if (!character){
         return <div>Loading Character...</div>
-    }    return(
+    }    
+    return(
     <section className = "charInfo">
         <div className = "fillWidthTextbox">
             <h4>{character.name}</h4>
             <p><span>Level {character.characterInfo.level}</span><span> {character.characterInfo.ancestry}</span> {character.characterInfo.classes}</p>
         </div>
-        <img id = "profilePic" alt="Taln" src="https://uploads.coppermind.net/thumb/Stoneward_by_Petar_Penev.png/300px-Stoneward_by_Petar_Penev.png" />
+        <img id = "profilePic" alt="Profile Picture" src={Pictures[Number(character.characterInfo.Picture)]} />
         
         <div className = "fillWidthTextbox">
             <h3>Purpose</h3>

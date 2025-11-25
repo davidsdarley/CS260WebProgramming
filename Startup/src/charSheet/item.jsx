@@ -47,7 +47,7 @@ export function Item( { name, index, field, description, edit, update=() => {}, 
 
     if (equipped){
         return <li>
-        <b>{name}</b>: {description}<span> </span><button onClick={()=>unequip()}>-</button>
+        <b>{name}</b>: {description}<span> </span><button onClick={()=>unequip()}>remove</button>
     </li>
     }
 

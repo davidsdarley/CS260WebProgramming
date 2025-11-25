@@ -1,6 +1,7 @@
 import React from 'react';
 import './charSheet.css';
 import { EditList } from './editList';
+import { ImageSelector } from './imageSelector';
 
 export function CharacterInfoEditing({character, update = () => {}, stopEdit = () => {}}){
     // character = JSON.parse(character);
@@ -60,9 +61,7 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
             />
                 
             }
-            {
-                //do the pictures later.
-            }
+        
             <span><b>Purpose:</b> </span><p><textarea id="Purpose" defaultValue={character.characterInfo.Purpose}/></p>
             <span><b>Obstacle:</b> </span><p><textarea id="Obstacle" defaultValue={character.characterInfo.Obstacle}/></p>
             
@@ -93,7 +92,10 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
             big={false}
             str="Expertise"
             />
-            
+            <ImageSelector
+                character={character}
+                update={(field, mode, val)=> {update(field, mode, val)}}
+            />
 
 
         </div>

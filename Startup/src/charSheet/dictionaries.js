@@ -1,9 +1,11 @@
 export const TalentsDict ={
+    "":"",
     'Stances': "When you acquire the Vigilant Stance talent, you learn to use stances. You can enter a stance you know by using that talent’s stated number of actions. Your stance ends if you either end it as a free action, enter another stance, or end the scene. Whilein a stance, you temporarily gain any actions, bonuses,and other effects it grants; these effects end when thestance does. By default, you can only use stances during combat, not during other scenes.",
     "Vigilant Stance": "> While in this stance, reduce the focus cost of your Dodge and Reactive Strike reactions by 1. Additionally, you can enter another stance you know as a free action."
 }
 //inventory stuff
 export const WeaponsDict = {
+    "":"",
     "Javelin": "1d6 keen, Light Weapons, Melee, Thrown [30/120], Indirect, 2 lb. 20 mk",
     "Knife": "1d4 keen, Light Weapons,Melee, Discreet, Offhand Thrown (20/60), 1 lb. 8 mk",
     "Mace": "1d6 impact, Light Weapons, Melee, —, Momentum, 3 lb. 20 mk",
@@ -32,6 +34,7 @@ export const WeaponsDict = {
 }
 
 export const ArmorDict = {
+    "":"",
     "Uniform": "0, Presentable, —, 5 lb. 40 mk",
     "Leather": "1, —, Presentable, 10 lb. 60 mk",
     "Chain": "2, Cumbersome[3], loses Cumbersome, 25 lb. 80 mk",
@@ -129,6 +132,33 @@ export const SkillStats= {
     "Perception": "awareness", 
     "Persuasion": "presence", 
     "Survival": "awareness"
+}
+
+export const oldPictures = {
+    1: "https://uploads.coppermind.net/First_Ideal_poster.jpg",
+    2: "https://static.wikia.nocookie.net/stormlightarchive/images/8/8c/Wr_SA.jpg/revision/latest?cb=20200731024223",
+    3: "https://static.wikia.nocookie.net/stormlightarchive/images/2/20/SO_SA.jpg/revision/latest?cb=20200715020101",
+    4: "https://static.wikia.nocookie.net/stormlightarchive/images/5/5c/Db_SA.jpg/revision/latest?cb=20200808220651",
+    5: "https://static.wikia.nocookie.net/stormlightarchive/images/3/37/ED_SA.jpg/revision/latest?cb=20200815060427",
+    6: "https://static.wikia.nocookie.net/stormlightarchive/images/1/19/Tw_SA.jpg/revision/latest?cb=20200804200353",
+    7: "https://uploads.coppermind.net/thumb/WOKLB_-_KS_-_Lightweavers_by_Steve_Argyle.jpg/250px-WOKLB_-_KS_-_Lightweavers_by_Steve_Argyle.jpg",
+    8: "https://beyondhogwarts.com/wp-content/uploads/2024/10/800px-WOKLB_-_KS_-_Elsecallers_by_Steve_Argyle-cosmere-stormlight.jpg",
+    9: "https://static.wikia.nocookie.net/stormlightarchive/images/9/98/Ws_SA.jpg/revision/latest?cb=20200808215025",
+    10: "https://uploads.coppermind.net/thumb/Stoneward_by_Petar_Penev.png/300px-Stoneward_by_Petar_Penev.png",
+    11: "https://static.wikia.nocookie.net/stormlightarchive/images/d/d4/Bondsmiths_SA.jpg/revision/latest?cb=20200722042841"
+}
+export const Pictures = {
+    1: "/profilePics/First_Ideal_poster.jpg",
+    2: "/profilePics/windrunner.jpg",
+    3: "/profilePics/skybreaker.jpg",
+    4: "/profilePics/dustbringer.jpg",
+    5: "/profilePics/edgedancer.jpg",
+    6: "/profilePics/truthwatcher.jpg",
+    7: "/profilePics/lightweaver.jpg",
+    8: "/profilePics/elsecaller.jpg",
+    9: "/profilePics/willshaper.jpg",
+    10: "/profilePics/stoneward.jpg",
+    11: "/profilePics/bondsmith.jpg"
 }
 
 export const Dannic = {

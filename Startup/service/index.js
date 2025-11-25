@@ -113,7 +113,7 @@ let chars = {
       "Obstacle": "While Dannic is extremely willing to charge into battle, he is much more averse to ideological conflict. His response to seeing things in reality that he doesn’t like is to ignore them. If someone who he can’t fight is doing something dishonorable, he’ll do his best to ignore it. If there is injustice he isn’t authorized to respond to, he will very uncomfortably turn away. He avoids thinking about problems he doesn’t know how to fix.",
       "Goals": ["Find and stop the storming smugglers operating in my tower", "Protect Falkir"],
       "Expertises": ["Poleaxe", "Alethi"],
-      "Picture": 1
+      "Picture": 10
   },
 
   "strength": 3,
