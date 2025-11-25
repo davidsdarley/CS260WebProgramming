@@ -4,16 +4,42 @@ export const TalentsDict ={
 }
 //inventory stuff
 export const WeaponsDict = {
-    "": " , , , , ",
-    "Poleaxe": "1d10 keen, Melee, Two-Handed, Melee [+5], 5 lb. 40 mk",
-    "Shield": "1d4 impact, Melee, Defensive, Offhand, 2 lb. 10 mk",
-    "Javelin": "1d6 keen, Melee, Thrown [30/120], Indirect, 2 lb. 20 mk",
-    "Shardblade": "2d8 spirit, Melee, Dangerous/Deadly, loses Dangerous, 4 lb. Reward only"
+    "Javelin": "1d6 keen, Light Weapons, Melee, Thrown [30/120], Indirect, 2 lb. 20 mk",
+    "Knife": "1d4 keen, Light Weapons,Melee, Discreet, Offhand Thrown (20/60), 1 lb. 8 mk",
+    "Mace": "1d6 impact, Light Weapons, Melee, —, Momentum, 3 lb. 20 mk",
+    "Rapier": "1d6 keen, Light Weapons, Melee, Quickdraw, Defensive, 2 lb. 100 mk",
+    "Shortspear": "1d8 keen, Light Weapons, Melee, Two-Handed, Unique: loses Two-Handed trait, 3 lb. 10 mk",
+    "Sidesword": "1d6 keen, Light Weapons, Melee, Quickdraw, Offhand, 2 lb. 40 mk",
+    "Staff": "1d6 impact, Light Weapons, Melee, Discreet Two-Handed, Defensive, 4 lb. 1 mk",
+    "Shortbow": "1d6 keen, Light Weapons, Ranged[80/320], Two-Handed, Quickdraw, 2 lb. 80 mk",
+    "Sling": "Sling 1d4 impact, Light Weapons, Ranged[30/120], Discreet, Indirect, 1 lb. 2",
+
+    "Axe": "1d6 keen, Heavy Weapons, Melee, Thrown [20/60], Offhand, 2 lb. 20 mk",
+    "Greatsword": "1d10 keen, Heavy Weapons, Melee, Two-Handed, Deadly, 7 lb. 200 mk",
+    "Hammer": "1d10 impact, Heavy Weapons, Melee, Two-Handed, Momentum, 8 lb. 40 mk",
+    "Longspear": "1d8 keen, Heavy Weapons, Melee [+5], Two-Handed, Defensive, 9 lb. 15 mk",
+    "Longsword": "1d8 keen, Heavy Weapons, Melee, Quickdraw Two-Handed, Unique: loses Two-Handed trait, 3 lb. 60 mk",
+    "Poleaxe": "1d10 keen, Heavy Weapons, Melee, Two-Handed, Melee [+5], 5 lb. 40 mk",
+    "Shield": "1d4 impact, Heavy Weapons, Melee, Defensive, Offhand, 2 lb. 10 mk",
+    "Crossbow": "1d8 keen, Heavy Weapons,  Ranged[100/400], Loaded [1] Two-Handed, Deadly, 7 lb. 200 mk",
+    "Longbow": "1d6 keen, Heavy Weapons, Ranged[150/600], Two-Handed, Indirect, 3 lb. 100 mk",
+
+    "Shardblade": "2d8 spirit, Heavy Weapons, Melee, Dangerous/Deadly, loses Dangerous, 4 lb. -",
+    "Shardblade (Radiant)": "2d* spirit, *, Melee, Deadly Unique, -, Weightless, -",
+    "Half-Shard": "2d4 impact, Heavy Weapons, Melee, Defensive Two-Handed Unique, Momentum, 10 lb. 2,000 mk",
+    "Warhammer": "2d10 impact, Heavy Weapons, Melee, Cumbersome[5] Two-Handed, Unique, 150 lb. 400 mk",
+    "Grandbow": "2d6 keen Heavy Weapons, Ranged[200/800], Cumbersome [5] Two-Handed, Pierce 20 lb. 1,000 mk"
 }
 
 export const ArmorDict = {
-    "Chain": "2, Cumbersome [3], loses Cumbersome, 25 lb. 80 mk",
-    "": "0, , , , "
+    "Uniform": "0, Presentable, —, 5 lb. 40 mk",
+    "Leather": "1, —, Presentable, 10 lb. 60 mk",
+    "Chain": "2, Cumbersome[3], loses Cumbersome, 25 lb. 80 mk",
+    "Breastplate": "2, Cumbersome[3], Presentable, 30 lb. 120 mk",
+    "Half Plate": "3, Cumbersome[4], Unique: Cumbersome[3], instead of Cumbersome[4], 40 lb. 400 mk",
+    "Full Plate": " 4, Cumbersome[5], —, 55 lb. 1,600 mk",
+    "Shardplate": " 5, Dangerous, Unique, loses Dangerous trait, 1400 lb. -",
+    "Shardplate (Radiant)": "5, Unique , —, Weightless -"
 }
 
 export const EquipmentDict = {
@@ -70,7 +96,6 @@ export const SensesRange = {
     8: 100,
     9: Infinity
 }
-
 
 //Other
 export const ConditionsDict = {
