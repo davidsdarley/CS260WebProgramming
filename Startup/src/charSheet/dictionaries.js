@@ -1,7 +1,39 @@
 export const TalentsDict ={
-    "":"",
-    'Stances': "When you acquire the Vigilant Stance talent, you learn to use stances. You can enter a stance you know by using that talent’s stated number of actions. Your stance ends if you either end it as a free action, enter another stance, or end the scene. Whilein a stance, you temporarily gain any actions, bonuses,and other effects it grants; these effects end when thestance does. By default, you can only use stances during combat, not during other scenes.",
-    "Vigilant Stance": "> While in this stance, reduce the focus cost of your Dodge and Reactive Strike reactions by 1. Additionally, you can enter another stance you know as a free action."
+    "":"★ ► ▷ ∞ ↩",
+    //Agent Talents
+    "Opportunist (Agent Key)":"★ Once per round, when you roll a plot die, you can reroll that result. The original roll has no effect and you must use the new result.",
+    "Baleful":"∞ To resist your influence, a character must spend additional focus equal to your tier.",
+    "Close the Case": "►►► Once per scene, spend 3 focus to make a Deduction test against the Cognitive defense of a character you can influence. You gain an advantage on this test if you know the target’s current motivation, and a disadvantage if you don’t. On a failure, the target gains an advantage on all tests against you until the end of their next turn. On a success, you influence the target to back down. They stop opposing your immediate aims in this scene and might even leave the scene. A target can resist this influence, but after they do, they gain a disadvantage on all tests until the end of their next turn.",
+    "Gather Evidence":"∞ After you succeed on a cognitive test against another character, you become Focused until the end of your next turn. Additionally, when you acquire this talent, gain a utility expertise in Legal Codes.",
+    "Get ’Em Talking":"►► Spend 1 focus to make a Deduction test against the Spiritual defense of a character you can influence. On a success, you learn the target’s motivation for being in the scene. Until the end of the scene, when you make a test to leverage this motivation against the target, you can raise the stakes.",
+    "Hardy":"∞ When you acquire this talent, your maximum and current health increase by 1 per level. This applies to all previous and future levels; for example, if you choose this talent at level 6, retroactively increase your health by 6.",
+    "Quick Analysis":"▷ Spend 2 focus to gain ►►, which you can only use to make cognitive skill tests via the following actions: Use a Skill, Gain Advantage, or an action from any Agent talent. During a conversation or endeavor, at the GM’s discretion, you can instead use both ►► to make an additional contribution for the round.",
+    "Sleuth’s Instincts": "∞ You gain an advantage on cognitive tests against a character whose motivation you know; you might learn this motivation from the Get’ Em Talking talent, or from other activities such as researching them. Additionally, after a character whose motivation you know lies to you, you automatically know they’re being deceitful (but not the nature of their lie).",
+    "Watchful Eye":"↩ When a willing ally you can influence within 20 feet of you rolls a plot die, you can use this reaction to use Opportunist on that plot die as if it were your own.",
+    "Collected":"∞ When you acquire this talent, increase your Cognitive and Spiritual defenses by 2.",
+    "Cover Story":"∞ When you acquire this talent, you put the finishing touches on a false identity for yourself. Discuss the details of this identity with your GM, including which communities you use this identity to move through and what its reputation is within those communities. Additionally, when you acquire this talent, gain a cultural expertise relevant to your false identity’s culture.",
+    "High Society Contacts":"★ When you make a test to interact socially in high society, you can spend 2 focus to add an Opportunity to the result. Additionally, when you acquire this talent, gain a cultural expertise in High Society.",
+    "Mercurial Facade":"★ When you attempt to disguise yourself, you can use Deception instead of Thievery. You can do this even if you don’t have supplies for a physical disguise. The first character who sees through your disguise, or who you choose to surprise by revealing your identity, becomes Surprised until the end of your next turn.",
+    "Mighty":"∞ When you hit with a weapon or unarmed attack, for each ► you used on that attack’s action, increase the damage you deal by 1 + your tier. For example, if you’re level 6 and you make an attack that costs ►►, each ► deals an extra 1 + 2 damage, for a total of 6 damage.",
+    "Plausible Excuse":"↩ After you are discovered while hiding or otherwise skulking about, you can use this reaction and spend 2 focus to pass yourself off as doing something innocent. You influence each character who can sense you to believe your excuse. A character can resist this influence, but after they do, they lose additional focus equal to your ranks in Deception. Additionally, when you acquire this talent, gain a utility expertise in Sleight of Hand.",
+    "Subtle Takedown":"►► Make an unarmed attack using Insight against the Cognitive defense of a character who is Surprised, doesn’t sense you, or doesn’t view you as a threat (such as if you’re disguised). The target must be your size or smaller. Raise the stakes on this attack test. On a hit, the target also can’t communicate until the end of their next turn. Also on a hit, you can spend an Opportunity to Grapple them as , automatically succeeding on your test; while Restrained by this grapple, they are also Prone",
+    "Sure Outcome":"★ When you use your Opportunist talent, instead of rerolling the plot die, you can spend 2 focus to flip it toa specific result. If the die was showing an opportunity, flip it to 4 complication. If it was showing any complications, flip it to an opportunity",
+    "Cheap Shot":"► While you have a hand free, spend 1 focus to make an unarmed attack using Thievery against the Cognitive defense of an enemy of your size or smaller, raising the stakes when you do. On a hit, the target also becomes Stunned until the end of their next turn. On a hit or graze, you can also spend an Opportunity to steal one item on the target’s person that they aren’t holding or wielding. The exact item you can steal is up to the GM’s discretion.",
+    "Double Down":"★ After you use your Opportunist talent, you can reroll the die one additional time. You must use this final result, and if it includes a complication, you lose 2 focus.",
+    "Fast Talker":"▷ Spend 2 focus to gain ►►, which you can only use to make spiritual skill tests via the following actions: Use a Skill, Gain Advantage, or an action from any Agent talent. During a conversation or endeavor, at the GM’s discretion, you can instead use both ►► to make an additional contribution for the round.",
+    "Risky Behavior":"★ Before you make a test, you can spend 1 focus to raise",
+    "Shadow Step":"▷ After you Disengage, you can spend 2 focus to make a Thievery test and compare the result against the Cognitive defense of each enemy who can sense you. You gain an advantage on this test if you’re in cover or an area where your target’s primary sense is obscured (such as darkness). If you succeed against an enemy, you’re hidden as if you’d succeeded on a Stealth test to hide from them.",
+    "Surefooted":"∞ When you acquire this talent, increase your movement rate by 10. Additionally, before you take damage from dangerous terrain or falling, reduce that damage by 2 × your tier.",
+    "Trickster’s Hand":"▷ Spend 2 focus to gain ►►, which you can only use to make physical skill tests via the following actions: Use a Skill, Gain Advantage, or an action from any Agent talent. During a conversation or endeavor, at the GM’s discretion, you can instead use both ►► to make an additional contribution for the round.",
+    "Underworld Contacts":"★ Before you make a test to interact socially with criminal individuals or groups, you can spend 2 focus to add an Opportunity to the result. Additionally, when you acquire this talent, gain a utility expertise in Criminal Groups.",
+
+    //Envoy Talents
+    "Rousing Presence (Envoy Key)":"► Choose an ally you can influence. They become Determined until they benefit from that condition or until the scene ends.",
+
+    //Warrior talents
+    "Stances": "When you acquire the Vigilant Stance talent, you learn to use stances. You can enter a stance you know by using that talent’s stated number of actions. Your stance ends if you either end it as a free action, enter another stance, or end the scene. Whilein a stance, you temporarily gain any actions, bonuses,and other effects it grants; these effects end when thestance does. By default, you can only use stances during combat, not during other scenes.",
+    "Vigilant Stance (Warrior Key)": "► While in this stance, reduce the focus cost of your Dodge and Reactive Strike reactions by 1. Additionally, you can enter another stance you know as a free action.",
+    "":""
 }
 //inventory stuff
 export const WeaponsDict = {
@@ -145,7 +177,14 @@ export const Pictures = {
     8: "/profilePics/elsecaller.jpg",
     9: "/profilePics/willshaper.jpg",
     10: "/profilePics/stoneward.jpg",
-    11: "/profilePics/bondsmith.jpg"
+    11: "/profilePics/bondsmith.jpg",
+    12: "/profilePics/Stormlight_Shardbearer.avif",
+    13: "/profilePics/fallingShardbearer.jpg",
+    14: "/profilePics/adolin.webp",
+    15: "/profilePics/kaladin1.webp",
+    16: "/profilePics/kaladin2.jpeg",
+    17: "/profilePics/kaladin3.webp",
+    18: "/profilePics/Zellion.jpeg"
 }
 
 export const Dannic = {

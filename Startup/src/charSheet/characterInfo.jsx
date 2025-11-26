@@ -11,7 +11,7 @@ export function CharacterInfo({character, update = () => {}, startEdit = () => {
     return(
     <section className = "charInfo">
         <div className = "fillWidthTextbox">
-            <h4>{character.name}</h4>
+            <h2>{character.name}</h2>
             <p><span>Level {character.characterInfo.level}</span><span> {character.characterInfo.ancestry}</span> {character.characterInfo.classes}</p>
         </div>
         <img id = "profilePic" alt="Profile Picture" src={Pictures[Number(character.characterInfo.Picture)]} />

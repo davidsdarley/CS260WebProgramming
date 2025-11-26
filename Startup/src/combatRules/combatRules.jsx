@@ -50,9 +50,9 @@ export function CombatRules() {
                 Each round, you can choose to take a turn that’s either fast or slow. Your
                 choice grants you a certain number of actions, which represent the many
                 things you can do on your turn. If you take a Fast Turn, you take your turn
-                first before any enemies go, but you only get two actions (&gt;&gt;) to use
+                first before any enemies go, but you only get two actions ►► to use
                 on your turn. If you instead take a slow turn, you act after any fast
-                enemies, but you get three actions (&gt;&gt;&gt;) instead of two.
+                enemies, but you get three actions ►►► instead of two.
             </p>
             <br/>
             <h1 dir="ltr">
@@ -66,12 +66,12 @@ export function CombatRules() {
                 Actions
             </h1>
             <p dir="ltr">
-                Actions (marked by &gt;) can only be used on your turn in combat, and each
+                Actions (marked by ►) can only be used on your turn in combat, and each
                 named action can only be used once per turn unless stated otherwise. The
                 same applies to actions from talents and other effects, regardless of
                 whether those are given a specific name. Some actions take more time than
                 others. Each action in this book lists how many you must spend to activate
-                it: either &gt;, &gt;&gt;, or &gt;&gt;&gt;. (See “Order of Combat” for rules
+                it: either ►, ►►, or ►►►. (See “Order of Combat” for rules
                 on how many actions you can use on your turn.) On your turn, you can spend
                 your available to use any of the actions listed below, or to use any actions
                 granted by your talents or other effects (such as the Breathe Stormlight
@@ -80,7 +80,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Brace (&gt;)
+                        Brace ►
                     </h3>
                 </li>
             </ul>
@@ -100,7 +100,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Disengage (&gt;)
+                        Disengage ►
                     </h3>
                 </li>
             </ul>
@@ -112,7 +112,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Gain Advantage (&gt;)
+                        Gain Advantage ►
                     </h3>
                 </li>
             </ul>
@@ -130,7 +130,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Interact (&gt;)
+                        Interact ►
                     </h3>
                 </li>
             </ul>
@@ -180,7 +180,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Move (&gt;)
+                        Move ►
                     </h3>
                 </li>
             </ul>
@@ -194,7 +194,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Strike (&gt;)
+                        Strike ►
                     </h3>
                 </li>
             </ul>
@@ -207,7 +207,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Use a Skill (&gt;)
+                        Use a Skill ►
                     </h3>
                 </li>
             </ul>
@@ -222,7 +222,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Grapple (&gt;&gt;)
+                        Grapple ►►
                     </h3>
                 </li>
             </ul>
@@ -236,7 +236,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Ready (&gt;*)
+                        Ready ►*
                     </h3>
                 </li>
             </ul>
@@ -256,7 +256,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Recover (&gt;&gt;)
+                        Recover ►►
                     </h3>
                 </li>
             </ul>
@@ -268,7 +268,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <h3 dir="ltr">
-                        Shove (&gt;&gt;)
+                        Shove ►►
                     </h3>
                 </li>
             </ul>
@@ -288,7 +288,7 @@ export function CombatRules() {
                 Reactions
             </h2>
             <p dir="ltr">
-                Reactions (marked by &lt;) are used to respond to specific event, known as a
+                Reactions (marked by ↩) are used to respond to specific event, known as a
                 trigger, that happens on the battlefield. Each reaction describes its
                 specific trigger. Though reactions can be triggered on your turn, they’re
                 typically triggered on another character’s turn in response to something
@@ -304,7 +304,7 @@ export function CombatRules() {
             <ul>
                 <li dir="ltr">
                     <p dir="ltr">
-                        Aid (&lt;) You step in to help an ally. Before an ally makes a skill
+                        Aid (↩) You step in to help an ally. Before an ally makes a skill
                         test, you can use this reaction and spend 1 focus to grant them an
                         advantage on their test. To aid an ally, you must be prepared and in
                         range to realistically assist them. For example, you might aid their
@@ -315,7 +315,7 @@ export function CombatRules() {
                 </li>
                 <li dir="ltr">
                     <p dir="ltr">
-                        Avoid Danger (&lt;) When you’re imperiled by your surroundings—such
+                        Avoid Danger (↩) When you’re imperiled by your surroundings—such
                         as standing under a falling boulder or being shoved off a
                         balcony—you can use this reaction to attempt to save yourself. This
                         might allow you to catch yourself before you fall, to dodge out of
@@ -335,7 +335,7 @@ export function CombatRules() {
                 </li>
                 <li dir="ltr">
                     <p dir="ltr">
-                        Dodge (&lt;) Before an enemy targets you with an attack, you can use
+                        Dodge (↩) Before an enemy targets you with an attack, you can use
                         this reaction and spend 1 focus to add a disadvantage to their
                         attack test. You can’t use this reaction on area attacks or on those
                         that target multiple characters, though you might be able to Avoid

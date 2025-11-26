@@ -54,7 +54,7 @@ export function CharSheet({userData}) {
             });
             if (IDresponse?.status === 200){
                 const body = await IDresponse.json();
-                const newID = body.info;
+                const newID = Number(body.info);
                 setCharID(newID);
                 console.log("FLAG 7.1", body);
 
@@ -74,7 +74,6 @@ export function CharSheet({userData}) {
             UpdateCharacter("user", "replace", localStorage.getItem("username"));
         }
         else{
-            console.log("FLAG 6")
             console.log(editMode);
             if(character){
                 console.log(character.name);
@@ -137,7 +136,6 @@ export function CharSheet({userData}) {
             } else {
                 console.log("Invalid mode attempted: ", mode);
             }
-            console.log("Update pt 1 complete.", target, target[lastKey]);
             return updated;
         });
         

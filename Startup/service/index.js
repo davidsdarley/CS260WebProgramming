@@ -369,7 +369,7 @@ async function createUser(username, password) {    //for login and create
         username: username,
         password: passwordHash,
         token: uuid.v4(),
-        characters: [1, 2] //automatically give them access to the newCharacter object. 2 is included for my default stuff, should be removed later.
+        characters: [1] //automatically give them access to the newCharacter object.
     };
     users.push(user);   // replace with DB stuff
 
