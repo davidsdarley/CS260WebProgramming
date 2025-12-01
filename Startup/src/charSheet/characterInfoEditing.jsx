@@ -18,13 +18,14 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
     }
     //Name
     //level
-    const [Level, setLevel] = React.useState(character.characterInfo.level)
+    const [Level, setLevel] = React.useState(character.characterInfo.level);
     //ancestry
-    const [Ancestry, setAncestry] = React.useState(character.characterInfo.ancestry)
-    //classes
-    //picture
+    const [Ancestry, setAncestry] = React.useState(character.characterInfo.ancestry);
     //purpose
+    const [Purpose, setPurpose] = React.useState(character.characterInfo.Purpose);
     //obstacle
+    const [Obstacle, setObstacle] = React.useState(character.characterInfo.Obstacle);
+
     //goals
     //Expertises
     function save(){
@@ -33,7 +34,15 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
         if (Name){
             update("name", "replace", Name);
         }
-        update("characterInfo.level", "replace", Level);
+        if (Purpose){
+            update("characterInfo.Purpose", "replace", Purpose);
+        }
+        if (Obstacle){
+            update("characterInfo.Obstacle", "replace", Obstacle);
+        }
+        if (Level){
+            update("characterInfo.level", "replace", Level);
+        }
     }
 
     return(
@@ -62,8 +71,8 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
                 
             }
         
-            <span><b>Purpose:</b> </span><p><textarea id="Purpose" defaultValue={character.characterInfo.Purpose}/></p>
-            <span><b>Obstacle:</b> </span><p><textarea id="Obstacle" defaultValue={character.characterInfo.Obstacle}/></p>
+            <span><b>Purpose:</b> </span><p><textarea id="Purpose" value={Purpose} onChange={(e) => setPurpose(e.target.value)}/></p>
+            <span><b>Obstacle:</b> </span><p><textarea id="Obstacle" value={Obstacle} onChange={(e) => setObstacle(e.target.value)}/></p>
             
             <span><b>Goals:</b></span>
             <EditList
