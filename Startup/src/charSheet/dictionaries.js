@@ -208,7 +208,8 @@ export const Pictures = {
     7: "/profilePics/lightweaver.jpg",
     8: "/profilePics/elsecaller.jpg",
     9: "/profilePics/willshaper.jpg",
-    10: "/profilePics/stoneward.jpg",
+    10: "/profilePics/stoneward.png",
+    
     11: "/profilePics/bondsmith.jpg",
     12: "/profilePics/Stormlight_Shardbearer.avif",
     13: "/profilePics/fallingShardbearer.jpg",
@@ -216,7 +217,18 @@ export const Pictures = {
     15: "/profilePics/kaladin1.webp",
     16: "/profilePics/kaladin2.jpeg",
     17: "/profilePics/kaladin3.webp",
-    18: "/profilePics/Zellion.jpeg"
+    18: "/profilePics/Zellion.jpeg",
+    19: "/profilePics/lift.jpg",
+    20: "/profilePics/lift2.jpg",
+    21: "/profilePics/lift3.jpg",
+    22: "/profilePics/eshonai1.webp",
+    23: "/profilePics/listener1.jpg",
+    24: "/profilePics/rlain.jpg",
+    25: "/profilePics/singer1.jpeg",
+    26: "/profilePics/venli.webp",
+    27: "/profilePics/stormform.jpg",
+    28: "/profilePics/syl.webp",
+    29: "/profilePics/stoneward1.webp"
 }
 
 export const Dannic = {
