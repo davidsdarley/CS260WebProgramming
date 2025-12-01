@@ -294,7 +294,7 @@ apiRouter.post('/characters/getChar', async (req, res) =>{
     res.status(401).send({ msg: 'Unauthorized' });
     return 
   }
-  const id = req.body.charID;
+  const id = Number(req.body.charID);
   if (!id) {
     res.status(400).send({ msg: 'Missing character ID' });
   }
@@ -335,23 +335,27 @@ apiRouter.post('/characters/update', async (req, res) =>{
   }
   //Actually update the character
   await DB.updateCharacter(updated);
-  const theChar = DB.getCharacter(id);
+  const theChar = await DB.getCharacter(id);
   res.status(200).send({msg: "character updated", char: theChar});
 });
+
   //get the next character ID
 apiRouter.post('/characters/newID', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (!user){
     res.status(401).send({ msg: 'Unauthorized' });
     return }
+
   //Get the next id
-  
-  // const charIDs = Object.keys(chars).map(id => Number(id));
-  // const biggest = Math.max(...charIDs);
   const newID = await DB.getNextId();
+  if (typeof newID !== "number"){
+    res.status(500).send({msg: 'Internal server error. Incorrect id type calculated.'});
+    return
+  }
   // add the new ID to the user
   user.characters.push(newID);
   await DB.updateUser(user);
+
   //send the response
   res.status(200).send({info: newID});
   return

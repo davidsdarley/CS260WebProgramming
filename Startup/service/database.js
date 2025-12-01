@@ -116,12 +116,12 @@ async function getNextId() {
       limit: 1,          // take the top one
     };
   
-    const result = await userCollection.find({}, options).toArray();
+    const result = await characterCollection.find({}, options).toArray();
     if (result.length <= 0){// base case. I do want to make sure the newChar is always there.
         await addCharacter(newChar);
         return 2;       
     }
-    return Number(result[0])+1; // add one to the highest and return it
+    return Number(newID)+1; // add one to the highest and return it
   }
 //getNextId() //just make ABSOLUTELY CERTAIN that my base new character exists
 

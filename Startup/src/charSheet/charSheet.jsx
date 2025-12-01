@@ -38,26 +38,30 @@ export function CharSheet({userData}) {
         }
         
     }
+
     const [charID, setCharID] = React.useState(localStorage.getItem("charID"));
     const [character, setCharacter] = React.useState(null);
+
     useEffect(()=> {
         getCharacter(charID).then(setCharacter);
     }, [])
     const [editMode, switchMode] = React.useState(false);
     
     async function getID(){
-        if(Number(charID) === 1){
+        if(Number(charID) <= 1){
             console.log("Saving new character")
             //get a new one
             const IDresponse = await fetch(`/api/characters/newID`,{
                 method: 'POST'
             });
+            
+            console.log("FLAG 11.0", IDresponse)
+
             if (IDresponse?.status === 200){
                 const body = await IDresponse.json();
                 const newID = Number(body.info);
                 setCharID(newID);
                 console.log("FLAG 7.1", body);
-
                 return newID
             }
         }
