@@ -54,19 +54,20 @@ export function CharSheet({userData}) {
             const IDresponse = await fetch(`/api/characters/newID`,{
                 method: 'POST'
             });
-            
-            console.log("FLAG 11.0", IDresponse)
 
             if (IDresponse?.status === 200){
                 const body = await IDresponse.json();
                 const newID = Number(body.info);
+                const char = {...character};
+                char.id = newID;
+                setCharacter(char);
+
                 setCharID(newID);
-                console.log("FLAG 7.1", body);
                 return newID
             }
         }
         else{
-            return charID;
+            return Number(charID);
         }
         
     }
@@ -89,6 +90,10 @@ export function CharSheet({userData}) {
     async function sendUpdate(updated){
         // Make sure we have the right ID (Basically make sure we aren't breaking the template.)
         const goodID = await getID();  //If it is 1, DO NOT PROCEED until this finishes
+        if (typeof goodID !== "number" || goodID <= 1){
+            console.log("ID generation failed", goodID);
+            return;
+        }
         // save the new data and replace the old data
         const response = await fetch(`/api/characters/update`, {
             method: 'POST',

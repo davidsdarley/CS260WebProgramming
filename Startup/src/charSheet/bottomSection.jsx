@@ -25,7 +25,6 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
     }
 
     function doUpdate(field, mode, val, flag){
-        console.log("FLAG DO UPDATE", flag);
         console.log(field, mode, val);
         update(field, mode, val);
     }

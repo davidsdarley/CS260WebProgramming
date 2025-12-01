@@ -105,7 +105,20 @@ function getCharacter(id) {
     return characterCollection.findOne({ id: id})
 }
 async function updateCharacter(char) {
-    await characterCollection.updateOne({ id: char.id }, { $set: char });
+    const updated = {...char};
+    delete updated._id;
+
+    const xists = await characterCollection.findOne({id: char.id});
+    if (xists === null){
+        await addCharacter(updated);
+        return true;
+    }
+
+    if (updated.id === 1){   //don't let ANYTHING touch the base default character
+        return false;
+    }
+    await characterCollection.updateOne({ id: updated.id }, { $set: updated });
+    return true;
 }
 async function addCharacter(char){
     await characterCollection.insertOne(char);
@@ -121,6 +134,8 @@ async function getNextId() {
         await addCharacter(newChar);
         return 2;       
     }
+    const newID = result[0].id;
+    
     return Number(newID)+1; // add one to the highest and return it
   }
 //getNextId() //just make ABSOLUTELY CERTAIN that my base new character exists

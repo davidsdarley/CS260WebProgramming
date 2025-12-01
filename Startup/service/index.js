@@ -324,17 +324,25 @@ apiRouter.post('/characters/update', async (req, res) =>{
 
   const id = Number(req.body.charID);
   const updated = req.body.character;
+  
   //Bunch of ways to fail
   if (!id || !updated) {
     res.status(400).send({ msg: "Missing charID or character data" });
     return
+  }
+  if (updated.id !== id){ //For some reason sometimes these two don't match, so I'm just fixing this here and now.
+    updated.id = id;
+    console.log("IDs don't match. Switched:", updated.id);
   }
   if (!user.characters.includes(id)){
     res.status(401).send( {msg: 'Unauthorized. This is not your character.', yourCharacters: user.characters});
     return
   }
   //Actually update the character
-  await DB.updateCharacter(updated);
+  const result = await DB.updateCharacter(updated);
+  if (!result){
+    res.status(500).send({msg: "character failed to update"})
+  }
   const theChar = await DB.getCharacter(id);
   res.status(200).send({msg: "character updated", char: theChar});
 });

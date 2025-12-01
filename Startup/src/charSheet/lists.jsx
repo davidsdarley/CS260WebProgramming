@@ -40,7 +40,6 @@ export function Lists({title, list = ["None"], inventory = {}, update = () => {}
     },[])
 
     function doUpdate(field, mode, val){
-        console.log("Flag Lists", field, mode, val);
         update(field, mode, val);
     }
 
