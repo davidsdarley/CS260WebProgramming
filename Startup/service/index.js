@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const DB = require('./database.js');
 
 const authCookieName = 'token';
 
@@ -261,9 +262,13 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
         user.token = uuid.v4();
+        await DB.updateUser(user);
         setAuthCookie(res, user.token);
         res.send({ username: user.username, charIDs: user.characters });
         return;
+        }
+        else{
+          res.status(401).send({ msg: 'Incorrect username or password' });
         }
 }
 res.status(401).send({ msg: 'Unauthorized' });
@@ -274,6 +279,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
         delete user.token;
+        DB.updateUser(user)
     }
     res.clearCookie(authCookieName);
     res.status(204).send();
@@ -293,9 +299,10 @@ apiRouter.post('/characters/getChar', async (req, res) =>{
     res.status(400).send({ msg: 'Missing character ID' });
   }
   //Add in here a check to make sure that the character ID is actually one of theirs
-  const character = chars[Number(id)];
+
+  const character = await DB.getCharacter(id);  //Database version
   if (!character){
-    return res.status(404).send({ msg: 'Character not found', thing: chars[Number(id)], nonexistent: character, existingCharacterIDs: Object.keys(chars) });
+    return res.status(404).send({ msg: 'Character not found', nonexistent: character });
   }
   res.status(200).send({ characterSheet: character });
 });
@@ -311,27 +318,25 @@ apiRouter.post('/characters/getIDs', async (req, res) =>{
 });
   //update an existing character in storage. Requires a charID and updated character.
 apiRouter.post('/characters/update', async (req, res) =>{
-  const oldKeys = Object.keys(chars); //DEBUG
   const user = await findUser('token', req.cookies[authCookieName]);
   if (!user){
-    res.status(401).send({ msg: 'Unauthorized' });
     return }
-  
+
   const id = Number(req.body.charID);
   const updated = req.body.character;
+  //Bunch of ways to fail
   if (!id || !updated) {
     res.status(400).send({ msg: "Missing charID or character data" });
     return
   }
   if (!user.characters.includes(id)){
-
     res.status(401).send( {msg: 'Unauthorized. This is not your character.', yourCharacters: user.characters});
     return
   }
-  chars[Number(id)] = updated; //eventually replace with DB update
-  const theChar = chars.id;
-  const newKeys = Object.keys(chars); //DEBUG
-  res.status(200).send({msg: "character updated", char: theChar, oldkeys: oldKeys, newkeys: newKeys});
+  //Actually update the character
+  await DB.updateCharacter(updated);
+  const theChar = DB.getCharacter(id);
+  res.status(200).send({msg: "character updated", char: theChar});
 });
   //get the next character ID
 apiRouter.post('/characters/newID', async (req, res) => {
@@ -339,47 +344,40 @@ apiRouter.post('/characters/newID', async (req, res) => {
   if (!user){
     res.status(401).send({ msg: 'Unauthorized' });
     return }
-
-  const charIDs = Object.keys(chars).map(id => Number(id));
-  const biggest = Math.max(...charIDs);
-  const newID = biggest+1;
+  //Get the next id
+  
+  // const charIDs = Object.keys(chars).map(id => Number(id));
+  // const biggest = Math.max(...charIDs);
+  const newID = await DB.getNextId();
+  // add the new ID to the user
   user.characters.push(newID);
+  await DB.updateUser(user);
+  //send the response
   res.status(200).send({info: newID});
   return
 })
-
-
 /////////////////////////////////////////////////////////////////
 
-//Will need some fanangling to make it work but security is important and we definitely want this to work.
-const verifyAuth = async (req, res, next) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
-    if (user) {
-        next();
-    } else {
-        res.status(401).send({ msg: 'Unauthorized' });
-}
-};
-
 ///////////// FUNCTIONS FOR USE IN OTHER PLACES /////////////////
-async function createUser(username, password) {    //for login and create
-    const passwordHash = await bcrypt.hash(password, 10);
-
-    const user = {
-        username: username,
-        password: passwordHash,
-        token: uuid.v4(),
-        characters: [1] //automatically give them access to the newCharacter object.
-    };
-    users.push(user);   // replace with DB stuff
-
-    return user;
+async function createUser(username, password) {
+  const passwordHash = await bcrypt.hash(password, 10);
+  const user = {
+      username: username,
+      password: passwordHash,
+      token: uuid.v4(),
+      characters: [1] //automatically give them access to the newCharacter object.
+  };
+  await DB.addUser(user);
+  return user;
 }
 
-async function findUser(field, value) {     // rewrite for DB
-    if (!value) return null;
-  
-    return users.find((u) => u[field] === value);
+async function findUser(field, value){
+  if (!value) return null;
+
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
 }
 
 function setAuthCookie(res, authToken) {

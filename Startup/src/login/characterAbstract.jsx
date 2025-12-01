@@ -29,6 +29,7 @@ export function CharacterAbstract( { characterID } ){
         if (response?.status === 200){
             const body = await response.json();
             const character = body.characterSheet;
+            console.log("FLAG 9.-1", body)
             return character;
         }
     }
@@ -49,6 +50,7 @@ export function CharacterAbstract( { characterID } ){
         //picture?
     return <div className='hoverbox' onClick={handleClick}>
         <h3>{character.name}</h3>
+        {console.log("FLAG 9.0", characterID, character)}
         <p>level {character.characterInfo.level} {character.characterInfo.ancestry} {character.characterInfo.classes}</p>
         {
         //access the picture file and add it in.
