@@ -168,8 +168,9 @@ apiRouter.post('/combat/new', async (req, res) => {
     res.status(401).send({ msg: 'Unauthorized' });
     return;
   }
-  const newCode = newCombat();
-  res.status(200).send({code:newCode});
+  const newC = newCombat();
+  newC.owner = req.body.owner;
+  res.status(200).send({combat: newC});
   return;
 })
   // find and join a new combat
@@ -185,6 +186,22 @@ apiRouter.post('/combat/join', async (req, res) => {
     return;
   }
   res.status(200).send({combat :combat});
+  return;
+})
+apiRouter.post('/combat/update',async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user){
+    res.status(401).send({ msg: 'Unauthorized' });
+    return;
+  }
+  const updated = req.body.combat;
+  const combat = combats[updated.code];
+  if(!combat){
+    res.status(400).send({msg : "combat not found"});
+    return;
+  }
+  combats[updated.code] = updated;
+  res.status(200).send({combat :combats[updated.code]});
   return;
 })
 
@@ -203,7 +220,7 @@ function newCombat(){
     }
   }
   combats[combat.code] = combat; 
-  return combat.code;
+  return combat;
 }
 
 async function createUser(username, password) {

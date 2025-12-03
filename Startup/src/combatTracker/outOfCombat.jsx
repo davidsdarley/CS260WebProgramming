@@ -3,11 +3,12 @@ import './combatTracker.css'
 import { Combat } from './Combat';
 //Adding a comment so I can commit
 
-export function OutOfCombat( {enterCombat = () => {}, setCombatCode = () => {}}){
+export function OutOfCombat( {enterCombat = () => {}}){
     const [inputCode, setCode] = React.useState("");
     const [statusMessage, setMessage] = React.useState("");
 
     async function joinCombat(){
+        console.log("FLAG 1: join called");
         try {
             const res = await fetch("api/combat/join", {
               method: "POST",
@@ -15,6 +16,7 @@ export function OutOfCombat( {enterCombat = () => {}, setCombatCode = () => {}})
               body: JSON.stringify({ code: inputCode }),
             });
             const data = await res.json();
+            console.log("Flag 1.1", data)
       
             if (!res.ok) {
               setMessage(data.msg || "Failed to join combat.");
@@ -23,25 +25,27 @@ export function OutOfCombat( {enterCombat = () => {}, setCombatCode = () => {}})
       
             // Set combat in parent and start websocket
             enterCombat(data.combat);
-            setCombatCode(inputCode); // <-- triggers WebSocket to join room
-          } catch (err) {
+          } 
+          catch (err) {
             setMessage("Error connecting to server.");
             console.error(err);
           }
 
     }
     async function createCombat(){
+        console.log("Flag 2: Create called");
+        const username = localStorage.getItem("username");
         try {
-            const res = await fetch("/combat/new", {
+            const res = await fetch("api/combat/new", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({owner: username})
             });
             const data = await res.json();
-      
-            // Set combat in parent and start websocket
-            enterCombat({ PCs: [], NPCs: [] }); // empty combat object initially
-            setCombatCode(data.code); // <-- triggers WebSocket to join the new room
-          } catch (err) {
+            const combat = data.combat;
+            enterCombat(combat); 
+          } 
+        catch (err) {
             setMessage("Error creating combat.");
             console.error(err);
           }
