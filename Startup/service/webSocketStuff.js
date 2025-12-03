@@ -1,6 +1,7 @@
 const { WebSocketServer } = require('ws');
 
-function CombatMessenger(httpServer, combats, rooms) { //pretty much stolen from Simon
+function CombatMessenger(httpServer, combats, rooms) { 
+  console.log("CombatMessenger started!")
   // Create a websocket object
   const socketServer = new WebSocketServer({ server: httpServer });
 
@@ -20,7 +21,9 @@ function CombatMessenger(httpServer, combats, rooms) { //pretty much stolen from
           return;
         }
       if (parsed.type ==="join"){ //allow for joining combats
+          console.log("join message recieved!");
           const code = parsed.code;
+          console.log("FLAG 1.1 Code:", code);
           socket.combatCode = code;
           const combat = combats[code];
           if (!combat) {
@@ -28,11 +31,21 @@ function CombatMessenger(httpServer, combats, rooms) { //pretty much stolen from
             return;
           }
           rooms[code] = rooms[code] || new Set();
+          console.log("FLAG 1.2 room:", rooms[code]);
           if (parsed.character ){
-            combat.addPC(parsed.character); //Add the PC to the combat when a player joins.
+            const char =  JSON.parse(parsed.character);
+            console.log("FLAG 1.31 character:", char);
+            //check if the PC is already in it
+            if(!combat.PCs.some(pc => pc.id === char.id)){
+              combat.addPC(char); //Add the PC to the combat when a player joins.
+            }
+
+            
+            console.log("FLAG 1.32 combat.PCs:", combat.PCs);
+
           }
           rooms[code].add(socket);
-          socket.send(JSON.stringify({ type: 'joined', code }));
+          socket.send(JSON.stringify({ type: 'joined', combat: combat }));
           return
       }
 

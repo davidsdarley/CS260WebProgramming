@@ -16,13 +16,11 @@ export function OutOfCombat( {enterCombat = () => {}}){
               body: JSON.stringify({ code: inputCode }),
             });
             const data = await res.json();
-            console.log("Flag 1.1", data)
       
             if (!res.ok) {
               setMessage(data.msg || "Failed to join combat.");
               return;
             }
-      
             // Set combat in parent and start websocket
             enterCombat(data.combat);
           } 
@@ -33,7 +31,6 @@ export function OutOfCombat( {enterCombat = () => {}}){
 
     }
     async function createCombat(){
-        console.log("Flag 2: Create called");
         const username = localStorage.getItem("username");
         try {
             const res = await fetch("api/combat/new", {
@@ -69,10 +66,3 @@ export function OutOfCombat( {enterCombat = () => {}}){
     </section>
     )
 }
-
-
-//let you select a combat
-    //accept input of a combat code
-    //check if the combat code is accurate
-        //if it is, pass that combat to the InCombat component
-        //if not, display that below until they update stuff

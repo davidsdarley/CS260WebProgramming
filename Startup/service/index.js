@@ -33,9 +33,6 @@ app.use((req, res, next) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
-
 // CreateAuth a new user
 apiRouter.post(`/auth/create`, async (req, res) => {
     if (await findUser('username', req.body.username)) {
@@ -160,7 +157,29 @@ apiRouter.post('/characters/newID', async (req, res) => {
   res.status(200).send({info: newID});
   return;
 })
+
+
 ////// COMBAT STUFF /////////////////////////////////////////////////
+
+//////// IN MEMORY COMBAT STUFF. These don't need to persist so I'm going to keep them here //////////////////
+function fakeCombat(){//make me a fake combat for testing
+  const PlaceholderCombat = new Combat();
+  PlaceholderCombat.setCode("11111");
+  PlaceholderCombat.addPCbyID(3);
+  PlaceholderCombat.addNPC("Spear Infantry");
+  PlaceholderCombat.addNPC("Spear Infantry");
+  PlaceholderCombat.addNPC("Spear Infantry");
+  return PlaceholderCombat;
+}
+
+const sampleCombat = fakeCombat();
+let combats = {
+  "11111": sampleCombat
+}
+let rooms = {}
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
   // add a new combat
 apiRouter.post('/combat/new', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
@@ -271,23 +290,5 @@ app.use((_req, res) => {
 const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
-  
-//////// IN MEMORY COMBAT STUFF. These don't need to persist so I'm going to keep them here //////////////////
-function fakeCombat(){//make me a fake combat for testing
-  const PlaceholderCombat = new Combat();
-  PlaceholderCombat.setCode("11111");
-  PlaceholderCombat.addPCbyID(3);
-  PlaceholderCombat.addNPC("Spear Infantry");
-  PlaceholderCombat.addNPC("Spear Infantry");
-  PlaceholderCombat.addNPC("Spear Infantry");
-  return PlaceholderCombat;
-}
-
-const sampleCombat = fakeCombat();
-let combats = {
-  "11111": sampleCombat
-}
-let rooms = {}
-//////////////////////////////////////////////////////////////////////////////////////////////
 
 CombatMessenger(httpService, combats, rooms);

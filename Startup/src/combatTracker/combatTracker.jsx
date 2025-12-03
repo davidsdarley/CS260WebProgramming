@@ -68,7 +68,7 @@ export function CombatTracker() {
       <br/>
       {activeCombat !== null && (
         <InCombat
-        combat={activeCombat} 
+        initialCombat={activeCombat} 
         leaveCombat={() => {
           leaveCombat(activeCombat);
           setCombat(null);

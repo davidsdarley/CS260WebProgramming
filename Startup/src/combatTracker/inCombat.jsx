@@ -1,20 +1,34 @@
-//given the combat, 
-
 import { CombatTable } from "./combatTable"
-import React from 'react';
+import React, { useEffect } from 'react';
 import './combatTracker.css'
+import { UseCombatWS } from "./useCombatWS";
 
-//Display the combat code in the upper right part of the screen
-//PC table
-//NPC table
-//Listen for updates
-export function InCombat({combat, leaveCombat = () => {}}){
-  const owner = (combat.owner === localStorage.username);
-  console.log("FLAG 4.-1 Owner Status: ", owner);
+export function InCombat({initialCombat, leaveCombat = () => {}}){
+  console.log("FLAG 5", initialCombat);
+  const owner = (initialCombat.owner === localStorage.username);
+  let char;
+  if (!owner){
+    char = localStorage.getItem('character'); //if you aren't the DM, then you are likely joining to fight.
+  }
+  else{
+    char = null;
+  }
 
-  console.log("Flag 4: combat -", combat);
-    return (<div id="InCombat">
-      <p><b>Combat ID: </b><span>{combat.code}</span></p>
+  const { combat, connected, sendUpdate, setCombatCode,  } = UseCombatWS(initialCombat, char);
+  
+  useEffect(() => {
+    setCombatCode(initialCombat.code);
+  }, [initialCombat.code, setCombatCode]);
+
+  if (!combat) {
+    return <p>Loading combat...</p>;
+  }
+  console.log("FLAG 5.1", combat);
+  return (<div id="InCombat">
+    <p><b>Combat ID: </b><span>{combat.code}</span></p>
+    <p style={{ color: connected ? "green" : "red" }}>
+      {connected ? "Connected" : "Disconnected"}
+    </p>
     <CombatTable
     title="PCs"
     participants={combat["PCs"]}
@@ -25,6 +39,6 @@ export function InCombat({combat, leaveCombat = () => {}}){
     />
 
     <button onClick={() => leaveCombat()} className = "rightAligned"> Leave Combat </button>
-    </div>
-      )
+  </div>
+  )
 }

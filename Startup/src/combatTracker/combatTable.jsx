@@ -2,13 +2,13 @@ import React from 'react';
 import './combatTracker.css'
 
 function getPhysDef(statBlock){
-  return 10+statBlock.strength +statBlock.speed;
+  return 10+Number(statBlock.strength) +Number(statBlock.speed);
 }
 function getCogDef(statBlock){
-  return 10+statBlock.intellect +statBlock.willpower;
+  return 10+Number(statBlock.intellect) +Number(statBlock.willpower);
 }
 function getSpirDef(statBlock){
-  return 10+statBlock.awareness +statBlock.presence;
+  return 10+Number(statBlock.awareness) +Number(statBlock.presence);
 }
 
 export function CombatTable({title, participants}){
