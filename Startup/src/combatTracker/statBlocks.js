@@ -1,6 +1,7 @@
 export const StatBlocks = {
     //I'll want this to be more complete eventually, probably. This is just for now. Bare minimum. 
     "Spear Infantry":{
+        "type": "minion",
         "name": "Spear Infantry",
         "currentHP": 14,
         "maxHP": 14,

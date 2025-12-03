@@ -3,97 +3,48 @@ import './combatTracker.css'
 import { Combat } from './Combat';
 //Adding a comment so I can commit
 
-const Dannic = {
-    "objType": "PC",
-    "name": "Dannic",
-    "characterInfo": {
-        "level": 2,
-        "classes": ["Warrior"],
-        "ancestry": "Human",
-  
-        "Purpose": "Honor. Dannic believes wholeheartedly in the values of Honor, Loyalty, and Honesty. This has guided him in everything he does. He wants to live them, and hopes others can live them as well.",
-        "Obstacle": "While Dannic is extremely willing to charge into battle, he is much more averse to ideological conflict. His response to seeing things in reality that he doesn’t like is to ignore them. If someone who he can’t fight is doing something dishonorable, he’ll do his best to ignore it. If there is injustice he isn’t authorized to respond to, he will very uncomfortably turn away. He avoids thinking about problems he doesn’t know how to fix.",
-        "Goals": ["Find and stop the storming smugglers operating in my tower", "Protect Falkir"],
-        "Expertises": ["Poleaxe", "Alethi"]
-    },
-  
-    "strength": 3,
-    "speed": 3,
-    "maxHP": 20,
-    "currentHP": 9,
-  
-    "intellect": 0,
-    "willpower": 3,
-    "currentFocus": 2,
-  
-    "awareness": 1,
-    "presence": 2,
-    "currentInvestiture": 0,
-  
-    "skills": {
-        "Agility": 0, 
-        "Athletics": 3, 
-        "Heavy Weapons": 3, 
-        "Light Weapons": 1, 
-        "Stealth": 0, 
-        "Thievery": 0,
-    
-        "Crafting": 0, 
-        "Deduction": 0, 
-        "Discipline": 2, 
-        "Intimidation": 1, 
-        "Lore": 0, 
-        "Medicine": 0,
-    
-        "Deception": 0, 
-        "Insight": 0, 
-        "Leadership": 1, 
-        "Perception": 0, 
-        "Persuasion": 0, 
-        "Survival": 0
-    },
-  
-    "talents": ["Stances", "Vigilant Stance"],
-  
-    "inventory": {
-        "Weapons":{
-            "equipped": ["Poleaxe"],
-            "allWeapons": ["Poleaxe", "Shield", "Shardblade"]
-        },
-        "Armor":{
-            "equipped": ["Chain"],
-            "allArmor": ["Chain"]
-        },
-        "Equipment": ["None"],
-        "Spheres": 20
-    },
-  
-    "conditions": ["None"],
-  
-    "user": "davidsdarley"
-  }
-export function OutOfCombat( {enterCombat = () => {}}){
+export function OutOfCombat( {enterCombat = () => {}, setCombatCode = () => {}}){
     const [inputCode, setCode] = React.useState("");
     const [statusMessage, setMessage] = React.useState("");
 
-    function setCombat(){
-        //PLACEHOLDER ONLY. Not relevant to actual code///////////////////
-      const PlaceholderCombat = new Combat();
-      PlaceholderCombat.setCode("11111");
-      PlaceholderCombat.addPC(Dannic);
-      PlaceholderCombat.addNPC("Spear Infantry");
-      PlaceholderCombat.addNPC("Spear Infantry");
-      PlaceholderCombat.addNPC("Spear Infantry");
-      /////////////////////////////////////////////////////////////////
+    async function joinCombat(){
+        try {
+            const res = await fetch("api/combat/join", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ code: inputCode }),
+            });
+            const data = await res.json();
+      
+            if (!res.ok) {
+              setMessage(data.msg || "Failed to join combat.");
+              return;
+            }
+      
+            // Set combat in parent and start websocket
+            enterCombat(data.combat);
+            setCombatCode(inputCode); // <-- triggers WebSocket to join room
+          } catch (err) {
+            setMessage("Error connecting to server.");
+            console.error(err);
+          }
 
-      if (inputCode === PlaceholderCombat.code){
-        localStorage.setItem('combat', JSON.stringify(PlaceholderCombat));
-        enterCombat(PlaceholderCombat);
-      }
-      else{
-        setMessage("Invalid Code. Please enter a valid code. (At the moment, the placeholder valid code is 11111)");
-        setCode("");
-      }
+    }
+    async function createCombat(){
+        try {
+            const res = await fetch("/combat/new", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+            });
+            const data = await res.json();
+      
+            // Set combat in parent and start websocket
+            enterCombat({ PCs: [], NPCs: [] }); // empty combat object initially
+            setCombatCode(data.code); // <-- triggers WebSocket to join the new room
+          } catch (err) {
+            setMessage("Error creating combat.");
+            console.error(err);
+          }
     }
 
     return (
@@ -107,7 +58,7 @@ export function OutOfCombat( {enterCombat = () => {}}){
                 onChange={(e) => setCode(e.target.value)} 
             />
             <p/>
-            <button onClick={() => setCombat()}> Find Combat </button>
+            <button onClick={() => joinCombat()}> Join Combat </button><span><button onClick={()=>createCombat()}>Create Combat</button></span>
 
         </div>
         <p>{statusMessage}</p>

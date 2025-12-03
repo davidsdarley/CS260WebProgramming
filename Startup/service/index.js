@@ -4,7 +4,10 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
+const { CombatMessenger } = require('./webSocketStuff.js');
 
+const { Combat } = require('../src/combatTracker/Combat.js'); // <-- note .js
+//import { Combat } from '../src/combatTracker/Combat.js';
 const authCookieName = 'token';
 
 
@@ -30,217 +33,7 @@ app.use((req, res, next) => {
 ////////////////////////////////////////////////////////////////////////////////////
 
 
-//Eventually replace as we get the database set up
-let users = [];
-let chars = {
-  1: {
-    "objType": "PC",
-    "name": "New Character",
-    "characterInfo": {
-        "level": 1,
-        "classes": [],
-        "ancestry": "Human",
-  
-        "Purpose": "",
-        "Obstacle": "",
-        "Goals": [],
-        "Expertises": [],
-        "Picture": 1
-    },
-  
-    "strength": 0,
-    "speed": 0,
-    "maxHP": 10,
-    "currentHP": 10,
-  
-    "intellect": 0,
-    "willpower": 0,
-    "currentFocus": 0,
-  
-    "awareness": 0,
-    "presence": 0,
-    "currentInvestiture": 0,
-  
-    "skills": {
-        "Agility": 0, 
-        "Athletics": 0, 
-        "Heavy Weapons": 0, 
-        "Light Weapons": 0, 
-        "Stealth": 0, 
-        "Thievery": 0,
-    
-        "Crafting": 0, 
-        "Deduction": 0, 
-        "Discipline": 0, 
-        "Intimidation": 0, 
-        "Lore": 0, 
-        "Medicine": 0,
-    
-        "Deception": 0, 
-        "Insight": 0, 
-        "Leadership": 0, 
-        "Perception": 0, 
-        "Persuasion": 0, 
-        "Survival": 0
-    },
-  
-    "talents": [],
-  
-    "inventory": {
-        "Weapons":{
-            "equipped": [],
-            "allWeapons": []
-        },
-        "Armor":{
-            "equipped": [],
-            "allArmor": []
-        },
-        "Equipment": [],
-        "Spheres": 20
-    },
-  
-    "conditions": [],
-  
-    "user": ""},
-  2: {
-  "objType": "PC",
-  "name": "Dannic",
-  "characterInfo": {
-      "level": 2,
-      "classes": ["Warrior"],
-      "ancestry": "Human",
 
-      "Purpose": "Honor. Dannic believes wholeheartedly in the values of Honor, Loyalty, and Honesty. This has guided him in everything he does. He wants to live them, and hopes others can live them as well.",
-      "Obstacle": "While Dannic is extremely willing to charge into battle, he is much more averse to ideological conflict. His response to seeing things in reality that he doesn’t like is to ignore them. If someone who he can’t fight is doing something dishonorable, he’ll do his best to ignore it. If there is injustice he isn’t authorized to respond to, he will very uncomfortably turn away. He avoids thinking about problems he doesn’t know how to fix.",
-      "Goals": ["Find and stop the storming smugglers operating in my tower", "Protect Falkir"],
-      "Expertises": ["Poleaxe", "Alethi"],
-      "Picture": 10
-  },
-
-  "strength": 3,
-  "speed": 3,
-  "maxHP": 20,
-  "currentHP": 9,
-
-  "intellect": 0,
-  "willpower": 3,
-  "currentFocus": 2,
-
-  "awareness": 1,
-  "presence": 2,
-  "currentInvestiture": 0,
-
-  "skills": {
-      "Agility": 0, 
-      "Athletics": 3, 
-      "Heavy Weapons": 3, 
-      "Light Weapons": 1, 
-      "Stealth": 0, 
-      "Thievery": 0,
-  
-      "Crafting": 0, 
-      "Deduction": 0, 
-      "Discipline": 2, 
-      "Intimidation": 1, 
-      "Lore": 0, 
-      "Medicine": 0,
-  
-      "Deception": 0, 
-      "Insight": 0, 
-      "Leadership": 1, 
-      "Perception": 0, 
-      "Persuasion": 0, 
-      "Survival": 0
-  },
-
-  "talents": ["Stances", "Vigilant Stance"],
-
-  "inventory": {
-      "Weapons":{
-          "equipped": ["Poleaxe"],
-          "allWeapons": ["Poleaxe", "Shield", "Shardblade"]
-      },
-      "Armor":{
-          "equipped": ["Chain"],
-          "allArmor": ["Chain"]
-      },
-      "Equipment": [],
-      "Spheres": 20
-  },
-
-  "conditions": [],
-
-  "user": "davidsdarley"},
-  3: {
-    "objType": "PC",
-    "name": "Jakamav Dohedal",
-    "characterInfo": {
-        "level": 5,
-        "classes": ["Agent"],
-        "ancestry": "Human",
-  
-        "Purpose": "",
-        "Obstacle": "",
-        "Goals": [""],
-        "Expertises": [""],
-        "Picture": 1
-    },
-  
-    "strength": 0,
-    "speed": 3,
-    "maxHP": 25,
-    "currentHP": 25,
-  
-    "intellect": 2,
-    "willpower": 2,
-    "currentFocus": 2,
-  
-    "awareness": 3,
-    "presence": 1,
-    "currentInvestiture": 0,
-  
-    "skills": {
-        "Agility": 2, 
-        "Athletics": 0, 
-        "Heavy Weapons": 0, 
-        "Light Weapons": 3, 
-        "Stealth": 3, 
-        "Thievery": 1,
-    
-        "Crafting": 0, 
-        "Deduction": 1, 
-        "Discipline": 3, 
-        "Intimidation": 1, 
-        "Lore": 0, 
-        "Medicine": 0,
-    
-        "Deception": 3, 
-        "Insight": 1, 
-        "Leadership": 0, 
-        "Perception": 2, 
-        "Persuasion": 0, 
-        "Survival": 0
-    },
-  
-    "talents": [""],
-  
-    "inventory": {
-        "Weapons":{
-            "equipped": [],
-            "allWeapons": []
-        },
-        "Armor":{
-            "equipped": [],
-            "allArmor": []
-        },
-        "Equipment": [],
-        "Spheres": 20
-    },
-  
-    "conditions": [],
-  
-    "user": ""}
-};
 
 
 // CreateAuth a new user
@@ -249,12 +42,11 @@ apiRouter.post(`/auth/create`, async (req, res) => {
       res.status(409).send({ msg: 'Existing user' });
     } else {
       const user = await createUser(req.body.username, req.body.password);
-  
       setAuthCookie(res, user.token);
       res.send({ username: user.username, charIDs: user.characters });
     }
 });
-  
+
 ////////LOGIN LOGOUT STUFF stolen mostly from simon, then adapted to my site////////////////////////////////////////
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
@@ -286,7 +78,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 });
 ////////////////////////////////////////////////////////////////////
 
-////// MY APP STUFF ////////////////////////////////////////////
+////// CHARACTER SHEET STUFF ////////////////////////////////////////////
   //Get a character sheet from a character ID
 apiRouter.post('/characters/getChar', async (req, res) =>{ 
   const user = await findUser('token', req.cookies[authCookieName]);
@@ -366,11 +158,54 @@ apiRouter.post('/characters/newID', async (req, res) => {
 
   //send the response
   res.status(200).send({info: newID});
-  return
+  return;
 })
-/////////////////////////////////////////////////////////////////
+////// COMBAT STUFF /////////////////////////////////////////////////
+  // add a new combat
+apiRouter.post('/combat/new', async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user){
+    res.status(401).send({ msg: 'Unauthorized' });
+    return;
+  }
+  const newCode = newCombat();
+  res.status(200).send({code:newCode});
+  return;
+})
+  // find and join a new combat
+apiRouter.post('/combat/join', async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user){
+    res.status(401).send({ msg: 'Unauthorized' });
+    return;
+  }
+  const combat = combats[req.body.code];
+  if(!combat){
+    res.status(400).send({msg : "combat not found"});
+    return;
+  }
+  res.status(200).send({combat :combat});
+  return;
+})
 
 ///////////// FUNCTIONS FOR USE IN OTHER PLACES /////////////////
+function combatKeyExists(key) {
+  return Object.prototype.hasOwnProperty.call(combats, key);
+}
+function newCombat(){
+  const combat = new Combat();
+  let attempts = 0;
+  while (combatKeyExists(combat.code)){
+    combat.newCode();
+    attempts ++;
+    if (attempts > 50) {
+      throw new Error("Unable to generate unique combat code after 50 attempts. How???? I dunno. Maybe I'm now REALLY popular.");
+    }
+  }
+  combats[combat.code] = combat; 
+  return combat.code;
+}
+
 async function createUser(username, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   const user = {
@@ -416,7 +251,26 @@ app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 ///////////////// And we officially start listening//////////////////
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
   
+//////// IN MEMORY COMBAT STUFF. These don't need to persist so I'm going to keep them here //////////////////
+function fakeCombat(){//make me a fake combat for testing
+  const PlaceholderCombat = new Combat();
+  PlaceholderCombat.setCode("11111");
+  PlaceholderCombat.addPCbyID(3);
+  PlaceholderCombat.addNPC("Spear Infantry");
+  PlaceholderCombat.addNPC("Spear Infantry");
+  PlaceholderCombat.addNPC("Spear Infantry");
+  return PlaceholderCombat;
+}
+
+const sampleCombat = fakeCombat();
+let combats = {
+  "11111": sampleCombat
+}
+let rooms = {}
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+CombatMessenger(httpService, combats, rooms);

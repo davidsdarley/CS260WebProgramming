@@ -199,7 +199,9 @@ export const SkillStats= {
 }
 
 export const Pictures = {
+    // default
     1: "/profilePics/First_Ideal_poster.jpg",
+    // radiant profiles
     2: "/profilePics/windrunner.jpg",
     3: "/profilePics/skybreaker.jpg",
     4: "/profilePics/dustbringer.jpg",
@@ -208,11 +210,12 @@ export const Pictures = {
     7: "/profilePics/lightweaver.jpg",
     8: "/profilePics/elsecaller.jpg",
     9: "/profilePics/willshaper.jpg",
-    10: "/profilePics/stoneward.png",
-    
+    10: "/profilePics/stoneward1.webp",
     11: "/profilePics/bondsmith.jpg",
+    // shardbearers
     12: "/profilePics/Stormlight_Shardbearer.avif",
     13: "/profilePics/fallingShardbearer.jpg",
+    // characters
     14: "/profilePics/adolin.webp",
     15: "/profilePics/kaladin1.webp",
     16: "/profilePics/kaladin2.jpeg",
@@ -222,13 +225,17 @@ export const Pictures = {
     20: "/profilePics/lift2.jpg",
     21: "/profilePics/lift3.jpg",
     22: "/profilePics/eshonai1.webp",
-    23: "/profilePics/listener1.jpg",
+    23: "/profilePics/syl.webp",
     24: "/profilePics/rlain.jpg",
-    25: "/profilePics/singer1.jpeg",
-    26: "/profilePics/venli.webp",
-    27: "/profilePics/stormform.jpg",
-    28: "/profilePics/syl.webp",
-    29: "/profilePics/stoneward1.webp"
+    // singers and listeners
+    25: "/profilePics/listener1.jpg",
+    26: "/profilePics/singer1.jpeg",
+    27: "/profilePics/venli.webp",
+    28: "/profilePics/stormform.jpg",
+
+    
+    //Heralds
+    29: "/profilePics/stoneward.png"
 }
 
 export const Dannic = {
