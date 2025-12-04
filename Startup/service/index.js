@@ -116,16 +116,14 @@ apiRouter.post('/characters/update', async (req, res) =>{
   const user = await findUser('token', req.cookies[authCookieName]);
   if (!user){
     return }
-
   const id = Number(req.body.charID);
   const updated = req.body.character;
-  
   //Bunch of ways to fail
   if (!id || !updated) {
     res.status(400).send({ msg: "Missing charID or character data" });
     return
   }
-  if (updated.id !== id){ //For some reason sometimes these two don't match, so I'm just fixing this here and now.
+  if (updated.id !== id){ //For some reason when people make new characters, sometimes these two don't match, so I'm just fixing this here and now.
     updated.id = id;
     console.log("IDs don't match. Switched:", updated.id);
   }
@@ -298,4 +296,4 @@ const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
 
-CombatMessenger(httpService, combats, rooms);
+CombatMessenger(httpService, combats, rooms, DB);

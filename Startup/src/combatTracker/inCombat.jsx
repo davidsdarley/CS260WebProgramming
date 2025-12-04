@@ -5,7 +5,7 @@ import { UseCombatWS } from "./useCombatWS";
 import { ArmorDeflects, WeaponDamageTypes } from "./statBlocks";
 
 
-export function InCombat({initialCombat, leaveCombat = () => {}}){
+export function InCombat({initialCombat, leaveCombat = () => {}, ws}){
   const owner = (initialCombat.owner === localStorage.username);
   const [damageType, setDamageType] = React.useState("Keen")
   const damageTypes = ["Keen", "Impact", "Energy", "Spirit", "Vital", "Healing"];
@@ -30,12 +30,19 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     }
   },[])
   
-  const { combat, connected, sendUpdate, setCombatCode,  } = UseCombatWS(initialCombat, character);
+  const { combat, connected, sendUpdate, setCombatCode, sendDBUpdate } = UseCombatWS(initialCombat, character, ws);
   
   function sendCombat(){
     sendUpdate(combat);
   }
-
+  function updatePC(pc){
+    //I'm given a character, who has presumably taken damage. I need to make it get hurt. 
+    //Can send an Update Character api call, but that won't work if the PC is someone else's
+    //I could send a different type of message to the websocket. I could make it so when you receive a message, if one of the PCs is your active PC, it updates it. I should probably do that, but that won't fix the DB thing. 
+    //Probably the websocket idea is best. 
+    sendDBUpdate(pc);
+    return;
+  }
 
   const [damageAmmount, setDamageAmmount] = React.useState("");
 
@@ -109,7 +116,8 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     }
     //send it off!
     sendCombat();
-    //THING TO DO! make it update the character in the Database
+    updatePC(target);
+
   }
 
 

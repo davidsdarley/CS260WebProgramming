@@ -34,7 +34,7 @@ async function leaveCombat(combat){
   return;
 }
 
-export function CombatTracker() {
+export function CombatTracker({ws}) {
   const [activeCombat, setCombat] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat=()=>{}) {
+export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat=()=>{}, ws) {
   const socketRef = useRef(null);
   const [combat, setCombat] = useState(initialCombat);
   const [connected, setConnected] = useState(false);
@@ -9,8 +9,14 @@ export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat
   // Connect WebSocket
   useEffect(() => {
     if (!combatCode) return;
-    const address = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws`
-    const socket = new WebSocket(address);
+    let socket;
+    if (!ws){
+      const address = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws`
+      socket = new WebSocket(address);
+    }
+    else{
+      socket = ws;
+    }
 
     socketRef.current = socket;
 
@@ -44,5 +50,11 @@ export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat
       console.log("Update sent!");
     }
   }
-  return { combat, connected, sendUpdate, setCombatCode };
+  function sendDBUpdate(update) { //takes an updated combat object, to replace the old one.
+    if (socketRef.current?.readyState === WebSocket.OPEN) {
+      socketRef.current.send(JSON.stringify({ type: "dbUpdate", pc:{...update} }));
+      console.log("DB update sent!");
+    }
+  }
+  return { combat, connected, sendUpdate, setCombatCode, sendDBUpdate };
 }

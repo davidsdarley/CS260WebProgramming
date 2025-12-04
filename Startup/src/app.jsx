@@ -12,7 +12,10 @@ import { AuthState } from './login/authState';
 
 
 export default function App() {
-  
+  const address = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws`
+  const ws = new WebSocket(address);
+
+
   const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
 
   const [authState, setAuthState] = React.useState(AuthState.Unauthenticated);
@@ -52,7 +55,6 @@ export default function App() {
     <Routes>
       <Route path='/' element={
         <Login
-        
           username={username}
           authState={authState}
           userData={userData}
@@ -60,7 +62,6 @@ export default function App() {
             setUsername(loginUsername);
             setAuthState(newAuthstate);
             setUserData(user);
-
           }
           }
           />
@@ -69,9 +70,12 @@ export default function App() {
       <Route path='/charSheet' element={
         <CharSheet
           userData={userData}
+          ws={ws}
          />}
        />
-      <Route path='/combatTracker' element={<CombatTracker />} />
+      <Route path='/combatTracker' element={
+        <CombatTracker
+          ws={ws} />} />
       <Route path='/combatRules' element={<CombatRules />} />
       <Route path='*' element={<NotFound />} />
     </Routes>

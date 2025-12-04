@@ -6,23 +6,11 @@ import { CharacterInfo } from './characterInfo';
 import { CharacterInfoEditing } from './characterInfoEditing';
 
 
-export function CharSheet({userData}) {
+export function CharSheet({userData, ws}) {
     //localStorage.removeItem("character");
 
     async function getCharacter(charID){
-        
-        try{
-            const localChar = localStorage.getItem("character");
-            if (localChar){
-                console.log("Local character found: ", JSON.parse(localChar));
-                return JSON.parse(localChar);
-            } 
-        }
-        catch(err){
-            console.error("Failed to parse localStorage character:", err);
-        }
-        //If it isn't in local storage, get it from the DB
-        const id =  charID; //eventually take this as a parameter
+        const id =  charID;
         const response = await fetch(`/api/characters/getChar`, {
             method: 'POST',
             body: JSON.stringify({ charID: id }),
@@ -105,6 +93,11 @@ export function CharSheet({userData}) {
         if (response?.status === 200){
             //All is well
             console.log("Update successful!")
+            //send the update to ws
+            ws.send(JSON.stringify({
+                type: "CHARACTER_UPDATED",
+                character: character
+            }))
         }
         else{
             console.log("AAAAGGGHHH Character update failed!!!!")

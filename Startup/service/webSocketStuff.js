@@ -1,15 +1,27 @@
 const { WebSocketServer } = require('ws');
 
-function CombatMessenger(httpServer, combats, rooms) { 
+function CombatMessenger(httpServer, combats, rooms, DB) { 
   console.log("CombatMessenger started!")
   // Create a websocket object
   const socketServer = new WebSocketServer({ server: httpServer });
 
+  function broadcastUpdate(code, combat) {
+    if (!rooms[code]) return;
+    const payload = JSON.stringify({
+      type: "state",
+      combat
+    });
+  
+    rooms[code].forEach(client => {
+      if (client.readyState === client.OPEN) {
+        client.send(payload);
+      }
+    });
+  }
+
   socketServer.on('connection', (socket) => {
     socket.isAlive = true;
     socket.combatCode = null;   //no combat assigned when you enter
-
-    // Forward messages to everyone except the sender
 
     //old on message
     socket.on('message', function message(data) {
@@ -49,7 +61,7 @@ function CombatMessenger(httpServer, combats, rooms) {
       }
 
       if (parsed.type === 'update' && socket.combatCode) { //update messages carry a new combat.
-        console.log("update message received!", parsed);
+        console.log("update message received!");
         const room = socket.combatCode;
         let combat = combats[room];
         if (!combat) return;  //just to cover my base cases. Hopefully will never be useful.
@@ -67,7 +79,44 @@ function CombatMessenger(httpServer, combats, rooms) {
             client.send(payload);
           }
         });
+        return;
       }
+      if (parsed.type === "dbUpdate" && socket.combatCode) {
+        console.log("DB update!");
+        if (parsed.pc){
+          DB.updateCharacter(parsed.pc);
+        }
+        return;
+      }
+      if (parsed.type === "CHARACTER_UPDATED"){
+        console.log("Character update has occured!")
+        if (!parsed.character) {
+          console.log("Character update without character");
+          return;
+        }
+        const character = parsed.character;
+
+        Object.keys(combats).forEach(combatCode=>{
+          const combat =combats[combatCode];
+          // combat.PCs = combat.PCs.map(pc =>
+          //   pc.id === character.id ? character : pc
+          // );
+          let updated = false;
+          combat.PCs = combat.PCs.map(pc => {
+            if (pc.id === character.id) {
+              updated = true;
+              return character;   // this is where the character actually gets updated
+            }
+            return pc;
+          });
+          if (updated) {
+            console.log("Sending update to", combatCode);
+            broadcastUpdate(combatCode, combat);
+          }
+        })
+        return;
+      }
+
     });
 
     socket.on('close', () => {
