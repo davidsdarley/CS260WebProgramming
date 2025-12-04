@@ -59,14 +59,17 @@ export function CombatTable({title, participants, add = () => {}, owner, doHit=(
 
   const [nameToID, setNameToID] = React.useState({});
   function addName(name, id){
-    const placeholder = {...nameToID};
-    placeholder[name]= id;
-    setNameToID(placeholder);
+    setNameToID(prev => {
+      const updated = { ...prev, [name]: id };
+      console.log("UPDATED:", updated);
+      return updated;
+    });
   }
 
   const [newFighter, setFighter] = React.useState("");
   async function addNew(){
     if (title==="PCs"){
+      console.log("FLAG 7.1", nameToID[newFighter]);
       const charID = Number(nameToID[newFighter]);
       console.log("FLAG 7.1", charID);
       const PC = await getCharFromID(charID);
@@ -140,7 +143,6 @@ export function CombatTable({title, participants, add = () => {}, owner, doHit=(
                 <HitButton
                   index={index}
                   onHit={(i)=>{
-                    console.log(title, "Index", i, "hit!");
                     doHit(i);
                   }}
                 />

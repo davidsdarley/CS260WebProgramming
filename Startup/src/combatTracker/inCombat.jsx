@@ -67,8 +67,6 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
       console.log("No damage ammount entered");
       return
     }
-    console.log("Hit called on [", index,"] of", table);
-    console.log(damageAmmount, damageType, "damage!");
 
     const target = table[index];
     if (damageType === "Healing"){
@@ -110,7 +108,6 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
       target.currentHP = 0;
     }
     //send it off!
-    console.log(target);
     sendCombat();
     //THING TO DO! make it update the character in the Database
   }

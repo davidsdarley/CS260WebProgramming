@@ -13,9 +13,6 @@ export function CharacterInfoEditing({character, update = () => {}, stopEdit = (
     if (!character.name === "New Character"){
         setName(character.name);
     }
-    else{
-        console.log(character.name);
-    }
     //Name
     //level
     const [Level, setLevel] = React.useState(character.characterInfo.level);

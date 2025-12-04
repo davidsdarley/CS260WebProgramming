@@ -34,9 +34,7 @@ export function Stats({character, update = () => {}, edit}){
                 meterMax={character.willpower}
                 meterValue={focusStat}
                 updateMeter={(val) =>{
-                    console.log("Focus changing")
                     update("currentFocus", "add", val)
-                    console.log("Focus updated")
                 }}
                 character={character}
                 edit={edit}
@@ -49,9 +47,7 @@ export function Stats({character, update = () => {}, edit}){
                 meterMax={character.awareness < character.presence ? character.presence: character.awareness}
                 meterValue={character.currentInvestiture}
                 updateMeter={(val) =>{
-                    console.log("investiture changing")
                     update("currentInvestiture", "add", val)
-                    console.log("investiture updated")
                 }}
                 character={character}
                 edit={edit}

@@ -19,7 +19,6 @@ export default function App() {
 
 
   const [authState, setAuthState] = React.useState(currentAuthState);
-  console.log(authState);
 
   const [userData, setUserData] = React.useState({});
 
@@ -61,11 +60,9 @@ export default function App() {
           authState={authState}
           userData={userData}
           authChange={(loginUsername, newAuthstate, user) => {
-            console.log("authChange called");
             setUsername(loginUsername);
             setAuthState(newAuthstate);
             setUserData(user);
-            console.log("Logged in", {newAuthstate})
 
           }
           }

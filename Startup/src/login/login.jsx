@@ -13,19 +13,15 @@ export function Login({ username, authState, userData, authChange = () => {}}) {
         <LoggedIn
           username={username}
           onLogout={() => {
-            console.log("onLogout called");
             authChange("", AuthState.Unauthenticated, {});
             localStorage.removeItem("character");
-            console.log("Logged out", authState);
           }}
           />
       )}
       {authState === AuthState.Unauthenticated && (
         <UnAuthorized
           onLogin={(loginUsername, foundUser) => {
-            console.log("onLogin called");
             authChange(loginUsername, AuthState.Authenticated, foundUser);
-            console.log("Login finished",authState);
           }}
         />
       )

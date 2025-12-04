@@ -10,7 +10,6 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
     const [inputSpheres, setInputSpheres] = React.useState(0);
     function updateSpheres(mode){
         const curspheres = inventory.Spheres;
-        console.log("Update Spheres called. Initial count: ", curspheres);
         if(mode === "add"){
             update("inventory.Spheres", "replace", curspheres + inputSpheres);
         }
@@ -18,14 +17,11 @@ export function BottomSection({talents, inventory, conditions, update = () => {}
             update("inventory.Spheres", "replace", curspheres - inputSpheres);
         }
         else{
-            console.log("Update Spheres called invalidly: mode ", mode);
         }
         setInputSpheres(0);
-        console.log("Final count: ", inventory.Spheres);
     }
 
     function doUpdate(field, mode, val, flag){
-        console.log(field, mode, val);
         update(field, mode, val);
     }
     if (edit){
