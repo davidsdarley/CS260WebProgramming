@@ -95,6 +95,7 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     //THING TO DO! make it update the character in the Database
   }
 
+  
   if (!combat) {
     return <p>Loading combat...</p>;
   }
