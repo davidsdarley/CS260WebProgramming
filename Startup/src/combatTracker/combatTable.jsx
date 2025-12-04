@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import './combatTracker.css'
 import { StatBlocks } from "./statBlocks.js"
+import { TwoButtonStack } from './buttonStack.jsx';
+import { HitButton } from './hitButton.jsx';
 
 function getPhysDef(statBlock){
   return 10 + Number(statBlock.strength) +Number(statBlock.speed);
@@ -40,7 +42,7 @@ async function getCharFromID(id){
   }
 }
 
-export function CombatTable({title, participants, add = () => {}, owner}){
+export function CombatTable({title, participants, add = () => {}, owner, doHit=()=>{}}){
   const [loading, setLoading] = React.useState(false);
 
   function getHPText(char){
@@ -135,6 +137,16 @@ export function CombatTable({title, participants, add = () => {}, owner}){
                 <td>{getPhysDef(char)}</td>
                 <td>{getCogDef(char)}</td>
                 <td>{getSpirDef(char)}</td>
+                <HitButton
+                  index={index}
+                  onHit={(i)=>{
+                    console.log(title, "Index", i, "hit!");
+                    doHit(i);
+                  }}
+                />
+                {owner ? <td><button>Remove</button></td>:""}
+                
+                
               </tr>
             ))
           }

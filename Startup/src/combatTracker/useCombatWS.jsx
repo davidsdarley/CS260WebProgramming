@@ -22,7 +22,6 @@ export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat
     };
 
     socket.onmessage = (e) => {
-        console.log("Flag 6.2. Message received!")
         const msg = JSON.parse(e.data);
         if (msg.type === "joined") {
             console.log(`Joined combat ${msg.combat.code}`);
@@ -40,12 +39,9 @@ export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat
 
   // Send updates to server
   function sendUpdate(update) { //takes an updated combat object, to replace the old one.
-    console.log("FLAG 6.3. Updating!", update)
     if (socketRef.current?.readyState === WebSocket.OPEN) {
-      console.log("FLAG 6.31. Update ready to send")
       socketRef.current.send(JSON.stringify({ type: "update", combat:{...update} }));
     }
   }
-
   return { combat, connected, sendUpdate, setCombatCode };
 }
