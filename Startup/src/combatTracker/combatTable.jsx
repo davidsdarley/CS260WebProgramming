@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './combatTracker.css'
 import { StatBlocks } from "./statBlocks.js"
 
@@ -12,7 +12,37 @@ function getSpirDef(statBlock){
   return 10 + Number(statBlock.awareness) + Number(statBlock.presence);
 }
 
+async function fetchIDs() {
+  const response = await fetch(`/api/characters/getIDs`, {
+      method: 'POST',
+      headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      },
+  });
+  if (response?.status === 200){
+      const body = await response.json();
+      const idList = body.charIDs;
+      return idList;
+  }
+}
+async function getCharFromID(id){
+  const response = await fetch(`/api/characters/getChar`, {
+      method: 'POST',
+      body: JSON.stringify({ charID: Number(id) }),
+      headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      },
+  });
+  if (response?.status === 200){
+      const body = await response.json();
+      const character = body.characterSheet;
+      return character;
+  }
+}
+
 export function CombatTable({title, participants, add = () => {}, owner}){
+  const [loading, setLoading] = React.useState(false);
+
   function getHPText(char){
     if (title === "NPCs"){
       if (owner){
@@ -25,14 +55,61 @@ export function CombatTable({title, participants, add = () => {}, owner}){
     return (char.currentHP+"/"+char.maxHP);
   }
 
-  const [newNPC, setNPC] = React.useState("");
+  const [nameToID, setNameToID] = React.useState({});
+  function addName(name, id){
+    const placeholder = {...nameToID};
+    placeholder[name]= id;
+    setNameToID(placeholder);
+  }
 
-  function addNewNPC(){
-    if (newNPC && StatBlocks[newNPC]){
-      add(StatBlocks[newNPC]);
+  const [newFighter, setFighter] = React.useState("");
+  async function addNew(){
+    if (title==="PCs"){
+      const charID = Number(nameToID[newFighter]);
+      const PC = await getCharFromID(charID);
+      if(PC){
+        add(PC);
+      }
+    }
+    else{
+      if (newFighter && StatBlocks[newFighter]){
+        add(StatBlocks[newFighter]);
+      }
     }
   }
+
+  const [options, setOptions] = React.useState(["",""])
+  async function getPCs(){
+
+    setLoading(true);
+    const IDs = await fetchIDs();
+
+    const requests = IDs
+    .filter(id => id !== 1)
+    .map(async id => {
+      const char = await getCharFromID(id);
+      addName(char.name, id);
+      return char.name;
+    });
+    const names = await Promise.all(requests);
+
+    setOptions(["", ...names]);
   
+    setLoading(false);
+  }
+  
+  useEffect(()=>{
+    if(title==="PCs"){
+      getPCs();
+    }
+    else{ // the NPC options.
+      setOptions(Object.keys(StatBlocks));
+    }
+  },[]);
+
+  if (loading){
+    return <p>Loading...</p>
+  }
 
   return(
     <section className = "textbox" id = "players">
@@ -65,11 +142,12 @@ export function CombatTable({title, participants, add = () => {}, owner}){
 
     </table>
   
-    {//if you are the owner, we want ways to add NPCs to the fight
-    (owner && title === "NPCs")? <div>
-      <button onClick={addNewNPC}>add NPC</button>
-      <select value={newNPC} onChange={(e)=> setNPC(e.target.value)}>
-        {Object.keys(StatBlocks).map((item, index) => (
+    {//if you are the owner, we want ways to add your PCs or NPCs to the fight
+    (owner && options)? <div>
+      <button onClick={addNew}>add</button>
+      <span> </span>
+      <select value={newFighter} onChange={(e)=> setFighter(e.target.value)}>
+        {options.map((item, index) => (
                   <option
                   key={index}>
                       {item}

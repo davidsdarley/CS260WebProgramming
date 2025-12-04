@@ -12,8 +12,6 @@ export function CharacterAbstract( { characterID } ){
         navigate(`/charSheet`);
     }
 
-
-
     //takes a characterID
     //gets the cacharacter from DB
     //shows the basic info about them

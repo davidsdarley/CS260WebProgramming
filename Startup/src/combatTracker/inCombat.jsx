@@ -20,8 +20,9 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
   }, [initialCombat.code, setCombatCode]);
 
   function addParticipant(participant){
-    console.log("FLAG 1", combat);
-    if (participant.type === "PC"){
+    console.log("FLAG 1", participant);
+    console.log("Flag 1.1", participant.type);
+    if (participant.objType === "PC"){
       if(!combat.PCs.some(pc => pc.id === participant.id)){
         combat.PCs.push(participant);
         sendUpdate(combat);
@@ -31,11 +32,7 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
       combat.NPCs.push(participant); //Add the PC to the combat when a player joins.
       sendUpdate(combat);
     }
-
   };
-
-
-
 
   if (!combat) {
     return <p>Loading combat...</p>;
@@ -49,6 +46,7 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     title="PCs"
     participants={combat["PCs"]}
     owner={owner}
+    add={(participant) => {addParticipant(participant)}}
     />
     <CombatTable
     title="NPCs"
