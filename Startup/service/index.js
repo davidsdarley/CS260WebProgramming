@@ -6,7 +6,7 @@ const app = express();
 const DB = require('./database.js');
 const { CombatMessenger } = require('./webSocketStuff.js');
 
-const { Combat } = require('../src/combatTracker/Combat.js'); // <-- note .js
+const { Combat } = require('./Combat.js'); 
 const authCookieName = 'token';
 
 
@@ -36,10 +36,12 @@ app.use((req, res, next) => {
 apiRouter.post(`/auth/create`, async (req, res) => {
     if (await findUser('username', req.body.username)) {
       res.status(409).send({ msg: 'Existing user' });
+      return;
     } else {
       const user = await createUser(req.body.username, req.body.password);
       setAuthCookie(res, user.token);
       res.send({ username: user.username, charIDs: user.characters });
+      return;
     }
 });
 
@@ -57,9 +59,11 @@ apiRouter.post('/auth/login', async (req, res) => {
         }
         else{
           res.status(401).send({ msg: 'Incorrect username or password' });
+          return;
         }
 }
 res.status(401).send({ msg: 'Unauthorized' });
+return;
 });
 
 // DeleteAuth logout a user
@@ -85,6 +89,7 @@ apiRouter.post('/characters/getChar', async (req, res) =>{
   const id = Number(req.body.charID);
   if (!id) {
     res.status(400).send({ msg: 'Missing character ID' });
+    return;
   }
   //Add in here a check to make sure that the character ID is actually one of theirs
 
@@ -93,6 +98,7 @@ apiRouter.post('/characters/getChar', async (req, res) =>{
     return res.status(404).send({ msg: 'Character not found', nonexistent: character });
   }
   res.status(200).send({ characterSheet: character });
+  return;
 });
   //get the IDs of the characters the User has access to.
 apiRouter.post('/characters/getIDs', async (req, res) =>{ 
@@ -103,6 +109,7 @@ apiRouter.post('/characters/getIDs', async (req, res) =>{
   }
   const idList = user.characters;
   res.status(200).send({charIDs: idList})
+  return;
 });
   //update an existing character in storage. Requires a charID and updated character.
 apiRouter.post('/characters/update', async (req, res) =>{
@@ -130,6 +137,7 @@ apiRouter.post('/characters/update', async (req, res) =>{
   const result = await DB.updateCharacter(updated);
   if (!result){
     res.status(500).send({msg: "character failed to update"})
+    return;
   }
   const theChar = await DB.getCharacter(id);
   res.status(200).send({msg: "character updated", char: theChar});
@@ -279,6 +287,7 @@ app.use((req, res, next) => {
 // Default error handler seemed good to have so I stole it.
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });
+    return;
   });
 // Also seemed like a good default to take so `\ *_* /`
 app.use((_req, res) => {

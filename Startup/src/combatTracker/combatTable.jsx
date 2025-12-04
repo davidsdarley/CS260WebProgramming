@@ -42,7 +42,7 @@ async function getCharFromID(id){
   }
 }
 
-export function CombatTable({title, participants, add = () => {}, owner, doHit=()=>{}}){
+export function CombatTable({title, participants, add = () => {}, owner, doHit=()=>{}, remove = () => {}}){
   const [loading, setLoading] = React.useState(false);
 
   function getHPText(char){
@@ -68,6 +68,7 @@ export function CombatTable({title, participants, add = () => {}, owner, doHit=(
   async function addNew(){
     if (title==="PCs"){
       const charID = Number(nameToID[newFighter]);
+      console.log("FLAG 7.1", charID);
       const PC = await getCharFromID(charID);
       if(PC){
         add(PC);
@@ -82,7 +83,6 @@ export function CombatTable({title, participants, add = () => {}, owner, doHit=(
 
   const [options, setOptions] = React.useState(["",""])
   async function getPCs(){
-
     setLoading(true);
     const IDs = await fetchIDs();
 
@@ -144,7 +144,7 @@ export function CombatTable({title, participants, add = () => {}, owner, doHit=(
                     doHit(i);
                   }}
                 />
-                {owner ? <td><button>Remove</button></td>:""}
+                {owner ? <td><button onClick={(index)=>remove(index)}>Remove</button></td>:""}
                 
                 
               </tr>

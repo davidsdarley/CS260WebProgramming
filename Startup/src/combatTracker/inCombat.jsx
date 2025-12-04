@@ -56,6 +56,11 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
       sendUpdate(combat);
     }
   };
+  function removeParticipant(index, arr){
+    if (index < 0 || index >= arr.length) return arr; // safety check
+    arr.splice(index, 1);
+    sendCombat();
+  }
 
   async function hit(table, index){
     if (!damageAmmount){
@@ -125,6 +130,7 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     owner={owner}
     add={(participant) => {addParticipant(participant)}}
     doHit={(i)=> hit(combat.PCs, i)}
+    remove={(i)=>removeParticipant(i, combat.PCs)}
     />
     <CombatTable
     title="NPCs"
@@ -132,6 +138,7 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     owner={owner}
     add={(participant) => {addParticipant(participant)}}
     doHit={(i)=> hit(combat.NPCs, i)}
+    remove={(i)=>removeParticipant(i, combat.NPCs)}
     />
 
     {
