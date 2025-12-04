@@ -27,3 +27,32 @@ export const ArmorDeflects = {
     "Shardplate": 5,
     "Shardplate (Radiant)": 5
 }
+
+export const WeaponDamageTypes = {
+    "":"",
+    "Javelin": "Keen",
+    "Knife": "Keen",
+    "Mace": "Impact",
+    "Rapier": "Keen",
+    "Shortspear": "Keen",
+    "Sidesword": "Keen",
+    "Staff": "Impact",
+    "Shortbow": " een",
+    "Sling": "Impact",
+
+    "Axe": "Keen",
+    "Greatsword": "Keen",
+    "Hammer": "Impact",
+    "Longspear": "Keen",
+    "Longsword": "Keen",
+    "Poleaxe": "Keen",
+    "Shield": "Impact",
+    "Crossbow": "Keen",
+    "Longbow": "Keen",
+
+    "Shardblade": "Spirit",
+    "Shardblade (Radiant)": "Spirit",
+    "Half-Shard": "Impact",
+    "Warhammer": "Impact",
+    "Grandbow": "Keen"
+}

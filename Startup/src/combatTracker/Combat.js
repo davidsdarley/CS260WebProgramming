@@ -6,8 +6,6 @@ export class Combat{
         this.PCs = [];
         this.NPCs = [];
         this.owner = "";
-        this.address = "http://localhost:4000";
-        //this.address = "https://startup.davidsdarley.com";
     }
     newCode(){
         this.code = this.generateCode()
@@ -29,21 +27,6 @@ export class Combat{
     }
     setOwner(username){
         this.owner=username;
-    }
-    
-    async addPCbyID(id){
-        const response = await fetch(`${this.address}/api/characters/getChar`, {
-            method: 'POST',
-            body: JSON.stringify({ charID: id }),
-            headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-            },
-        });
-        if (response?.status === 200){
-            const body = await response.json();
-            const character = body.characterSheet;
-            this.addPC(character);
-        }
     }
     
     removePCbyName(name){   //removes the first one. Probably should make sure your PCs have different names.

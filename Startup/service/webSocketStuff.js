@@ -36,9 +36,9 @@ function CombatMessenger(httpServer, combats, rooms) {
             if(!combat.PCs.some(pc => pc.id === char.id)){
               combat.addPC(char); //Add the PC to the combat when a player joins.
             }
-
-            
-
+          }
+          else{
+            console.log("no character included")
           }
           rooms[code].add(socket);
           //console.log("Room:", rooms[code])

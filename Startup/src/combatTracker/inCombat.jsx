@@ -2,31 +2,47 @@ import { CombatTable } from "./combatTable"
 import React, { useEffect } from 'react';
 import './combatTracker.css'
 import { UseCombatWS } from "./useCombatWS";
-import { ArmorDeflects } from "./statBlocks";
+import { ArmorDeflects, WeaponDamageTypes } from "./statBlocks";
 
 
 export function InCombat({initialCombat, leaveCombat = () => {}}){
   const owner = (initialCombat.owner === localStorage.username);
-  let char;
-  if (!owner){
-    char = localStorage.getItem('character'); //if you aren't the DM, then you are likely joining to fight.
-  }
-  else{
-    char = null;
-  }
+  const [damageType, setDamageType] = React.useState("Keen")
+  const damageTypes = ["Keen", "Impact", "Energy", "Spirit", "Vital", "Healing"];
 
-  const { combat, connected, sendUpdate, setCombatCode,  } = UseCombatWS(initialCombat, char);
+  let character
+  character = localStorage.getItem('character'); //if you aren't the DM, then you are likely joining to fight.
+
+  useEffect(() => {
+    if (!owner){
+      if (character){
+        const parsedChar = JSON.parse(character)
+        
+        const equipped = parsedChar.inventory.Weapons.equipped;
+        if (equipped){
+          setDamageType(WeaponDamageTypes[equipped[0]])
+        }
+      }
+      else{
+        character = null;
+      }
+    }
+  },[])
+  
+  
+  console.log("FLAG 2", character);
+  const { combat, connected, sendUpdate, setCombatCode,  } = UseCombatWS(initialCombat, character);
   
   function sendCombat(){
     sendUpdate(combat);
   }
 
-  const [damageType, setDamageType] = React.useState("Keen")
-  const damageTypes = ["Keen", "Impact", "Energy", "Spirit", "Vital", "Healing"];
+
   const [damageAmmount, setDamageAmmount] = React.useState("");
 
   useEffect(() => {
     setCombatCode(initialCombat.code);
+    //if they are not the owner and have a PC here, set damage type to their equipped weapon
   }, [initialCombat.code, setCombatCode]);
 
   function addParticipant(participant){
@@ -95,7 +111,7 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     //THING TO DO! make it update the character in the Database
   }
 
-  
+
   if (!combat) {
     return <p>Loading combat...</p>;
   }

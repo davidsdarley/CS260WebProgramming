@@ -7,7 +7,6 @@ const DB = require('./database.js');
 const { CombatMessenger } = require('./webSocketStuff.js');
 
 const { Combat } = require('../src/combatTracker/Combat.js'); // <-- note .js
-//import { Combat } from '../src/combatTracker/Combat.js';
 const authCookieName = 'token';
 
 
@@ -165,7 +164,6 @@ apiRouter.post('/characters/newID', async (req, res) => {
 function fakeCombat(){//make me a fake combat for testing
   const PlaceholderCombat = new Combat();
   PlaceholderCombat.setCode("11111");
-  PlaceholderCombat.addPCbyID(3);
   PlaceholderCombat.addNPC("Spear Infantry");
   PlaceholderCombat.addNPC("Spear Infantry");
   PlaceholderCombat.addNPC("Spear Infantry");
