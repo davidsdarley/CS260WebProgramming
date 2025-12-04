@@ -41,6 +41,7 @@ export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat
   function sendUpdate(update) { //takes an updated combat object, to replace the old one.
     if (socketRef.current?.readyState === WebSocket.OPEN) {
       socketRef.current.send(JSON.stringify({ type: "update", combat:{...update} }));
+      console.log("Update sent!");
     }
   }
   return { combat, connected, sendUpdate, setCombatCode };

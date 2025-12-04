@@ -36,6 +36,9 @@ function CombatMessenger(httpServer, combats, rooms) {
             if(!combat.PCs.some(pc => pc.id === char.id)){
               combat.addPC(char); //Add the PC to the combat when a player joins.
             }
+            else{
+              console.log("Already included");
+            }
           }
           else{
             console.log("no character included")
@@ -47,7 +50,7 @@ function CombatMessenger(httpServer, combats, rooms) {
       }
 
       if (parsed.type === 'update' && socket.combatCode) { //update messages carry a new combat.
-        console.log("update message received!")
+        console.log("update message received!", parsed);
         const room = socket.combatCode;
         let combat = combats[room];
         if (!combat) return;  //just to cover my base cases. Hopefully will never be useful.

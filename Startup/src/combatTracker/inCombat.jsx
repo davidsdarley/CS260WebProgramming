@@ -11,26 +11,25 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
   const damageTypes = ["Keen", "Impact", "Energy", "Spirit", "Vital", "Healing"];
 
   let character
-  character = localStorage.getItem('character'); //if you aren't the DM, then you are likely joining to fight.
-
+  if (!owner){
+    character = localStorage.getItem('character'); //if you aren't the DM, then you are likely joining to fight.
+  }
+  else{
+    character = null;
+  }
   useEffect(() => {
-    if (!owner){
-      if (character){
-        const parsedChar = JSON.parse(character)
-        
-        const equipped = parsedChar.inventory.Weapons.equipped;
-        if (equipped){
-          setDamageType(WeaponDamageTypes[equipped[0]])
-        }
+    if (character){
+      const parsedChar = JSON.parse(character)
+      const equipped = parsedChar.inventory.Weapons.equipped;
+      if (equipped){
+        setDamageType(WeaponDamageTypes[equipped[0]])
       }
-      else{
-        character = null;
-      }
+    }
+    else{
+      character = null;
     }
   },[])
   
-  
-  console.log("FLAG 2", character);
   const { combat, connected, sendUpdate, setCombatCode,  } = UseCombatWS(initialCombat, character);
   
   function sendCombat(){
@@ -77,7 +76,7 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
       //get Deflect value
       let deflect = 0;
       if(target.objType === "PC"){
-        const armor = target.inventory.Armor.equipped;
+        const armor = target.inventory.Armor.equipped[0];
         if (armor){
           deflect = ArmorDeflects[armor];
         }
