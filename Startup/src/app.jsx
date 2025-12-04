@@ -15,10 +15,7 @@ export default function App() {
   
   const [username, setUsername] = React.useState(localStorage.getItem('username') || '');
 
-  const currentAuthState = username ? AuthState.Authenticated : AuthState.Unauthenticated;
-
-
-  const [authState, setAuthState] = React.useState(currentAuthState);
+  const [authState, setAuthState] = React.useState(AuthState.Unauthenticated);
 
   const [userData, setUserData] = React.useState({});
 

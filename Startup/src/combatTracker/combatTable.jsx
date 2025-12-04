@@ -69,9 +69,7 @@ export function CombatTable({title, participants, add = () => {}, owner, doHit=(
   const [newFighter, setFighter] = React.useState("");
   async function addNew(){
     if (title==="PCs"){
-      console.log("FLAG 7.1", nameToID[newFighter]);
       const charID = Number(nameToID[newFighter]);
-      console.log("FLAG 7.1", charID);
       const PC = await getCharFromID(charID);
       if(PC){
         add(PC);
