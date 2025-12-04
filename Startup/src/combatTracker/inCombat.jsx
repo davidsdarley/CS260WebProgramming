@@ -4,7 +4,6 @@ import './combatTracker.css'
 import { UseCombatWS } from "./useCombatWS";
 
 export function InCombat({initialCombat, leaveCombat = () => {}}){
-  console.log("FLAG 5", initialCombat);
   const owner = (initialCombat.owner === localStorage.username);
   let char;
   if (!owner){
@@ -20,10 +19,27 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     setCombatCode(initialCombat.code);
   }, [initialCombat.code, setCombatCode]);
 
+  function addParticipant(participant){
+    console.log("FLAG 1", combat);
+    if (participant.type === "PC"){
+      if(!combat.PCs.some(pc => pc.id === participant.id)){
+        combat.PCs.push(participant);
+        sendUpdate(combat);
+      }
+    }
+    else{
+      combat.NPCs.push(participant); //Add the PC to the combat when a player joins.
+      sendUpdate(combat);
+    }
+
+  };
+
+
+
+
   if (!combat) {
     return <p>Loading combat...</p>;
   }
-  console.log("FLAG 5.1", combat);
   return (<div id="InCombat">
     <p><b>Combat ID: </b><span>{combat.code}</span></p>
     <p style={{ color: connected ? "green" : "red" }}>
@@ -32,10 +48,13 @@ export function InCombat({initialCombat, leaveCombat = () => {}}){
     <CombatTable
     title="PCs"
     participants={combat["PCs"]}
+    owner={owner}
     />
     <CombatTable
-    title="NPCS"
+    title="NPCs"
     participants={combat["NPCs"]}
+    owner={owner}
+    add={(participant) => {addParticipant(participant)}}
     />
 
     <button onClick={() => leaveCombat()} className = "rightAligned"> Leave Combat </button>

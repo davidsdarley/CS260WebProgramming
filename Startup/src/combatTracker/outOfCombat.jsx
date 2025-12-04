@@ -8,7 +8,6 @@ export function OutOfCombat( {enterCombat = () => {}}){
     const [statusMessage, setMessage] = React.useState("");
 
     async function joinCombat(){
-        console.log("FLAG 1: join called");
         try {
             const res = await fetch("api/combat/join", {
               method: "POST",

@@ -23,7 +23,9 @@ export class Combat{
       }
     
     addPC(character){
-        this.PCs.push(character);
+        if(!this.PCs.some(pc => pc.id === character.id)){
+            this.PCs.push(character); //Add the PC to the combat when a player joins.
+          }
     }
     setOwner(username){
         this.owner=username;

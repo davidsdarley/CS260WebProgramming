@@ -23,7 +23,6 @@ function CombatMessenger(httpServer, combats, rooms) {
       if (parsed.type ==="join"){ //allow for joining combats
           console.log("join message recieved!");
           const code = parsed.code;
-          console.log("FLAG 1.1 Code:", code);
           socket.combatCode = code;
           const combat = combats[code];
           if (!combat) {
@@ -31,37 +30,35 @@ function CombatMessenger(httpServer, combats, rooms) {
             return;
           }
           rooms[code] = rooms[code] || new Set();
-          console.log("FLAG 1.2 room:", rooms[code]);
           if (parsed.character ){
             const char =  JSON.parse(parsed.character);
-            console.log("FLAG 1.31 character:", char);
             //check if the PC is already in it
             if(!combat.PCs.some(pc => pc.id === char.id)){
               combat.addPC(char); //Add the PC to the combat when a player joins.
             }
 
             
-            console.log("FLAG 1.32 combat.PCs:", combat.PCs);
 
           }
           rooms[code].add(socket);
+          //console.log("Room:", rooms[code])
           socket.send(JSON.stringify({ type: 'joined', combat: combat }));
           return
       }
 
-      if (parsed.type === 'update' && socket.combatCode) {
+      if (parsed.type === 'update' && socket.combatCode) { //update messages carry a new combat.
+        console.log("update message received!")
         const room = socket.combatCode;
-        const combat = combats[room];
+        let combat = combats[room];
         if (!combat) return;  //just to cover my base cases. Hopefully will never be useful.
   
-        // simple example: update NPC HP by  index
-        if (parsed.field === 'NPC') {  //DEBUG FLAG This needs testing still
-          const index = parsed.targetIndex;
-          const npc = combat.NPCs[index];
-          if (npc){
-            combat.NPCs[index] = parsed.updated;
-          }
+        if (!parsed.combat){
+          console.log("Update without combat object!");
+          return;
         }
+        combats[room] = parsed.combat;
+        combat = combats[room];
+
         const payload = JSON.stringify({ type: 'state', combat });
         rooms[room].forEach(client => {
           if (client.readyState === client.OPEN) {
@@ -69,7 +66,6 @@ function CombatMessenger(httpServer, combats, rooms) {
           }
         });
       }
-
     });
 
     socket.on('close', () => {

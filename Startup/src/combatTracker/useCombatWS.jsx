@@ -11,12 +11,10 @@ export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat
     if (!combatCode) return;
     const address = `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/ws`
     const socket = new WebSocket(address);
-    console.log("FLAG 6", socket);
 
     socketRef.current = socket;
 
     socket.onopen = () => {
-        console.log("Flag 6.1. onopen called. Sending Join with these paramenters:", combatCode, initialCharacter);
         // Join the combat room
         socket.send(JSON.stringify({ type: "join", code: combatCode, character: initialCharacter }));
         setConnected(true);
@@ -41,9 +39,11 @@ export function UseCombatWS(initialCombat, initialCharacter = null, updateCombat
   }, [combatCode, initialCharacter]);
 
   // Send updates to server
-  function sendUpdate(update) {
+  function sendUpdate(update) { //takes an updated combat object, to replace the old one.
+    console.log("FLAG 6.3. Updating!", update)
     if (socketRef.current?.readyState === WebSocket.OPEN) {
-      socketRef.current.send(JSON.stringify({ type: "update", ...update }));
+      console.log("FLAG 6.31. Update ready to send")
+      socketRef.current.send(JSON.stringify({ type: "update", combat:{...update} }));
     }
   }
 
