@@ -96,8 +96,9 @@ export function CharSheet({userData, ws}) {
             //send the update to ws
             ws.send(JSON.stringify({
                 type: "CHARACTER_UPDATED",
-                character: character
+                character: updated
             }))
+            console.log("sending update to Combats");
         }
         else{
             console.log("AAAAGGGHHH Character update failed!!!!")
@@ -138,24 +139,29 @@ export function CharSheet({userData, ws}) {
             } else {
                 console.log("Invalid mode attempted: ", mode);
             }
-            return updated;
-        });
-        
+            console.log(updated.currentHP);
         //Make sure nothing is higher than any possible maximums
-        setCharacter( prev => {
-            const updated = {...prev};
             //health
             if (prev.currentHP > prev.maxHP){
                 updated.currentHP = updated.maxHP;
+            }
+            else if(prev.currentHP < 0){
+                updated.currentHP = 0;
             }
             //focus
             if (prev.currentFocus > prev.willpower){
                 updated.currentFocus = updated.willpower;
             }
+            else if(prev.currentFocus < 0){
+                updated.currentFocus = 0;
+            }
             //investiture
             const maxInvestiture = prev.awareness > prev.presence ? prev.awareness: prev.presence;
             if (prev.currentInvestiture > maxInvestiture){
                 updated.currentInvestiture = maxInvestiture;
+            }
+            else if(prev.currentInvestiture < 0){
+                updated.currentInvestiture = 0;
             }
 
             localStorage.setItem("character", JSON.stringify(updated))
@@ -167,7 +173,7 @@ export function CharSheet({userData, ws}) {
             }
 
             return updated;
-        })
+        });
     }
 
     useEffect(()=>{if (character){
