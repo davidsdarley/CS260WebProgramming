@@ -257,4 +257,62 @@ npm install react react-dom react-router-dom
 
 
 
+# FINAL NOTES
+Default ports: 80 for HTTP, 443 for HTTPS, and 22 for SSH
+Codes of 300/400/500 indicate problems of various types
+  300s: Redirection notice. Anything from multiple possible choices here to a permanent change to URL
+  400s: Client errors. 401 is unauthorized, 402 you gotta pay, 403 you lack permission, 404 we don't know what you are talking about. There are a LOT of 400s, but these are the ones I think are most common and relevant.
+  500s: Server errors.
+
+content-type lets me, what do you know, specify what type of content is in a request/response! It's actually really important and it's very good the naming convention is clear, but yeah it's pretty clear. Options for content types to be specified
+  application/json (I used this one a LOT)
+  text/html
+  image/jpeg
+  multipart/form-data
+
+## Cookies
+A cookie is a small piece of data a server sends to a user's web browser
+  secure cookie: A cookie with the Secure attribute is only sent to the server with an encrypted request over the HTTPS protocol. It's never sent with unsecured HTTP (except on localhost), which means man-in-the-middle attackers can't access it easily. Insecure sites (with http: in the URL) can't set cookies with the Secure attribute.
+  Http-only cookie: cookies that can't be accessed by JavaScript. You can prevent JavaScript from accessing a cookie by specifying the HttpOnly attribute during its creation.
+  Same-site cookie: lets servers specify whether/when cookies are sent with cross-site requests — i.e., third-party cookies
+
+How should user passwords be stored? ALWAYS ALWAYS ALWAYS as a hashed version. NEVER store actual passwords!
+
+Websocket is a lasting, two-way communication channel over a single TCP connection, allowing real-time, low-latency data exchange between web browsers/clients and servers
+
+## Acronyms
+- JSX: JavaScript XML
+- JS: JavaScript
+- AWS: Amazon Web Services
+- NPM: Node Package Manager
+- NVM: Node Version Manager (probably)
+
+## React
+useState: 
+- Computer definition: React.useState hook gains the ability to manage state—data that changes over time and affects what is displayed on the screen
+- My experience: Lets me tell a constant what it is now, and define a function on how to change it. Then everything else magically works
+Hooks:
+- Computer Definition: allow developers to use state, lifecycle features, and other powerful React capabilities within functional components. Before Hooks, these features were exclusively available in class-based components.
+- My experience: Lets me change stuff that influences the webpage and share the info with a bunch of stuff. It remembers stuff, and rerenders when I change it. Also lets me access and influence the DOM
+
+different hooks and what they do:
+- State Hook: useState. allows you to add state variables to functional components. It provides components with the ability to "remember" data across re-renders and updates the user interface automatically when that data changes. 
+- Context Hook: useContext. allows functional components to read and subscribe to a context value, making it possible to share data across the entire component tree without manually passing props down through every level. A thing I didn't realize existed until RIGHT NOW and would have been VERY USEFUL!!!
+- Ref Hook: useRef. allows components to hold a mutable value that persists across re-renders without causing the component to update. It is primarily used as an "escape hatch" to interact with non-React systems, such as direct DOM manipulation or managing mutable data that does not affect the UI. I don't fully understand this, but it sounds somewhat similar to useState.
+- Effect Hook: useEffect. allows you to perform side effects in functional components. Side effects are operations that occur outside the normal React rendering process, such as data fetching, subscriptions, or manually changing the DOM. By using useEffect, you tell React that your component needs to do something after the render has been committed to the screen. Basically, I can make a set of commands that it will do whenever specified conditions are fulfilled. Most of the time make it only happen once per render for my use.
+- Performance Hooks: useMemo, useCallback, useTransition, useDefferedValue. Catch all term for hooks intended to optimize performance, and skip unnecessary work.
+
+## Node
+Node.js is a free, open-source, cross-platform JavaScript runtime environment that allows developers to execute JavaScript code outside of a web browser, typically on a server or a local machine. 
+In my experience, it's a very convenient development environment!
+PM2 (Process Manager 2) is a popular, powerful, and simple process manager for Node.js (and other) applications that keeps them running, helps with scaling, and provides monitoring, ensuring high availability in production by automatically restarting crashed apps, managing logs, and scaling across CPU cores.
+It's the thing keeping my server working!
+
+package.json: outlines metadata and configuration for both developers and the package manager. 
+- Stores dependencies and supported version ranges.
+- Also stores scripts which we define for use in NPM and such.
+
+# fetch
+- computer definition: fetch() function is a modern, promise-based JavaScript mechanism for making asynchronous network requests. It allows web applications to retrieve resources (like data, images, or entire web pages) from a server without needing a full page refresh
+- my experience: it gets me my stuff. Makes API calls. Put await in front or it breaks because promises aren't the actual data. Also a fun fake cuss.
 
