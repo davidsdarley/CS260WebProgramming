@@ -272,9 +272,9 @@ content-type lets me, what do you know, specify what type of content is in a req
 
 ## Cookies
 A cookie is a small piece of data a server sends to a user's web browser
-  secure cookie: A cookie with the Secure attribute is only sent to the server with an encrypted request over the HTTPS protocol. It's never sent with unsecured HTTP (except on localhost), which means man-in-the-middle attackers can't access it easily. Insecure sites (with http: in the URL) can't set cookies with the Secure attribute.
-  Http-only cookie: cookies that can't be accessed by JavaScript. You can prevent JavaScript from accessing a cookie by specifying the HttpOnly attribute during its creation.
-  Same-site cookie: lets servers specify whether/when cookies are sent with cross-site requests — i.e., third-party cookies
+- secure cookie: A cookie with the Secure attribute is only sent to the server with an encrypted request over the HTTPS protocol. It's never sent with unsecured HTTP (except on localhost), which means man-in-the-middle attackers can't access it easily. Insecure sites (with http: in the URL) can't set cookies with the Secure attribute.
+- Http-only cookie: cookies that can't be accessed by JavaScript. You can prevent JavaScript from accessing a cookie by specifying the HttpOnly attribute during its creation.
+- Same-site cookie: lets servers specify whether/when cookies are sent with cross-site requests — i.e., third-party cookies
 
 How should user passwords be stored? ALWAYS ALWAYS ALWAYS as a hashed version. NEVER store actual passwords!
 
