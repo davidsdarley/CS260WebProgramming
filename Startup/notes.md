@@ -312,7 +312,9 @@ package.json: outlines metadata and configuration for both developers and the pa
 - Stores dependencies and supported version ranges.
 - Also stores scripts which we define for use in NPM and such.
 
-# fetch
+## fetch
 - computer definition: fetch() function is a modern, promise-based JavaScript mechanism for making asynchronous network requests. It allows web applications to retrieve resources (like data, images, or entire web pages) from a server without needing a full page refresh
 - my experience: it gets me my stuff. Makes API calls. Put await in front or it breaks because promises aren't the actual data. Also a fun fake cuss.
 
+## Vite
+Makes a development site for the app. Dev server. Very convenient. Shows what it will look like and how it works.
